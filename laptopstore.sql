@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 09, 2022 lúc 02:39 PM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 7.4.27
+-- Host: 127.0.0.1:3306
+-- Generation Time: Mar 24, 2023 at 08:32 PM
+-- Server version: 5.7.36
+-- PHP Version: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,23 +18,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `laptopstore`
+-- Database: `laptopstore`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin_roles`
+-- Table structure for table `admin_roles`
 --
 
-CREATE TABLE `admin_roles` (
-  `id_admin_roles` int(11) NOT NULL,
+DROP TABLE IF EXISTS `admin_roles`;
+CREATE TABLE IF NOT EXISTS `admin_roles` (
+  `id_admin_roles` int(11) NOT NULL AUTO_INCREMENT,
   `admin_admin_id` int(10) UNSIGNED NOT NULL,
-  `roles_id_roles` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `roles_id_roles` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_admin_roles`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `admin_roles`
+-- Dumping data for table `admin_roles`
 --
 
 INSERT INTO `admin_roles` (`id_admin_roles`, `admin_admin_id`, `roles_id_roles`) VALUES
@@ -60,97 +62,85 @@ INSERT INTO `admin_roles` (`id_admin_roles`, `admin_admin_id`, `roles_id_roles`)
 (21, 21, 3),
 (22, 22, 3),
 (25, 23, 3),
-(30, 30, 3);
+(30, 30, 3),
+(32, 32, 2),
+(33, 33, 3);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `migrations`
+-- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `password_resets`
 --
 
-CREATE TABLE `password_resets` (
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_admin`
+-- Table structure for table `tbl_admin`
 --
 
-CREATE TABLE `tbl_admin` (
-  `admin_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_admin`;
+CREATE TABLE IF NOT EXISTS `tbl_admin` (
+  `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `admin_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_admin`
+-- Dumping data for table `tbl_admin`
 --
 
 INSERT INTO `tbl_admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`, `admin_phone`, `created_at`, `updated_at`) VALUES
-(1, 'dungadmin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'dungadmin', '123456789', NULL, NULL),
-(2, 'dungauthor@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'dungauthor', '123456789', NULL, NULL),
-(3, 'dunguser@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'dunguser', '123456789', NULL, NULL),
-(4, 'yschiller@example.org', 'e10adc3949ba59abbe56e057f20f883e', 'Deron Marvin', '123456789', NULL, NULL),
-(5, 'freeda.lowe@example.net', 'e10adc3949ba59abbe56e057f20f883e', 'Estefania Schuster Jr.', '123456789', NULL, NULL),
-(6, 'wfranecki@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Jordyn Grant', '123456789', NULL, NULL),
-(7, 'rath.fabiola@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Prof. Malika Koss', '123456789', NULL, NULL),
-(8, 'ken67@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Conrad Hessel', '123456789', NULL, NULL),
-(9, 'klein.roma@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Florida Stracke', '123456789', NULL, NULL),
-(10, 'conroy.jude@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Mr. Edmund Schowalter', '123456789', NULL, NULL),
-(11, 'hermiston.maybell@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Jessy Weissnat', '123456789', NULL, NULL),
-(12, 'royal22@example.org', 'e10adc3949ba59abbe56e057f20f883e', 'Ansley Lubowitz', '123456789', NULL, NULL),
-(13, 'hammes.alia@example.net', 'e10adc3949ba59abbe56e057f20f883e', 'Velda Huel', '123456789', NULL, NULL),
-(14, 'ptorp@example.net', 'e10adc3949ba59abbe56e057f20f883e', 'Ms. Rosemary Sauer', '123456789', NULL, NULL),
-(15, 'nolson@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Dr. Theresa Breitenberg', '123456789', NULL, NULL),
-(16, 'name.romaguera@example.net', 'e10adc3949ba59abbe56e057f20f883e', 'Efren Gusikowski', '123456789', NULL, NULL),
-(18, 'karen.jast@example.org', 'e10adc3949ba59abbe56e057f20f883e', 'Mekhi Abbott', '123456789', NULL, NULL),
-(19, 'mohamed.satterfield@example.net', 'e10adc3949ba59abbe56e057f20f883e', 'Henri Schinner', '123456789', NULL, NULL),
-(20, 'marian.wehner@example.org', 'e10adc3949ba59abbe56e057f20f883e', 'Scarlett Ward', '123456789', NULL, NULL),
-(21, 'zboncak.ana@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Dr. Sydney Stroman', '123456789', NULL, NULL),
-(22, 'daugherty.lois@example.com', 'e10adc3949ba59abbe56e057f20f883e', 'Ms. Odie Hyatt', '123456789', NULL, NULL),
-(23, 'golden86@example.org', 'e10adc3949ba59abbe56e057f20f883e', 'Trent Zulauf', '123456789', NULL, NULL),
-(25, '123456@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'hdd1', '123456789', NULL, NULL),
-(26, '1234526@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'hdd12', '123456789', NULL, NULL),
-(30, 'dung123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Ho Duc Dung', '1234567890', NULL, NULL);
+(1, 'abc@gmail.com', '202cb962ac59075b964b07152d234b70', 'abc', '123456789', NULL, NULL),
+(31, 'nickyssc@yahoo.com.vn', '', 'Nguyễn Cao Hùng', '', NULL, NULL),
+(32, 'xyz@gmail.com', '202cb962ac59075b964b07152d234b70', 'xyz', '1234567890', NULL, NULL),
+(33, 'qwe@gmail.com', '202cb962ac59075b964b07152d234b70', 'qwe', '1234567890', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_brand`
+-- Table structure for table `tbl_brand`
 --
 
-CREATE TABLE `tbl_brand` (
-  `brand_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_brand`;
+CREATE TABLE IF NOT EXISTS `tbl_brand` (
+  `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `brand_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `brand_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `brand_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `brand_status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`brand_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_brand`
+-- Dumping data for table `tbl_brand`
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `brand_slug`, `brand_desc`, `brand_status`, `created_at`, `updated_at`) VALUES
@@ -167,11 +157,12 @@ INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `brand_slug`, `brand_desc`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_category_product`
+-- Table structure for table `tbl_category_product`
 --
 
-CREATE TABLE `tbl_category_product` (
-  `category_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_category_product`;
+CREATE TABLE IF NOT EXISTS `tbl_category_product` (
+  `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `meta_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug_category_product` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -179,11 +170,12 @@ CREATE TABLE `tbl_category_product` (
   `category_parent` int(11) NOT NULL,
   `category_status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_category_product`
+-- Dumping data for table `tbl_category_product`
 --
 
 INSERT INTO `tbl_category_product` (`category_id`, `meta_keywords`, `category_name`, `slug_category_product`, `category_desc`, `category_parent`, `category_status`, `created_at`, `updated_at`) VALUES
@@ -203,11 +195,12 @@ INSERT INTO `tbl_category_product` (`category_id`, `meta_keywords`, `category_na
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_coupon`
+-- Table structure for table `tbl_coupon`
 --
 
-CREATE TABLE `tbl_coupon` (
-  `coupon_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_coupon`;
+CREATE TABLE IF NOT EXISTS `tbl_coupon` (
+  `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_name` varchar(150) NOT NULL,
   `coupon_date_start` varchar(50) NOT NULL,
   `coupon_date_end` varchar(50) NOT NULL,
@@ -215,12 +208,13 @@ CREATE TABLE `tbl_coupon` (
   `coupon_condition` int(11) NOT NULL,
   `coupon_number` int(11) NOT NULL,
   `coupon_code` varchar(50) NOT NULL,
-  `coupon_status` int(11) NOT NULL DEFAULT 1,
-  `coupon_used` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `coupon_status` int(11) NOT NULL DEFAULT '1',
+  `coupon_used` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`coupon_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_coupon`
+-- Dumping data for table `tbl_coupon`
 --
 
 INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_date_start`, `coupon_date_end`, `coupon_time`, `coupon_condition`, `coupon_number`, `coupon_code`, `coupon_status`, `coupon_used`) VALUES
@@ -229,11 +223,12 @@ INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_date_start`, `coup
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_customers`
+-- Table structure for table `tbl_customers`
 --
 
-CREATE TABLE `tbl_customers` (
-  `customer_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_customers`;
+CREATE TABLE IF NOT EXISTS `tbl_customers` (
+  `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `customer_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -242,67 +237,70 @@ CREATE TABLE `tbl_customers` (
   `customer_vip` int(11) DEFAULT NULL,
   `customer_token` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_customers`
+-- Dumping data for table `tbl_customers`
 --
 
 INSERT INTO `tbl_customers` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `customer_picture`, `customer_vip`, `customer_token`, `created_at`, `updated_at`) VALUES
-(4, 'Hiếu Tấn', 'tanhieu@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 932023992, '', NULL, '', NULL, NULL),
-(5, 'Hoàng thị yến vi', 'yenvi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 932023992, '', NULL, '', NULL, NULL),
-(6, 'Trương Ngọc Tấn Hiếu', 'hieu123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 932023992, '', NULL, '', NULL, NULL),
-(7, 'Anh hieu dep giai 123', 'depgiai123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 932023992, '', NULL, '', NULL, NULL),
-(8, 'Ho Duc Dzung', 'ducdunggl2015@gmail.com', '5d5c6ad1003729e1a279f5d49d6cf80a', 123456789, '', NULL, '', NULL, NULL),
 (12, 'dsa', 'dsad@gmail.com', 'sadsa', 0, '', NULL, NULL, NULL, NULL),
-(13, 'ducdunggl2015@gmail.com', 'ducdunggl2015@gmail.com', '123456', 123456, '', NULL, NULL, NULL, NULL),
-(15, 'hieutan@gmail.com', 'hieutan@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 123456, '', NULL, NULL, NULL, NULL),
-(17, 'Đức Dũng Hồ', 'ducdunggl2014@gmail.com', '', 0, 'https://lh3.googleusercontent.com/a/ALm5wu15ChUU8k2058Wd7K7f5v3spCLOUmQbPOcv2NJZ=s96-c', NULL, NULL, NULL, NULL),
-(19, 'Ly Ly', 'hokieunga20041@gmail.com', '', 0, 'https://lh3.googleusercontent.com/a/ALm5wu3GdggejexIWjF-C5A1O2a6jEUbNGD228jas1F0=s96-c', NULL, NULL, NULL, NULL),
-(20, 'Hiếu Tấn 123', 'tanhieu2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 932023992, '', NULL, '', NULL, NULL),
 (21, 'dsadsa', 'dsadsadsa@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 123456789, NULL, NULL, NULL, NULL, NULL),
 (22, 'sadsad', 'sadsadsa@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 123456789, NULL, NULL, NULL, NULL, NULL),
-(23, 'dsadsa@gmail.com', 'dsadsa@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 123456789, NULL, NULL, NULL, NULL, NULL);
+(23, 'dsadsa@gmail.com', 'dsadsa@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 123456789, NULL, NULL, NULL, NULL, NULL),
+(24, 'nguyen a', 'nguyena@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b', 1234567890, NULL, NULL, NULL, NULL, NULL),
+(25, 'Just Nick', 'hung060101@gmail.com', '', 0, 'https://lh3.googleusercontent.com/a/AEdFTp4MkjaxpHUSO1UBR5J7r3fhRqNUJLxxZr1cK7vi=s96-c', NULL, NULL, NULL, NULL),
+(26, 'Nam Lê Phương', 'lephuongnam0903@gmail.com', '', 0, 'https://lh3.googleusercontent.com/a/AGNmyxYQjICD134mgGfP_yfjpC4MfMredmZUFcs8xQlG=s96-c', NULL, NULL, NULL, NULL),
+(27, 'customer abc', 'customerabc@gmail.com', '202cb962ac59075b964b07152d234b70', 123456789, NULL, NULL, NULL, NULL, NULL),
+(28, 'a', 'a@gmail.com', '202cb962ac59075b964b07152d234b70', 123456789, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_feeship`
+-- Table structure for table `tbl_feeship`
 --
 
-CREATE TABLE `tbl_feeship` (
-  `fee_id` int(5) NOT NULL,
+DROP TABLE IF EXISTS `tbl_feeship`;
+CREATE TABLE IF NOT EXISTS `tbl_feeship` (
+  `fee_id` int(5) NOT NULL AUTO_INCREMENT,
   `fee_matp` int(5) NOT NULL,
   `fee_maqh` int(5) NOT NULL,
   `fee_xaid` int(5) NOT NULL,
-  `fee_feeship` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `fee_feeship` varchar(50) NOT NULL,
+  PRIMARY KEY (`fee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_feeship`
+-- Dumping data for table `tbl_feeship`
 --
 
 INSERT INTO `tbl_feeship` (`fee_id`, `fee_matp`, `fee_maqh`, `fee_xaid`, `fee_feeship`) VALUES
 (1, 2, 28, 829, '70000'),
 (2, 4, 44, 1367, '50000'),
-(3, 2, 26, 715, '35000');
+(3, 2, 26, 715, '35000'),
+(4, 79, 778, 27481, '20000'),
+(5, 79, 778, 27490, '30000'),
+(6, 1, 1, 4, '10000');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_gallery`
+-- Table structure for table `tbl_gallery`
 --
 
-CREATE TABLE `tbl_gallery` (
-  `gallery_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_gallery`;
+CREATE TABLE IF NOT EXISTS `tbl_gallery` (
+  `gallery_id` int(11) NOT NULL AUTO_INCREMENT,
   `gallery_name` varchar(255) NOT NULL,
   `gallery_images` varchar(255) NOT NULL,
-  `product_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`gallery_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_gallery`
+-- Dumping data for table `tbl_gallery`
 --
 
 INSERT INTO `tbl_gallery` (`gallery_id`, `gallery_name`, `gallery_images`, `product_id`) VALUES
@@ -444,33 +442,36 @@ INSERT INTO `tbl_gallery` (`gallery_id`, `gallery_name`, `gallery_images`, `prod
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_information`
+-- Table structure for table `tbl_information`
 --
 
-CREATE TABLE `tbl_information` (
-  `info_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_information`;
+CREATE TABLE IF NOT EXISTS `tbl_information` (
+  `info_id` int(11) NOT NULL AUTO_INCREMENT,
   `info_contact` text NOT NULL,
   `info_map` text NOT NULL,
   `info_logo` varchar(255) DEFAULT NULL,
   `slogan_logo` varchar(255) NOT NULL,
-  `info_fanpage` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `info_fanpage` text NOT NULL,
+  PRIMARY KEY (`info_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_information`
+-- Dumping data for table `tbl_information`
 --
 
 INSERT INTO `tbl_information` (`info_id`, `info_contact`, `info_map`, `info_logo`, `slogan_logo`, `info_fanpage`) VALUES
-(1, '<p>Địa chỉ : 67/66/15 Bờ Bao T&acirc;n Thắng, P. Sơn Kỳ, T&acirc;n Ph&uacute;</p>\r\n\r\n<p>Hotline 1: 0362521731 - Mr Dũng</p>\r\n\r\n<p>Hotline 2: 0972724407 - Mr Dũng 2</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d244.9432621367408!2d106.6250079690625!3d10.80425062742151!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1670334146924!5m2!1svi!2s\" width=\"500\" height=\"200\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'OliviaWilson__2___1_-removebg-preview53.png', 'Đảm bảo - Uy tín - Chất lượng', '<div class=\"fb-page\" data-href=\"https://www.facebook.com/laptophome.fanpage\" data-tabs=\"timeline\" data-width=\"500\" data-height=\"150\" data-small-header=\"false\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\"><blockquote cite=\"https://www.facebook.com/laptophome.fanpage\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/laptophome.fanpage\">LaptopHome Fanpage</a></blockquote></div>');
+(1, '<p>Địa chỉ : 180 Cao Lỗ</p>\r\n\r\n<p>Hotline 1: 0985793873 - NCH</p>\r\n\r\n<p>Hotline 2: 123456789 - NCH</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3296.277096359949!2d106.67673846372212!3d10.737861105820894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fad027e3727%3A0x2a77b414e887f86d!2zMTgwIMSQLiBDYW8gTOG7lywgUGjGsOG7nW5nIDQsIFF14bqtbiA4LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1679389107386!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'TD-Since-200773.webp', 'Bản Lẻ Rẻ Như Bán Sỉ', '<iframe src=\"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=250&height=100&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=729873248747273\" width=\"250\" height=\"250\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_order`
+-- Table structure for table `tbl_order`
 --
 
-CREATE TABLE `tbl_order` (
-  `order_id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_order`;
+CREATE TABLE IF NOT EXISTS `tbl_order` (
+  `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) UNSIGNED NOT NULL,
   `shipping_id` int(11) UNSIGNED NOT NULL,
   `order_status` int(20) NOT NULL,
@@ -478,38 +479,32 @@ CREATE TABLE `tbl_order` (
   `order_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_date` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `customer_id` (`customer_id`,`shipping_id`),
+  KEY `order_code` (`order_code`),
+  KEY `tbl_order_ibfk_1` (`shipping_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_order`
+-- Dumping data for table `tbl_order`
 --
 
 INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_destroy`, `order_code`, `order_date`, `created_at`, `updated_at`) VALUES
-(134, 8, 145, 2, NULL, '11798', '2022-11-10', '2022-11-10 10:46:25', NULL),
-(135, 8, 146, 3, NULL, 'b8050', '2022-11-10', '2022-11-10 10:49:27', NULL),
-(137, 8, 148, 1, NULL, '98f7b', '2022-11-10', '2022-11-10 11:48:15', NULL),
-(139, 8, 150, 1, NULL, 'a52bc', '2022-11-16', '2022-11-16 07:12:36', NULL),
-(140, 17, 151, 1, NULL, '9ce00', '2022-11-16', '2022-11-16 07:14:02', NULL),
-(141, 17, 152, 1, NULL, '217fe', '2022-11-16', '2022-11-16 07:32:53', NULL),
-(142, 17, 153, 1, NULL, '1499c', '2022-11-16', '2022-11-16 07:33:51', NULL),
-(143, 17, 154, 1, NULL, '94072', '2022-11-16', '2022-11-16 07:41:34', NULL),
-(144, 17, 155, 1, NULL, '2c3ac', '2022-11-16', '2022-11-16 07:44:31', NULL),
-(145, 17, 156, 1, NULL, '1346a', '2022-11-16', '2022-11-16 07:45:58', NULL),
-(146, 17, 157, 1, NULL, 'fdd90', '2022-11-16', '2022-11-16 07:48:38', NULL),
-(148, 4, 159, 2, NULL, 'eb27c', '2022-12-06', '2022-12-06 10:18:04', NULL),
 (149, 23, 160, 2, NULL, '0afcd', '2022-12-06', '2022-12-06 12:08:46', NULL),
-(150, 17, 161, 1, NULL, 'f9be3', '2022-12-07', '2022-12-07 07:21:48', NULL),
-(151, 17, 162, 1, NULL, '75285', '2022-12-07', '2022-12-07 07:25:31', NULL);
+(152, 24, 163, 2, NULL, '3ba54', '2023-02-15', '2023-02-15 03:33:32', NULL),
+(153, 27, 164, 1, NULL, 'b708d', '2023-03-25', '2023-03-24 18:01:57', NULL),
+(154, 27, 165, 1, NULL, 'dc5c4', '2023-03-25', '2023-03-24 18:04:11', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_order_details`
+-- Table structure for table `tbl_order_details`
 --
 
-CREATE TABLE `tbl_order_details` (
-  `order_details_id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_order_details`;
+CREATE TABLE IF NOT EXISTS `tbl_order_details` (
+  `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `order_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_id` int(11) UNSIGNED NOT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -518,11 +513,14 @@ CREATE TABLE `tbl_order_details` (
   `product_coupon` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_feeship` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`order_details_id`),
+  KEY `product_id` (`product_id`),
+  KEY `order_code` (`order_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_order_details`
+-- Dumping data for table `tbl_order_details`
 --
 
 INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `product_coupon`, `product_feeship`, `created_at`, `updated_at`) VALUES
@@ -547,16 +545,20 @@ INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`,
 (84, '0afcd', 38, 'Bộ nhớ/ RAM Gigabyte 8GB DDR4-2666', '849000', 1, 'no', '50000', NULL, NULL),
 (85, 'f9be3', 36, 'RAM desktop KINGSTON Fury Beast (1 x 8GB) DDR4 3200MHz', '859000', 1, 'no', '50000', NULL, NULL),
 (86, 'f9be3', 39, 'RAM desktop GIGABYTE DESIGNARE Memory (2 x 32GB) DDR4 3200MHz', '8809000', 1, 'no', '50000', NULL, NULL),
-(87, '75285', 40, 'Laptop Lenovo IdeaPad Yoga 6 13ALC6 82ND00BDVN (13.3\" Full HD/AMD Ryzen 7 5700U/8GB/512GB SSD)', '20290000', 1, 'no', '50000', NULL, NULL);
+(87, '75285', 40, 'Laptop Lenovo IdeaPad Yoga 6 13ALC6 82ND00BDVN (13.3\" Full HD/AMD Ryzen 7 5700U/8GB/512GB SSD)', '20290000', 1, 'no', '50000', NULL, NULL),
+(88, '3ba54', 39, 'RAM desktop GIGABYTE DESIGNARE Memory (2 x 32GB) DDR4 3200MHz', '8809000', 2, 'no', '50000', NULL, NULL),
+(89, 'b708d', 70, 'Mainboard GIGABYTE B660M DS3H DDR4', '3250000', 1, 'no', '50000', NULL, NULL),
+(90, 'dc5c4', 36, 'RAM desktop KINGSTON Fury Beast (1 x 8GB) DDR4 3200MHz', '859000', 1, 'no', '50000', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_product`
+-- Table structure for table `tbl_product`
 --
 
-CREATE TABLE `tbl_product` (
-  `product_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_product`;
+CREATE TABLE IF NOT EXISTS `tbl_product` (
+  `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_quantity` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_sold` int(11) DEFAULT NULL,
@@ -571,23 +573,26 @@ CREATE TABLE `tbl_product` (
   `product_views` int(100) DEFAULT NULL,
   `product_status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  KEY `category_id` (`category_id`,`brand_id`),
+  KEY `tbl_product_ibfk_1` (`brand_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_product`
+-- Dumping data for table `tbl_product`
 --
 
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `product_sold`, `product_slug`, `category_id`, `brand_id`, `product_desc`, `product_content`, `product_price`, `price_cost`, `product_image`, `product_views`, `product_status`, `created_at`, `updated_at`) VALUES
-(36, 'RAM desktop KINGSTON Fury Beast (1 x 8GB) DDR4 3200MHz', '9', 1, 'ram-desktop-kingston-fury-beast-1-x-8gb-ddr4-3200mhz', 13, 13, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Ram Desktop Kingston Fury l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng nhắm đến hiệu năng v&agrave; gi&aacute; b&aacute;n được nhiều kh&aacute;ch h&agrave;ng tin d&ugrave;ng. Phi&ecirc;n bản Kingston Fury mới đ&atilde; được thay đổi nhẹ về thiết kế để bắt mắt hơn, thu h&uacute;t người d&ugrave;ng hơn.&nbsp;</strong></h2>\r\n\r\n<h3><strong>Thiết kế, lắp đặt đơn giản</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để Plug N Play: Cắm l&agrave; chạy! Hệ thống sẽ được tự động nhận diện bus RAM cao nhất c&oacute; thể.&nbsp;</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Thiết kế, lắp đặt đơn giản\" src=\"https://lh6.googleusercontent.com/am1c4GWnEMcZ2u1vPQAaktJ_-w3xr4Noy0f98Zwxv2vLdixC7TT7xjTBmI0-MSrBfl4UYiok_ADuZZ1PTtEr2cuVobtrcDua-UnPaDzPUkyqXWobNg4fWqwSj-cB85v8FzPJFPQJ\" /></p>\r\n\r\n<p>Ram Desktop Kingston Fury được sở hữu thiết kế tản nhiệt nh&ocirc;m đơn giản nhưng đ&atilde; đem lại hiệu quả tốt cho hầu hết c&aacute;c t&aacute;c vụ từ cơ bản đến n&acirc;ng cao của người d&ugrave;ng.&nbsp;</p>\r\n\r\n<h3><strong>Hiệu năng mạnh mẽ</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury l&agrave; một n&acirc;ng cấp ho&agrave;n hảo cho bất kỳ hệ thống m&aacute;y t&iacute;nh n&agrave;o, gi&uacute;p m&aacute;y t&iacute;nh của bạn c&oacute; thể tho&aacute;t khỏi t&igrave;nh trạng chậm, lag do thiếu RAM, mọi hoạt động tr&ecirc;n m&aacute;y t&iacute;nh của bạn trở n&ecirc;n dễ d&agrave;ng v&agrave; nhanh ch&oacute;ng hơn trước đ&acirc;y.</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Hiệu năng mạnh mẽ\" src=\"https://lh3.googleusercontent.com/yB3JM_bv9Q3Fu4RcmlSNncY3O5Rg-FOEbgiAQQhZqvcqhjsKBwXMu8B8-2aFBxdh1hOnxNcqzLYKj23Ur8lF0YyreRVDARW9AUTs7X5s2Kv0q_XJPjZ3RnaKwXT3TcVm9oQpRxnf\" /></p>\r\n\r\n<h3><strong>Tương th&iacute;ch với Intel XMP</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để tương th&iacute;ch ho&agrave;n hảo với c&ocirc;ng nghệ Intel XMP. Thuộc thế hệ DDR4, BUS 3200MHz, Ram Desktop Kingston Fury ph&ugrave; hợp với một d&ograve;ng Ram phổ th&ocirc;ng, đem lại những t&iacute;nh năng cơ bản phục vụ cho người sử dụng.</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Tương thích với công nghệ hiện đại \" src=\"https://lh3.googleusercontent.com/mPW9vfaFCOmDQP5P6nH2LG01qbUUTUw8AGV_WEmL07xnh4w-QdjYrjLHsUH1pDYY1rE1eC-Nc1WOhEVqhCSV8SazYjxDcVAhFwAN9ZHN4uHi-U09sZPVDm45kx6Y5NvrPnAmiIoX\" /></p>\r\n\r\n<h3><strong>Hoạt động một c&aacute;ch ho&agrave;n hảo c&ugrave;ng hệ thống AMD Ryzen&nbsp;</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được kiểm tra to&agrave;n diện để c&oacute; thể hoạt động ho&agrave;n hảo cho hệ thống sử dụng CPU AMD Ryzen. Với timing l&agrave; 16, voltage 1.2 V, Ram Desktop Kingston Fury hoạt động hiệu quả v&agrave; dễ d&agrave;ng tiếp cận với người d&ugrave;ng.</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Hoạt động êm ái\" src=\"https://lh6.googleusercontent.com/g35dzYM5IqLZ3jNv6PUDcYIhBI74eGhmLuWQqkJbsTwYLr8HfXUAKc2s1WiG27DDI23YPWzACN2bBIj1gPev3MTQ-KY4FUZK6c-kwudYag4L258TZz_ccuc6WRvKiVi4BPrrHoDQ\" /></p>\r\n\r\n<h3><strong>Phong Vũ cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng</strong></h3>\r\n\r\n<p>RAM desktop KINGSTON Fury với bộ nhớ 8GB l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng, dễ d&agrave;ng để tiếp cận với nhiều đối tượng kh&aacute;ch h&agrave;ng kh&aacute;c nhau khi n&oacute; hoạt động với hiệu năng mạnh mẽ, dễ lắp đặt v&agrave; sử dụng.&nbsp;<a href=\"https://phongvu.vn/\"><strong>Phong Vũ&nbsp;</strong></a>cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng của thương hiệu KINGSTON v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng.</p>', '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Ram Desktop Kingston Fury l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng nhắm đến hiệu năng v&agrave; gi&aacute; b&aacute;n được nhiều kh&aacute;ch h&agrave;ng tin d&ugrave;ng. Phi&ecirc;n bản Kingston Fury mới đ&atilde; được thay đổi nhẹ về thiết kế để bắt mắt hơn, thu h&uacute;t người d&ugrave;ng hơn.&nbsp;</strong></h2>\r\n\r\n<h3><strong>Thiết kế, lắp đặt đơn giản</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để Plug N Play: Cắm l&agrave; chạy! Hệ thống sẽ được tự động nhận diện bus RAM cao nhất c&oacute; thể.&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Ram Desktop Kingston Fury được sở hữu thiết kế tản nhiệt nh&ocirc;m đơn giản nhưng đ&atilde; đem lại hiệu quả tốt cho hầu hết c&aacute;c t&aacute;c vụ từ cơ bản đến n&acirc;ng cao của người d&ugrave;ng.&nbsp;</p>\r\n\r\n<h3><strong>Hiệu năng mạnh mẽ</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury l&agrave; một n&acirc;ng cấp ho&agrave;n hảo cho bất kỳ hệ thống m&aacute;y t&iacute;nh n&agrave;o, gi&uacute;p m&aacute;y t&iacute;nh của bạn c&oacute; thể tho&aacute;t khỏi t&igrave;nh trạng chậm, lag do thiếu RAM, mọi hoạt động tr&ecirc;n m&aacute;y t&iacute;nh của bạn trở n&ecirc;n dễ d&agrave;ng v&agrave; nhanh ch&oacute;ng hơn trước đ&acirc;y.</p>\r\n\r\n<h3><strong>Tương th&iacute;ch với Intel XMP</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để tương th&iacute;ch ho&agrave;n hảo với c&ocirc;ng nghệ Intel XMP. Thuộc thế hệ DDR4, BUS 3200MHz, Ram Desktop Kingston Fury ph&ugrave; hợp với một d&ograve;ng Ram phổ th&ocirc;ng, đem lại những t&iacute;nh năng cơ bản phục vụ cho người sử dụng.</p>\r\n\r\n<h3><strong>Hoạt động một c&aacute;ch ho&agrave;n hảo c&ugrave;ng hệ thống AMD Ryzen&nbsp;</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được kiểm tra to&agrave;n diện để c&oacute; thể hoạt động ho&agrave;n hảo cho hệ thống sử dụng CPU AMD Ryzen. Với timing l&agrave; 16, voltage 1.2 V, Ram Desktop Kingston Fury hoạt động hiệu quả v&agrave; dễ d&agrave;ng tiếp cận với người d&ugrave;ng.</p>\r\n\r\n<h3><strong>Phong Vũ cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng</strong></h3>\r\n\r\n<p>RAM desktop KINGSTON Fury với bộ nhớ 8GB l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng, dễ d&agrave;ng để tiếp cận với nhiều đối tượng kh&aacute;ch h&agrave;ng kh&aacute;c nhau khi n&oacute; hoạt động với hiệu năng mạnh mẽ, dễ lắp đặt v&agrave; sử dụng.&nbsp;<a href=\"https://phongvu.vn/\"><strong>Phong Vũ&nbsp;</strong></a>cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng của thương hiệu KINGSTON v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng.</p>', 859000, 700000, 'unnamed22.jpg', 8, 1, NULL, NULL),
-(37, 'RAM desktop KINGSTON Fury Beast 16GB (1 x 16GB) DDR4 3200MHz', '11', 1, 'ram-desktop-kingston-fury-beast-16gb-1-x-16gb-ddr4-3200mhz', 13, 13, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2>RAM desktop KINGSTON Fury Beast 16GB l&agrave; phi&ecirc;n bản RAM của nh&agrave; Kingston c&oacute; hiệu năng cao ph&ugrave; hợp cho chơi game, bi&ecirc;n tập video v&agrave; render file với tốc độ l&ecirc;n đến 3200MHz. B&ecirc;n cạnh đ&oacute; những ưu điểm thiết kế hiện đại đem đến sự bền bỉ v&agrave; ổn định trong suốt thời gian sử dụng của người d&ugrave;ng.&nbsp;</h2>\r\n\r\n<h4><strong>Thiết kế bộ tản nhiệt đơn giản&nbsp;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB lu&ocirc;n m&aacute;t nhờ bộ tản nhiệt đơn giản, phong c&aacute;ch. Kiểu d&aacute;ng thiết kế tinh tế, đ&acirc;y ch&iacute;nh l&agrave; phi&ecirc;n bản RAM tuyệt vời cho phong c&aacute;ch thiết kế n&acirc;ng cấp cho d&agrave;n m&aacute;y chơi game, xử l&yacute; c&aacute;c c&ocirc;ng việc bi&ecirc;n tập video của bạn. Bộ tản nhiệt hoạt động năng suất cho hiệu năng xử l&yacute; của RAM lu&ocirc;n ở mức tối đa đ&aacute;p ứng nhu cầu xử l&yacute; của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_b0c7ba44-dc63-436d-bed0-3ea83c7786eb.jpg\" /></p>\r\n\r\n<h4><strong>Giải ph&aacute;p n&acirc;ng cấp hiện đại DDR4</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; sự lựa chọn tuyệt vời cho nhu cầu n&acirc;ng cấp hệ thống để l&agrave;m tăng tốc độ hệ thống cũ chậm chạp với thế hệ DDR4 mang đến khả năng xử l&yacute; nhanh hơn. Hiệu năng cao nhưng phi&ecirc;n bản RAM n&agrave;y cũng mang đến sự h&agrave;i l&ograve;ng về khả năng ti&ecirc;u thụ năng lượng điện thấp với chỉ với 1.2 V.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7f03ae19-9bd6-4475-a1d0-9a00d02cd122.jpg\" /></p>\r\n\r\n<h4><strong>Tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;. Được nhận định bởi c&aacute;c kỹ sư của Intel l&agrave; cấu h&igrave;nh thiết kế tối đa h&oacute;a hiệu suất của c&aacute;c m&ocirc;-đun bộ nhớ gi&uacute;p tốc độ lu&ocirc;n đạt xung nhịp tối đa của RAM. Trang bị cho hệ thống của bạn kit RAM Tương th&iacute;ch với AMD Ryzen v&agrave; sẽ t&iacute;ch hợp liền mạch với PC sử dụng AMD. Đ&acirc;y ch&iacute;nh l&agrave; một c&ocirc;ng cụ tăng hiệu suất đ&aacute;ng tin cậy v&agrave; tương th&iacute;ch cho d&agrave;n m&aacute;y của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7ef820f0-eb6c-437b-a41f-a258a8dfefd9.jpg\" /></p>\r\n\r\n<h4><strong>Tốc độ l&ecirc;n đến 3200MHz v&agrave; dung lượng bộ kit 16GB</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB c&oacute; khả năng &eacute;p xung tối đa l&ecirc;n đến 3200MHz gi&uacute;p cho hiệu năng hệ thống mạnh mẽ cho c&aacute;c t&aacute;c vụ nặng như chơi game trở n&ecirc;n ổn định. Dung lượng bộ kit 16GB cho khả năng lưu trữ để xử l&yacute; nhiều t&aacute;c vụ của PC.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_c6062a99-f9a8-43aa-bcca-d1708de697a6.jpg\" /></p>\r\n\r\n<h4><strong>Mua RAM desktop KINGSTON Fury Beast 16GB chất lượng h&agrave;ng đầu| Phong Vũ cam kết ch&iacute;nh h&atilde;ng bảo h&agrave;nh 36 th&aacute;ng</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; linh kiện đ&aacute;ng để c&oacute; cho để n&acirc;ng cấp hơn cho d&agrave;n PC của bạn. Phong Vũ sẽ đồng h&agrave;nh c&ugrave;ng bạn v&agrave; lu&ocirc;n phục vụ những sản phẩm mua sắm chất lượng, h&atilde;y tận hưởng c&aacute;c ưu đ&atilde;i mua sắm độc đ&aacute;o</p>', '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2>RAM desktop KINGSTON Fury Beast 16GB l&agrave; phi&ecirc;n bản RAM của nh&agrave; Kingston c&oacute; hiệu năng cao ph&ugrave; hợp cho chơi game, bi&ecirc;n tập video v&agrave; render file với tốc độ l&ecirc;n đến 3200MHz. B&ecirc;n cạnh đ&oacute; những ưu điểm thiết kế hiện đại đem đến sự bền bỉ v&agrave; ổn định trong suốt thời gian sử dụng của người d&ugrave;ng.&nbsp;</h2>\r\n\r\n<h4><strong>Thiết kế bộ tản nhiệt đơn giản&nbsp;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB lu&ocirc;n m&aacute;t nhờ bộ tản nhiệt đơn giản, phong c&aacute;ch. Kiểu d&aacute;ng thiết kế tinh tế, đ&acirc;y ch&iacute;nh l&agrave; phi&ecirc;n bản RAM tuyệt vời cho phong c&aacute;ch thiết kế n&acirc;ng cấp cho d&agrave;n m&aacute;y chơi game, xử l&yacute; c&aacute;c c&ocirc;ng việc bi&ecirc;n tập video của bạn. Bộ tản nhiệt hoạt động năng suất cho hiệu năng xử l&yacute; của RAM lu&ocirc;n ở mức tối đa đ&aacute;p ứng nhu cầu xử l&yacute; của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_b0c7ba44-dc63-436d-bed0-3ea83c7786eb.jpg\" /></p>\r\n\r\n<h4><strong>Giải ph&aacute;p n&acirc;ng cấp hiện đại DDR4</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; sự lựa chọn tuyệt vời cho nhu cầu n&acirc;ng cấp hệ thống để l&agrave;m tăng tốc độ hệ thống cũ chậm chạp với thế hệ DDR4 mang đến khả năng xử l&yacute; nhanh hơn. Hiệu năng cao nhưng phi&ecirc;n bản RAM n&agrave;y cũng mang đến sự h&agrave;i l&ograve;ng về khả năng ti&ecirc;u thụ năng lượng điện thấp với chỉ với 1.2 V.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7f03ae19-9bd6-4475-a1d0-9a00d02cd122.jpg\" /></p>\r\n\r\n<h4><strong>Tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;. Được nhận định bởi c&aacute;c kỹ sư của Intel l&agrave; cấu h&igrave;nh thiết kế tối đa h&oacute;a hiệu suất của c&aacute;c m&ocirc;-đun bộ nhớ gi&uacute;p tốc độ lu&ocirc;n đạt xung nhịp tối đa của RAM. Trang bị cho hệ thống của bạn kit RAM Tương th&iacute;ch với AMD Ryzen v&agrave; sẽ t&iacute;ch hợp liền mạch với PC sử dụng AMD. Đ&acirc;y ch&iacute;nh l&agrave; một c&ocirc;ng cụ tăng hiệu suất đ&aacute;ng tin cậy v&agrave; tương th&iacute;ch cho d&agrave;n m&aacute;y của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7ef820f0-eb6c-437b-a41f-a258a8dfefd9.jpg\" /></p>\r\n\r\n<h4><strong>Tốc độ l&ecirc;n đến 3200MHz v&agrave; dung lượng bộ kit 16GB</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB c&oacute; khả năng &eacute;p xung tối đa l&ecirc;n đến 3200MHz gi&uacute;p cho hiệu năng hệ thống mạnh mẽ cho c&aacute;c t&aacute;c vụ nặng như chơi game trở n&ecirc;n ổn định. Dung lượng bộ kit 16GB cho khả năng lưu trữ để xử l&yacute; nhiều t&aacute;c vụ của PC.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_c6062a99-f9a8-43aa-bcca-d1708de697a6.jpg\" /></p>\r\n\r\n<h4><strong>Mua RAM desktop KINGSTON Fury Beast 16GB chất lượng h&agrave;ng đầu| Phong Vũ cam kết ch&iacute;nh h&atilde;ng bảo h&agrave;nh 36 th&aacute;ng</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; linh kiện đ&aacute;ng để c&oacute; cho để n&acirc;ng cấp hơn cho d&agrave;n PC của bạn. Phong Vũ sẽ đồng h&agrave;nh c&ugrave;ng bạn v&agrave; lu&ocirc;n phục vụ những sản phẩm mua sắm chất lượng, h&atilde;y tận hưởng c&aacute;c ưu đ&atilde;i mua sắm độc đ&aacute;o</p>', 1949000, 1549000, 'unnamed (1)1.jpg', 12, 1, NULL, NULL),
-(38, 'Bộ nhớ/ RAM Gigabyte 8GB DDR4-2666', '9', 1, 'bo-nho-ram-gigabyte-8gb-ddr4-2666', 13, 14, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Chất lượng đ&aacute;ng tin cậy</strong></h2>\r\n\r\n<p><strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;với c&aacute;c IC được lựa chọn khắt khe v&agrave; kỹ thuật chế tạo thủ c&ocirc;ng để c&oacute; độ tin cậy, khả năng tương th&iacute;ch v&agrave; hiệu suất tốt nhất.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666.jpg\" /></p>\r\n\r\n<h2><strong>Bộ nhớ hiệu suất cao</strong></h2>\r\n\r\n<p>Bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;được x&acirc;y dựng tr&ecirc;n 10 lớp PCB được thiết kế tinh vi, đảm bảo sự ổn định v&agrave; hiệu suất cao của c&aacute;c Ics đ&atilde; chọn.&nbsp;Tản nhiệt của bộ nhớ GIGABYTE được thiết kế để mang lại hiệu năng tốt nhất.&nbsp;C&aacute;c vật liệu chất lượng cao cung cấp tản nhiệt tốt hơn, đảm bảo sự ổn định của bộ nhớ.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-1\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-1.jpg\" /></p>\r\n\r\n<h2><strong>Quy tr&igrave;nh kiểm tra nghi&ecirc;m ngặt</strong></h2>\r\n\r\n<p>Tất cả c&aacute;c m&ocirc;-đun bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;đ&atilde; được kiểm tra th&ocirc;ng qua quy tr&igrave;nh kiểm tra ti&ecirc;u chuẩn nghi&ecirc;m ngặt để đảm bảo cho người d&ugrave;ng hiệu năng tối ưu m&agrave; kh&ocirc;ng ảnh hưởng về trải nghiệm sử dụng.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-2\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-2.jpg\" /></p>\r\n\r\n<h2><strong>C&aacute;c th&ocirc;ng số kh&aacute;c</strong></h2>\r\n\r\n<p>Hỗ trợ XMP 2.0:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;hỗ trợ Intel XMP 2.0 cho ph&eacute;p bạn c&oacute; được hiệu năng tốt nhất bằng c&aacute;ch bật cấu h&igrave;nh trong khi độ ổn định của hệ thống được đảm bảo.</p>\r\n\r\n<p>Bảo h&agrave;nh l&acirc;u d&agrave;i:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;cung cấp dịch vụ bảo h&agrave;nh l&ecirc;n đến 36 th&aacute;ng. C&aacute;c trung t&acirc;m dịch vụ của GIGABYTE c&oacute; thể cung cấp hỗ trợ kỹ thuật trong trường hợp xảy ra sự cố.</p>', '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Chất lượng đ&aacute;ng tin cậy</strong></h2>\r\n\r\n<p><strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;với c&aacute;c IC được lựa chọn khắt khe v&agrave; kỹ thuật chế tạo thủ c&ocirc;ng để c&oacute; độ tin cậy, khả năng tương th&iacute;ch v&agrave; hiệu suất tốt nhất.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666.jpg\" /></p>\r\n\r\n<h2><strong>Bộ nhớ hiệu suất cao</strong></h2>\r\n\r\n<p>Bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;được x&acirc;y dựng tr&ecirc;n 10 lớp PCB được thiết kế tinh vi, đảm bảo sự ổn định v&agrave; hiệu suất cao của c&aacute;c Ics đ&atilde; chọn.&nbsp;Tản nhiệt của bộ nhớ GIGABYTE được thiết kế để mang lại hiệu năng tốt nhất.&nbsp;C&aacute;c vật liệu chất lượng cao cung cấp tản nhiệt tốt hơn, đảm bảo sự ổn định của bộ nhớ.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-1\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-1.jpg\" /></p>\r\n\r\n<h2><strong>Quy tr&igrave;nh kiểm tra nghi&ecirc;m ngặt</strong></h2>\r\n\r\n<p>Tất cả c&aacute;c m&ocirc;-đun bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;đ&atilde; được kiểm tra th&ocirc;ng qua quy tr&igrave;nh kiểm tra ti&ecirc;u chuẩn nghi&ecirc;m ngặt để đảm bảo cho người d&ugrave;ng hiệu năng tối ưu m&agrave; kh&ocirc;ng ảnh hưởng về trải nghiệm sử dụng.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-2\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-2.jpg\" /></p>\r\n\r\n<h2><strong>C&aacute;c th&ocirc;ng số kh&aacute;c</strong></h2>\r\n\r\n<p>Hỗ trợ XMP 2.0:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;hỗ trợ Intel XMP 2.0 cho ph&eacute;p bạn c&oacute; được hiệu năng tốt nhất bằng c&aacute;ch bật cấu h&igrave;nh trong khi độ ổn định của hệ thống được đảm bảo.</p>\r\n\r\n<p>Bảo h&agrave;nh l&acirc;u d&agrave;i:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;cung cấp dịch vụ bảo h&agrave;nh l&ecirc;n đến 36 th&aacute;ng. C&aacute;c trung t&acirc;m dịch vụ của GIGABYTE c&oacute; thể cung cấp hỗ trợ kỹ thuật trong trường hợp xảy ra sự cố.</p>', 849000, 749000, 'unnamed (2)55.jpg', 27, 1, NULL, NULL),
-(39, 'RAM desktop GIGABYTE DESIGNARE Memory (2 x 32GB) DDR4 3200MHz', '10', NULL, 'ram-desktop-gigabyte-designare-memory-2-x-32gb-ddr4-3200mhz', 13, 14, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h3><strong>Đ&aacute;nh gi&aacute; chi tiết Bộ nhớ&nbsp;</strong><a href=\"https://phongvu.vn/ram-bo-nho-scat.02-N004\"><strong>Ram</strong></a><strong>&nbsp;Gigabyte Designare 64GB (2x32GB) DDR4 3200</strong></h3>\r\n\r\n<p>Bạn đang t&igrave;m kiếm cho m&igrave;nh bộ ram c&oacute; dung lượng cao để c&oacute; thể sử dụng c&aacute;c t&aacute;c vụ cao cấp tốn nhiều bộ nhớ tạm khi hoạt động. Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 sẽ l&agrave; sự lựa chọn kh&ocirc;ng thể bỏ qua d&agrave;nh cho bạn khi&nbsp;<strong>Build PC</strong>&nbsp;hiệu năng cao.</p>\r\n\r\n<h4><strong>Dung lượng bộ nhớ 64Gb, tản nhiệt nh&ocirc;m Anodized</strong></h4>\r\n\r\n<p>Nắm bắt được nhu cầu sử dụng của người d&ugrave;ng cần đến bộ nhớ cao. Gigabyte đ&atilde; kh&ocirc;ng ngần ngại trang bị cho bộ nhớ Ram Gigabyte Designare của m&igrave;nh dung lượng l&ecirc;n đến 64GB (2x32GB). Với dung lượng n&agrave;y bạn c&oacute; thể thoải m&aacute;i sử dụng cho nhiều c&ocirc;ng việc cần đa nhiệm cao một c&aacute;ch dễ d&agrave;ng v&agrave; xuy&ecirc;n suốt.</p>\r\n\r\n<p><img alt=\"Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 | Dung luowngj 64Gb | tản nhiệt nhôm\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/bo-nho-ram-gigabyte-designare-64gb-2x32gb-ddr4-3200.jpg\" /></p>\r\n\r\n<p>Bề mặt ngo&agrave;i của bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 được thiết kế kh&aacute; t&iacute;nh tế v&agrave; gọn g&agrave;ng. Xung quanh đều được bọc phủ một lớp nh&ocirc;m Anodized cho khả năng tản nhiệt kh&aacute; tốt khi thực hiện nhiều t&aacute;c vụ c&ugrave;ng l&uacute;c.</p>\r\n\r\n<h4><strong>Trang bị Intel XMP 2.0, cấu tr&uacute;c bo mạch cao cấp tối ưu tốc độ</strong></h4>\r\n\r\n<p>Bộ nhớ ram Designare được trang bị hỗ trợ Intel XMP 2.0 mang đến tốc độ hiệu suất rất tốt khi thực hiện c&aacute;c t&aacute;c vụ nặng cần đa nhiệm lớn như render, chơi game, xử l&yacute; data lớn,... Tối ưu tốc độ đ&aacute;ng kể so với c&aacute;c loại ram th&ocirc;ng thường kh&aacute;c, đẩy nhanh c&aacute;c t&aacute;c vụ tr&ecirc;n phần mềm nhanh ch&oacute;ng cho bạn khi sử dụng.&nbsp;</p>\r\n\r\n<p><img alt=\"Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 | Intel XMP 2.0 | Cấu trúc bo mạch cao cấp\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/bo-nho-ram-gigabyte-designare-64gb-2x32gb-ddr4-3200-1.jpg\" /></p>\r\n\r\n<p>Hầu hết tất cả c&aacute;c m&ocirc;-đun b&ecirc;n trong bộ nhớ ram đều đ&atilde; được kiểm tra qua quy tr&igrave;nh kiểm tra ti&ecirc;u chuẩn cao Gigabyte đảm bảo cho người d&ugrave;ng hiệu suất tối ưu m&agrave; kh&ocirc;ng bị ảnh hưởng. C&aacute;c vi mạch được lựa chọn đều l&agrave; loại cao cấp mang đến hiệu suất vượt trội khi sử dụng.</p>\r\n\r\n<h4><strong>Sở hữu ngay Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 tại Phong Vũ</strong></h4>\r\n\r\n<p>Bạn đang t&igrave;m một bộ nhớ ram cao cấp để phục vụ cho nhu cầu sử dụng hiệu năng cao của m&igrave;nh. Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 sẽ l&agrave; sự lựa chọn ho&agrave;n hảo về mức gi&aacute; v&agrave; hiệu suất vượt trội m&agrave; n&oacute; mang lại. Đến ngay&nbsp;<a href=\"https://phongvu.vn/\">Phong Vũ</a>&nbsp;để&nbsp;<strong>Build PC</strong>&nbsp;v&agrave; chọn ngay bộ nhớ ram cao cấp n&agrave;y nh&eacute;!</p>', '<p>Th&ocirc;ng tin chi tiết</p>\r\n\r\n<p>Thương hiệu</p>\r\n\r\n<p>GIGABYTE</p>\r\n\r\n<p>Th&ocirc;ng tin chung</p>\r\n\r\n<p>Bảo h&agrave;nh</p>\r\n\r\n<p>36</p>\r\n\r\n<p>Cấu h&igrave;nh chi tiết</p>\r\n\r\n<p>Dung lượng</p>\r\n\r\n<p>2 x 32GB</p>\r\n\r\n<p>Th&ecirc;́ h&ecirc;̣</p>\r\n\r\n<p>DDR4</p>\r\n\r\n<p>Bus</p>\r\n\r\n<p>3200MHz</p>\r\n\r\n<p>Timing</p>\r\n\r\n<p>16</p>\r\n\r\n<p>Voltage</p>\r\n\r\n<p>1.35V</p>', 8809000, 7809000, 'unnamed (3)22.jpg', 14, 1, NULL, NULL),
+(36, 'RAM desktop KINGSTON Fury Beast (1 x 8GB) DDR4 3200MHz', '9', 1, 'ram-desktop-kingston-fury-beast-1-x-8gb-ddr4-3200mhz', 13, 13, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Ram Desktop Kingston Fury l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng nhắm đến hiệu năng v&agrave; gi&aacute; b&aacute;n được nhiều kh&aacute;ch h&agrave;ng tin d&ugrave;ng. Phi&ecirc;n bản Kingston Fury mới đ&atilde; được thay đổi nhẹ về thiết kế để bắt mắt hơn, thu h&uacute;t người d&ugrave;ng hơn.&nbsp;</strong></h2>\r\n\r\n<h3><strong>Thiết kế, lắp đặt đơn giản</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để Plug N Play: Cắm l&agrave; chạy! Hệ thống sẽ được tự động nhận diện bus RAM cao nhất c&oacute; thể.&nbsp;</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Thiết kế, lắp đặt đơn giản\" src=\"https://lh6.googleusercontent.com/am1c4GWnEMcZ2u1vPQAaktJ_-w3xr4Noy0f98Zwxv2vLdixC7TT7xjTBmI0-MSrBfl4UYiok_ADuZZ1PTtEr2cuVobtrcDua-UnPaDzPUkyqXWobNg4fWqwSj-cB85v8FzPJFPQJ\" /></p>\r\n\r\n<p>Ram Desktop Kingston Fury được sở hữu thiết kế tản nhiệt nh&ocirc;m đơn giản nhưng đ&atilde; đem lại hiệu quả tốt cho hầu hết c&aacute;c t&aacute;c vụ từ cơ bản đến n&acirc;ng cao của người d&ugrave;ng.&nbsp;</p>\r\n\r\n<h3><strong>Hiệu năng mạnh mẽ</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury l&agrave; một n&acirc;ng cấp ho&agrave;n hảo cho bất kỳ hệ thống m&aacute;y t&iacute;nh n&agrave;o, gi&uacute;p m&aacute;y t&iacute;nh của bạn c&oacute; thể tho&aacute;t khỏi t&igrave;nh trạng chậm, lag do thiếu RAM, mọi hoạt động tr&ecirc;n m&aacute;y t&iacute;nh của bạn trở n&ecirc;n dễ d&agrave;ng v&agrave; nhanh ch&oacute;ng hơn trước đ&acirc;y.</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Hiệu năng mạnh mẽ\" src=\"https://lh3.googleusercontent.com/yB3JM_bv9Q3Fu4RcmlSNncY3O5Rg-FOEbgiAQQhZqvcqhjsKBwXMu8B8-2aFBxdh1hOnxNcqzLYKj23Ur8lF0YyreRVDARW9AUTs7X5s2Kv0q_XJPjZ3RnaKwXT3TcVm9oQpRxnf\" /></p>\r\n\r\n<h3><strong>Tương th&iacute;ch với Intel XMP</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để tương th&iacute;ch ho&agrave;n hảo với c&ocirc;ng nghệ Intel XMP. Thuộc thế hệ DDR4, BUS 3200MHz, Ram Desktop Kingston Fury ph&ugrave; hợp với một d&ograve;ng Ram phổ th&ocirc;ng, đem lại những t&iacute;nh năng cơ bản phục vụ cho người sử dụng.</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Tương thích với công nghệ hiện đại \" src=\"https://lh3.googleusercontent.com/mPW9vfaFCOmDQP5P6nH2LG01qbUUTUw8AGV_WEmL07xnh4w-QdjYrjLHsUH1pDYY1rE1eC-Nc1WOhEVqhCSV8SazYjxDcVAhFwAN9ZHN4uHi-U09sZPVDm45kx6Y5NvrPnAmiIoX\" /></p>\r\n\r\n<h3><strong>Hoạt động một c&aacute;ch ho&agrave;n hảo c&ugrave;ng hệ thống AMD Ryzen&nbsp;</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được kiểm tra to&agrave;n diện để c&oacute; thể hoạt động ho&agrave;n hảo cho hệ thống sử dụng CPU AMD Ryzen. Với timing l&agrave; 16, voltage 1.2 V, Ram Desktop Kingston Fury hoạt động hiệu quả v&agrave; dễ d&agrave;ng tiếp cận với người d&ugrave;ng.</p>\r\n\r\n<p><img alt=\"Ram Desktop Kingston Fury Beast 8GB| Hoạt động êm ái\" src=\"https://lh6.googleusercontent.com/g35dzYM5IqLZ3jNv6PUDcYIhBI74eGhmLuWQqkJbsTwYLr8HfXUAKc2s1WiG27DDI23YPWzACN2bBIj1gPev3MTQ-KY4FUZK6c-kwudYag4L258TZz_ccuc6WRvKiVi4BPrrHoDQ\" /></p>\r\n\r\n<h3><strong>Phong Vũ cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng</strong></h3>\r\n\r\n<p>RAM desktop KINGSTON Fury với bộ nhớ 8GB l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng, dễ d&agrave;ng để tiếp cận với nhiều đối tượng kh&aacute;ch h&agrave;ng kh&aacute;c nhau khi n&oacute; hoạt động với hiệu năng mạnh mẽ, dễ lắp đặt v&agrave; sử dụng.&nbsp;<a href=\"https://phongvu.vn/\"><strong>Phong Vũ&nbsp;</strong></a>cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng của thương hiệu KINGSTON v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng.</p>', '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Ram Desktop Kingston Fury l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng nhắm đến hiệu năng v&agrave; gi&aacute; b&aacute;n được nhiều kh&aacute;ch h&agrave;ng tin d&ugrave;ng. Phi&ecirc;n bản Kingston Fury mới đ&atilde; được thay đổi nhẹ về thiết kế để bắt mắt hơn, thu h&uacute;t người d&ugrave;ng hơn.&nbsp;</strong></h2>\r\n\r\n<h3><strong>Thiết kế, lắp đặt đơn giản</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để Plug N Play: Cắm l&agrave; chạy! Hệ thống sẽ được tự động nhận diện bus RAM cao nhất c&oacute; thể.&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Ram Desktop Kingston Fury được sở hữu thiết kế tản nhiệt nh&ocirc;m đơn giản nhưng đ&atilde; đem lại hiệu quả tốt cho hầu hết c&aacute;c t&aacute;c vụ từ cơ bản đến n&acirc;ng cao của người d&ugrave;ng.&nbsp;</p>\r\n\r\n<h3><strong>Hiệu năng mạnh mẽ</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury l&agrave; một n&acirc;ng cấp ho&agrave;n hảo cho bất kỳ hệ thống m&aacute;y t&iacute;nh n&agrave;o, gi&uacute;p m&aacute;y t&iacute;nh của bạn c&oacute; thể tho&aacute;t khỏi t&igrave;nh trạng chậm, lag do thiếu RAM, mọi hoạt động tr&ecirc;n m&aacute;y t&iacute;nh của bạn trở n&ecirc;n dễ d&agrave;ng v&agrave; nhanh ch&oacute;ng hơn trước đ&acirc;y.</p>\r\n\r\n<h3><strong>Tương th&iacute;ch với Intel XMP</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được thiết kế để tương th&iacute;ch ho&agrave;n hảo với c&ocirc;ng nghệ Intel XMP. Thuộc thế hệ DDR4, BUS 3200MHz, Ram Desktop Kingston Fury ph&ugrave; hợp với một d&ograve;ng Ram phổ th&ocirc;ng, đem lại những t&iacute;nh năng cơ bản phục vụ cho người sử dụng.</p>\r\n\r\n<h3><strong>Hoạt động một c&aacute;ch ho&agrave;n hảo c&ugrave;ng hệ thống AMD Ryzen&nbsp;</strong></h3>\r\n\r\n<p>Ram Desktop Kingston Fury đ&atilde; được kiểm tra to&agrave;n diện để c&oacute; thể hoạt động ho&agrave;n hảo cho hệ thống sử dụng CPU AMD Ryzen. Với timing l&agrave; 16, voltage 1.2 V, Ram Desktop Kingston Fury hoạt động hiệu quả v&agrave; dễ d&agrave;ng tiếp cận với người d&ugrave;ng.</p>\r\n\r\n<h3><strong>Phong Vũ cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng</strong></h3>\r\n\r\n<p>RAM desktop KINGSTON Fury với bộ nhớ 8GB l&agrave; một trong những d&ograve;ng Ram phổ th&ocirc;ng, dễ d&agrave;ng để tiếp cận với nhiều đối tượng kh&aacute;ch h&agrave;ng kh&aacute;c nhau khi n&oacute; hoạt động với hiệu năng mạnh mẽ, dễ lắp đặt v&agrave; sử dụng.&nbsp;<a href=\"https://phongvu.vn/\"><strong>Phong Vũ&nbsp;</strong></a>cam kết b&aacute;n h&agrave;ng ch&iacute;nh h&atilde;ng của thương hiệu KINGSTON v&agrave; bảo h&agrave;nh sản phẩm l&ecirc;n đến 36 th&aacute;ng.</p>', 859000, 700000, 'unnamed22.jpg', 10, 1, NULL, NULL),
+(37, 'RAM desktop KINGSTON Fury Beast 16GB (1 x 16GB) DDR4 3200MHz', '11', 1, 'ram-desktop-kingston-fury-beast-16gb-1-x-16gb-ddr4-3200mhz', 13, 13, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2>RAM desktop KINGSTON Fury Beast 16GB l&agrave; phi&ecirc;n bản RAM của nh&agrave; Kingston c&oacute; hiệu năng cao ph&ugrave; hợp cho chơi game, bi&ecirc;n tập video v&agrave; render file với tốc độ l&ecirc;n đến 3200MHz. B&ecirc;n cạnh đ&oacute; những ưu điểm thiết kế hiện đại đem đến sự bền bỉ v&agrave; ổn định trong suốt thời gian sử dụng của người d&ugrave;ng.&nbsp;</h2>\r\n\r\n<h4><strong>Thiết kế bộ tản nhiệt đơn giản&nbsp;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB lu&ocirc;n m&aacute;t nhờ bộ tản nhiệt đơn giản, phong c&aacute;ch. Kiểu d&aacute;ng thiết kế tinh tế, đ&acirc;y ch&iacute;nh l&agrave; phi&ecirc;n bản RAM tuyệt vời cho phong c&aacute;ch thiết kế n&acirc;ng cấp cho d&agrave;n m&aacute;y chơi game, xử l&yacute; c&aacute;c c&ocirc;ng việc bi&ecirc;n tập video của bạn. Bộ tản nhiệt hoạt động năng suất cho hiệu năng xử l&yacute; của RAM lu&ocirc;n ở mức tối đa đ&aacute;p ứng nhu cầu xử l&yacute; của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_b0c7ba44-dc63-436d-bed0-3ea83c7786eb.jpg\" /></p>\r\n\r\n<h4><strong>Giải ph&aacute;p n&acirc;ng cấp hiện đại DDR4</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; sự lựa chọn tuyệt vời cho nhu cầu n&acirc;ng cấp hệ thống để l&agrave;m tăng tốc độ hệ thống cũ chậm chạp với thế hệ DDR4 mang đến khả năng xử l&yacute; nhanh hơn. Hiệu năng cao nhưng phi&ecirc;n bản RAM n&agrave;y cũng mang đến sự h&agrave;i l&ograve;ng về khả năng ti&ecirc;u thụ năng lượng điện thấp với chỉ với 1.2 V.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7f03ae19-9bd6-4475-a1d0-9a00d02cd122.jpg\" /></p>\r\n\r\n<h4><strong>Tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;. Được nhận định bởi c&aacute;c kỹ sư của Intel l&agrave; cấu h&igrave;nh thiết kế tối đa h&oacute;a hiệu suất của c&aacute;c m&ocirc;-đun bộ nhớ gi&uacute;p tốc độ lu&ocirc;n đạt xung nhịp tối đa của RAM. Trang bị cho hệ thống của bạn kit RAM Tương th&iacute;ch với AMD Ryzen v&agrave; sẽ t&iacute;ch hợp liền mạch với PC sử dụng AMD. Đ&acirc;y ch&iacute;nh l&agrave; một c&ocirc;ng cụ tăng hiệu suất đ&aacute;ng tin cậy v&agrave; tương th&iacute;ch cho d&agrave;n m&aacute;y của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7ef820f0-eb6c-437b-a41f-a258a8dfefd9.jpg\" /></p>\r\n\r\n<h4><strong>Tốc độ l&ecirc;n đến 3200MHz v&agrave; dung lượng bộ kit 16GB</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB c&oacute; khả năng &eacute;p xung tối đa l&ecirc;n đến 3200MHz gi&uacute;p cho hiệu năng hệ thống mạnh mẽ cho c&aacute;c t&aacute;c vụ nặng như chơi game trở n&ecirc;n ổn định. Dung lượng bộ kit 16GB cho khả năng lưu trữ để xử l&yacute; nhiều t&aacute;c vụ của PC.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_c6062a99-f9a8-43aa-bcca-d1708de697a6.jpg\" /></p>\r\n\r\n<h4><strong>Mua RAM desktop KINGSTON Fury Beast 16GB chất lượng h&agrave;ng đầu| Phong Vũ cam kết ch&iacute;nh h&atilde;ng bảo h&agrave;nh 36 th&aacute;ng</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; linh kiện đ&aacute;ng để c&oacute; cho để n&acirc;ng cấp hơn cho d&agrave;n PC của bạn. Phong Vũ sẽ đồng h&agrave;nh c&ugrave;ng bạn v&agrave; lu&ocirc;n phục vụ những sản phẩm mua sắm chất lượng, h&atilde;y tận hưởng c&aacute;c ưu đ&atilde;i mua sắm độc đ&aacute;o</p>', '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2>RAM desktop KINGSTON Fury Beast 16GB l&agrave; phi&ecirc;n bản RAM của nh&agrave; Kingston c&oacute; hiệu năng cao ph&ugrave; hợp cho chơi game, bi&ecirc;n tập video v&agrave; render file với tốc độ l&ecirc;n đến 3200MHz. B&ecirc;n cạnh đ&oacute; những ưu điểm thiết kế hiện đại đem đến sự bền bỉ v&agrave; ổn định trong suốt thời gian sử dụng của người d&ugrave;ng.&nbsp;</h2>\r\n\r\n<h4><strong>Thiết kế bộ tản nhiệt đơn giản&nbsp;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB lu&ocirc;n m&aacute;t nhờ bộ tản nhiệt đơn giản, phong c&aacute;ch. Kiểu d&aacute;ng thiết kế tinh tế, đ&acirc;y ch&iacute;nh l&agrave; phi&ecirc;n bản RAM tuyệt vời cho phong c&aacute;ch thiết kế n&acirc;ng cấp cho d&agrave;n m&aacute;y chơi game, xử l&yacute; c&aacute;c c&ocirc;ng việc bi&ecirc;n tập video của bạn. Bộ tản nhiệt hoạt động năng suất cho hiệu năng xử l&yacute; của RAM lu&ocirc;n ở mức tối đa đ&aacute;p ứng nhu cầu xử l&yacute; của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_b0c7ba44-dc63-436d-bed0-3ea83c7786eb.jpg\" /></p>\r\n\r\n<h4><strong>Giải ph&aacute;p n&acirc;ng cấp hiện đại DDR4</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; sự lựa chọn tuyệt vời cho nhu cầu n&acirc;ng cấp hệ thống để l&agrave;m tăng tốc độ hệ thống cũ chậm chạp với thế hệ DDR4 mang đến khả năng xử l&yacute; nhanh hơn. Hiệu năng cao nhưng phi&ecirc;n bản RAM n&agrave;y cũng mang đến sự h&agrave;i l&ograve;ng về khả năng ti&ecirc;u thụ năng lượng điện thấp với chỉ với 1.2 V.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7f03ae19-9bd6-4475-a1d0-9a00d02cd122.jpg\" /></p>\r\n\r\n<h4><strong>Tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast tương th&iacute;ch với Intel&reg; XMP, AMD RYZEN&trade;. Được nhận định bởi c&aacute;c kỹ sư của Intel l&agrave; cấu h&igrave;nh thiết kế tối đa h&oacute;a hiệu suất của c&aacute;c m&ocirc;-đun bộ nhớ gi&uacute;p tốc độ lu&ocirc;n đạt xung nhịp tối đa của RAM. Trang bị cho hệ thống của bạn kit RAM Tương th&iacute;ch với AMD Ryzen v&agrave; sẽ t&iacute;ch hợp liền mạch với PC sử dụng AMD. Đ&acirc;y ch&iacute;nh l&agrave; một c&ocirc;ng cụ tăng hiệu suất đ&aacute;ng tin cậy v&agrave; tương th&iacute;ch cho d&agrave;n m&aacute;y của bạn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_7ef820f0-eb6c-437b-a41f-a258a8dfefd9.jpg\" /></p>\r\n\r\n<h4><strong>Tốc độ l&ecirc;n đến 3200MHz v&agrave; dung lượng bộ kit 16GB</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB c&oacute; khả năng &eacute;p xung tối đa l&ecirc;n đến 3200MHz gi&uacute;p cho hiệu năng hệ thống mạnh mẽ cho c&aacute;c t&aacute;c vụ nặng như chơi game trở n&ecirc;n ổn định. Dung lượng bộ kit 16GB cho khả năng lưu trữ để xử l&yacute; nhiều t&aacute;c vụ của PC.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/30/20220630_c6062a99-f9a8-43aa-bcca-d1708de697a6.jpg\" /></p>\r\n\r\n<h4><strong>Mua RAM desktop KINGSTON Fury Beast 16GB chất lượng h&agrave;ng đầu| Phong Vũ cam kết ch&iacute;nh h&atilde;ng bảo h&agrave;nh 36 th&aacute;ng</strong></h4>\r\n\r\n<p>RAM desktop KINGSTON Fury Beast 16GB l&agrave; linh kiện đ&aacute;ng để c&oacute; cho để n&acirc;ng cấp hơn cho d&agrave;n PC của bạn. Phong Vũ sẽ đồng h&agrave;nh c&ugrave;ng bạn v&agrave; lu&ocirc;n phục vụ những sản phẩm mua sắm chất lượng, h&atilde;y tận hưởng c&aacute;c ưu đ&atilde;i mua sắm độc đ&aacute;o</p>', 1949000, 1549000, 'unnamed (1)1.jpg', 14, 1, NULL, NULL),
+(38, 'Bộ nhớ/ RAM Gigabyte 8GB DDR4-2666', '9', 1, 'bo-nho-ram-gigabyte-8gb-ddr4-2666', 13, 14, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Chất lượng đ&aacute;ng tin cậy</strong></h2>\r\n\r\n<p><strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;với c&aacute;c IC được lựa chọn khắt khe v&agrave; kỹ thuật chế tạo thủ c&ocirc;ng để c&oacute; độ tin cậy, khả năng tương th&iacute;ch v&agrave; hiệu suất tốt nhất.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666.jpg\" /></p>\r\n\r\n<h2><strong>Bộ nhớ hiệu suất cao</strong></h2>\r\n\r\n<p>Bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;được x&acirc;y dựng tr&ecirc;n 10 lớp PCB được thiết kế tinh vi, đảm bảo sự ổn định v&agrave; hiệu suất cao của c&aacute;c Ics đ&atilde; chọn.&nbsp;Tản nhiệt của bộ nhớ GIGABYTE được thiết kế để mang lại hiệu năng tốt nhất.&nbsp;C&aacute;c vật liệu chất lượng cao cung cấp tản nhiệt tốt hơn, đảm bảo sự ổn định của bộ nhớ.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-1\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-1.jpg\" /></p>\r\n\r\n<h2><strong>Quy tr&igrave;nh kiểm tra nghi&ecirc;m ngặt</strong></h2>\r\n\r\n<p>Tất cả c&aacute;c m&ocirc;-đun bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;đ&atilde; được kiểm tra th&ocirc;ng qua quy tr&igrave;nh kiểm tra ti&ecirc;u chuẩn nghi&ecirc;m ngặt để đảm bảo cho người d&ugrave;ng hiệu năng tối ưu m&agrave; kh&ocirc;ng ảnh hưởng về trải nghiệm sử dụng.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-2\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-2.jpg\" /></p>\r\n\r\n<h2><strong>C&aacute;c th&ocirc;ng số kh&aacute;c</strong></h2>\r\n\r\n<p>Hỗ trợ XMP 2.0:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;hỗ trợ Intel XMP 2.0 cho ph&eacute;p bạn c&oacute; được hiệu năng tốt nhất bằng c&aacute;ch bật cấu h&igrave;nh trong khi độ ổn định của hệ thống được đảm bảo.</p>\r\n\r\n<p>Bảo h&agrave;nh l&acirc;u d&agrave;i:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;cung cấp dịch vụ bảo h&agrave;nh l&ecirc;n đến 36 th&aacute;ng. C&aacute;c trung t&acirc;m dịch vụ của GIGABYTE c&oacute; thể cung cấp hỗ trợ kỹ thuật trong trường hợp xảy ra sự cố.</p>', '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h2><strong>Chất lượng đ&aacute;ng tin cậy</strong></h2>\r\n\r\n<p><strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;với c&aacute;c IC được lựa chọn khắt khe v&agrave; kỹ thuật chế tạo thủ c&ocirc;ng để c&oacute; độ tin cậy, khả năng tương th&iacute;ch v&agrave; hiệu suất tốt nhất.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666.jpg\" /></p>\r\n\r\n<h2><strong>Bộ nhớ hiệu suất cao</strong></h2>\r\n\r\n<p>Bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;được x&acirc;y dựng tr&ecirc;n 10 lớp PCB được thiết kế tinh vi, đảm bảo sự ổn định v&agrave; hiệu suất cao của c&aacute;c Ics đ&atilde; chọn.&nbsp;Tản nhiệt của bộ nhớ GIGABYTE được thiết kế để mang lại hiệu năng tốt nhất.&nbsp;C&aacute;c vật liệu chất lượng cao cung cấp tản nhiệt tốt hơn, đảm bảo sự ổn định của bộ nhớ.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-1\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-1.jpg\" /></p>\r\n\r\n<h2><strong>Quy tr&igrave;nh kiểm tra nghi&ecirc;m ngặt</strong></h2>\r\n\r\n<p>Tất cả c&aacute;c m&ocirc;-đun bộ nhớ&nbsp;<strong>RAM GIGABYTE 8GB DDR4-2666</strong>&nbsp;đ&atilde; được kiểm tra th&ocirc;ng qua quy tr&igrave;nh kiểm tra ti&ecirc;u chuẩn nghi&ecirc;m ngặt để đảm bảo cho người d&ugrave;ng hiệu năng tối ưu m&agrave; kh&ocirc;ng ảnh hưởng về trải nghiệm sử dụng.</p>\r\n\r\n<p><img alt=\"RAM-GIGABYTE-8GB-DDR4-2666-2\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/06/RAM-GIGABYTE-8GB-DDR4-2666-2.jpg\" /></p>\r\n\r\n<h2><strong>C&aacute;c th&ocirc;ng số kh&aacute;c</strong></h2>\r\n\r\n<p>Hỗ trợ XMP 2.0:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;hỗ trợ Intel XMP 2.0 cho ph&eacute;p bạn c&oacute; được hiệu năng tốt nhất bằng c&aacute;ch bật cấu h&igrave;nh trong khi độ ổn định của hệ thống được đảm bảo.</p>\r\n\r\n<p>Bảo h&agrave;nh l&acirc;u d&agrave;i:&nbsp;<strong>Bộ nhớ GIGABYTE</strong>&nbsp;cung cấp dịch vụ bảo h&agrave;nh l&ecirc;n đến 36 th&aacute;ng. C&aacute;c trung t&acirc;m dịch vụ của GIGABYTE c&oacute; thể cung cấp hỗ trợ kỹ thuật trong trường hợp xảy ra sự cố.</p>', 849000, 749000, 'unnamed (2)55.jpg', 28, 1, NULL, NULL),
+(39, 'RAM desktop GIGABYTE DESIGNARE Memory (2 x 32GB) DDR4 3200MHz', '8', 2, 'ram-desktop-gigabyte-designare-memory-2-x-32gb-ddr4-3200mhz', 13, 14, '<p>M&ocirc; tả sản phẩm</p>\r\n\r\n<h3><strong>Đ&aacute;nh gi&aacute; chi tiết Bộ nhớ&nbsp;</strong><a href=\"https://phongvu.vn/ram-bo-nho-scat.02-N004\"><strong>Ram</strong></a><strong>&nbsp;Gigabyte Designare 64GB (2x32GB) DDR4 3200</strong></h3>\r\n\r\n<p>Bạn đang t&igrave;m kiếm cho m&igrave;nh bộ ram c&oacute; dung lượng cao để c&oacute; thể sử dụng c&aacute;c t&aacute;c vụ cao cấp tốn nhiều bộ nhớ tạm khi hoạt động. Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 sẽ l&agrave; sự lựa chọn kh&ocirc;ng thể bỏ qua d&agrave;nh cho bạn khi&nbsp;<strong>Build PC</strong>&nbsp;hiệu năng cao.</p>\r\n\r\n<h4><strong>Dung lượng bộ nhớ 64Gb, tản nhiệt nh&ocirc;m Anodized</strong></h4>\r\n\r\n<p>Nắm bắt được nhu cầu sử dụng của người d&ugrave;ng cần đến bộ nhớ cao. Gigabyte đ&atilde; kh&ocirc;ng ngần ngại trang bị cho bộ nhớ Ram Gigabyte Designare của m&igrave;nh dung lượng l&ecirc;n đến 64GB (2x32GB). Với dung lượng n&agrave;y bạn c&oacute; thể thoải m&aacute;i sử dụng cho nhiều c&ocirc;ng việc cần đa nhiệm cao một c&aacute;ch dễ d&agrave;ng v&agrave; xuy&ecirc;n suốt.</p>\r\n\r\n<p><img alt=\"Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 | Dung luowngj 64Gb | tản nhiệt nhôm\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/bo-nho-ram-gigabyte-designare-64gb-2x32gb-ddr4-3200.jpg\" /></p>\r\n\r\n<p>Bề mặt ngo&agrave;i của bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 được thiết kế kh&aacute; t&iacute;nh tế v&agrave; gọn g&agrave;ng. Xung quanh đều được bọc phủ một lớp nh&ocirc;m Anodized cho khả năng tản nhiệt kh&aacute; tốt khi thực hiện nhiều t&aacute;c vụ c&ugrave;ng l&uacute;c.</p>\r\n\r\n<h4><strong>Trang bị Intel XMP 2.0, cấu tr&uacute;c bo mạch cao cấp tối ưu tốc độ</strong></h4>\r\n\r\n<p>Bộ nhớ ram Designare được trang bị hỗ trợ Intel XMP 2.0 mang đến tốc độ hiệu suất rất tốt khi thực hiện c&aacute;c t&aacute;c vụ nặng cần đa nhiệm lớn như render, chơi game, xử l&yacute; data lớn,... Tối ưu tốc độ đ&aacute;ng kể so với c&aacute;c loại ram th&ocirc;ng thường kh&aacute;c, đẩy nhanh c&aacute;c t&aacute;c vụ tr&ecirc;n phần mềm nhanh ch&oacute;ng cho bạn khi sử dụng.&nbsp;</p>\r\n\r\n<p><img alt=\"Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 | Intel XMP 2.0 | Cấu trúc bo mạch cao cấp\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/bo-nho-ram-gigabyte-designare-64gb-2x32gb-ddr4-3200-1.jpg\" /></p>\r\n\r\n<p>Hầu hết tất cả c&aacute;c m&ocirc;-đun b&ecirc;n trong bộ nhớ ram đều đ&atilde; được kiểm tra qua quy tr&igrave;nh kiểm tra ti&ecirc;u chuẩn cao Gigabyte đảm bảo cho người d&ugrave;ng hiệu suất tối ưu m&agrave; kh&ocirc;ng bị ảnh hưởng. C&aacute;c vi mạch được lựa chọn đều l&agrave; loại cao cấp mang đến hiệu suất vượt trội khi sử dụng.</p>\r\n\r\n<h4><strong>Sở hữu ngay Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 tại Phong Vũ</strong></h4>\r\n\r\n<p>Bạn đang t&igrave;m một bộ nhớ ram cao cấp để phục vụ cho nhu cầu sử dụng hiệu năng cao của m&igrave;nh. Bộ nhớ Ram Gigabyte Designare 64GB (2x32GB) DDR4 3200 sẽ l&agrave; sự lựa chọn ho&agrave;n hảo về mức gi&aacute; v&agrave; hiệu suất vượt trội m&agrave; n&oacute; mang lại. Đến ngay&nbsp;<a href=\"https://phongvu.vn/\">Phong Vũ</a>&nbsp;để&nbsp;<strong>Build PC</strong>&nbsp;v&agrave; chọn ngay bộ nhớ ram cao cấp n&agrave;y nh&eacute;!</p>', '<p>Th&ocirc;ng tin chi tiết</p>\r\n\r\n<p>Thương hiệu</p>\r\n\r\n<p>GIGABYTE</p>\r\n\r\n<p>Th&ocirc;ng tin chung</p>\r\n\r\n<p>Bảo h&agrave;nh</p>\r\n\r\n<p>36</p>\r\n\r\n<p>Cấu h&igrave;nh chi tiết</p>\r\n\r\n<p>Dung lượng</p>\r\n\r\n<p>2 x 32GB</p>\r\n\r\n<p>Th&ecirc;́ h&ecirc;̣</p>\r\n\r\n<p>DDR4</p>\r\n\r\n<p>Bus</p>\r\n\r\n<p>3200MHz</p>\r\n\r\n<p>Timing</p>\r\n\r\n<p>16</p>\r\n\r\n<p>Voltage</p>\r\n\r\n<p>1.35V</p>', 8809000, 7809000, 'unnamed (3)22.jpg', 17, 1, NULL, NULL),
 (47, 'Laptop ACER Nitro 5 Eagle AN515-57-54MV (i5-11400H/RAM 8GB/512GB SSD/ Windows 11)', '20', NULL, 'laptop-acer-nitro-5-eagle-an515-57-54mv-i5-11400hram-8gb512gb-ssd-windows-11', 22, 12, '<h2>- CPU: Intel Core i5-11400H<br />\r\n- M&agrave;n h&igrave;nh: 15.6&quot; IPS (1920 x 1080),144Hz<br />\r\n- RAM: 1 x 8GB DDR4 3200MHz<br />\r\n- Đồ họa: RTX 3050 4GB GDDR6 / Intel UHD Graphics<br />\r\n- Lưu trữ: 512GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 11<br />\r\n- Pin: 4 cell 57 Wh Pin liền<br />\r\n- Khối lượng: 2.2kg</h2>', '<h2><strong>L&agrave; d&ograve;ng laptop gaming của thương hiệu Acer, laptop Acer Nitro 5 Eagle AN515-57-54MV được trang bị chip i5 mạnh mẽ, card đồ họa NVIDIA GeForce RTX 3050, ram 8Gb c&ugrave;ng dung lượng lớn. Kết hợp với thiết kế đẹp v&agrave; mạnh mẽ, đ&acirc;y sẽ l&agrave; sự lựa chọn d&agrave;nh cho c&aacute;c game thủ trẻ v&agrave; người l&agrave;m c&ocirc;ng việc li&ecirc;n quan đến đồ họa.</strong></h2>\r\n\r\n<h4><strong>Thiết kế chuẩn gaming mạnh mẽ, m&agrave;n h&igrave;nh Full HD sắc n&eacute;t</strong></h4>\r\n\r\n<p>Laptop Nitro 5 Eagle AN515-57-54MV được Acer thiết kế c&oacute; vẻ ngo&agrave;i hầm hố v&agrave; mạnh mẽ chuẩn gaming c&ugrave;ng với t&ocirc;ng m&agrave;u đen - đỏ v&ocirc; c&ugrave;ng ấn tượng. So với laptop gaming trong c&ugrave;ng ph&acirc;n kh&uacute;c th&igrave; đ&acirc;y l&agrave; chiếc laptop c&oacute; trọng lượng kh&aacute; nhẹ, nặng 2.2 kg v&agrave; d&agrave;y 2.39 cm. Người d&ugrave;ng c&oacute; thể mang theo trong balo m&agrave; kh&ocirc;ng kh&oacute; để di chuyển để đ&aacute;p ứng cho nhu cầu sử dụng khi cần.</p>\r\n\r\n<p><img alt=\"Laptop Nitro 5 Eagle AN515-57-54MV | Thiết kế chuẩn gaming\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_f4e3c8f7-1c5c-4097-8e5b-b4351fef32de.jpg\" /></p>\r\n\r\n<p>Với m&agrave;n h&igrave;nh viền mỏng c&oacute; k&iacute;ch thước 15.6 inch c&ugrave;ng tần số qu&eacute;t 144hz, mang đến cho người d&ugrave;ng trải nghiệm nh&igrave;n tuyệt vời hơn với g&oacute;c nh&igrave;n rộng. Kết hợp với tấm nền IPS c&ugrave;ng độ ph&acirc;n giải Full HD, h&igrave;nh ảnh hiển thị tr&ecirc;n m&agrave;n h&igrave;nh Nitro 5 Eagle AN515-57-54MV n&agrave;y được sắc n&eacute;t v&agrave; r&otilde; r&agrave;ng hơn, c&oacute; m&agrave;u sắc tươi s&aacute;ng c&ugrave;ng độ tương phản cao.</p>\r\n\r\n<p>Ngo&agrave;i ra, nhờ c&ocirc;ng nghệ Acer ComfyView m&agrave; m&agrave;n h&igrave;nh sẽ hiển thị được tốt hơn ngay cả khi cường độ &aacute;nh s&aacute;ng qu&aacute; lớn. Đồng thời, giảm &aacute;nh s&aacute;ng xanh v&agrave; hạn chế t&igrave;nh trạng mỏi mắt khi tiếp x&uacute;c với m&agrave;n h&igrave;nh laptop trong khoảng thời gian qu&aacute; l&acirc;u.</p>\r\n\r\n<p><img alt=\"Laptop Nitro 5 Eagle AN515-57-54MV | Màn hình 15.6 inch 144Hz\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_fb7521e2-4a94-41da-93b4-3e62ed74fa16.jpg\" /></p>\r\n\r\n<h4><strong>Xử l&yacute; đồ họa, trải nghiệm chơi game mượt m&agrave;&nbsp;</strong></h4>\r\n\r\n<p>Acer đ&atilde; trang bị cho chiếc laptop&nbsp;<a href=\"https://phongvu.vn/c/acer-nitro-5\">Acer Nitro 5</a>&nbsp;Eagle AN515-57-54MV của m&igrave;nh bộ vi xử l&yacute; Intel Core i5-11400H mạnh mẽ với 6 nh&acirc;n 12 lu&ocirc;̀ng cho tốc độ xung nhịp 2.7 GHz - 4.5 GHz c&ugrave;ng bộ nhớ cache 12MB.&nbsp;</p>\r\n\r\n<p>Kết hợp với card đồ họa NVIDIA GeForce RTX 3050 4GB GDDR6 mang đến hiệu năng tốt gi&uacute;p xử l&yacute; c&aacute;c c&ocirc;ng việc c&oacute; li&ecirc;n quan đến đồ họa tr&ecirc;n phần mềm chuy&ecirc;n dụng được trơn tru đạt hiệu quả cao. Đặc biệt, mang đến trải nghiệm chơi game mượt m&agrave; tuyệt vời nhất với c&aacute;c game đang hot hiện nay.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop Nitro 5 Eagle AN515-57-54MV | Hiệu năng mạnh mẽ\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_e5b1808f-33c5-45ee-8421-035a566615aa.jpg\" /></p>\r\n\r\n<p>C&ugrave;ng với đ&oacute; l&agrave; bộ nhớ Ram với dung lượng 8GB chuẩn DDR4 cũng được trang bị v&agrave;o chiếc laptop Acer n&agrave;y. Cho khả năng đa nhiệm tốt v&agrave; tốc độ xử l&yacute; th&ocirc;ng tin nhanh, gi&uacute;p người d&ugrave;ng thoải m&aacute;i sử dụng c&ugrave;ng một l&uacute;c nhiều ứng dụng nặng hay mở nhiều tab Chrome được mượt m&agrave; với Bus Ram 3200MHz.&nbsp;</p>\r\n\r\n<p>Với 2 khe cắm v&agrave; c&ograve;n hỗ trợ tối đa l&ecirc;n 32GB n&ecirc;n đ&aacute;p ứng được nhu cầu muốn n&acirc;ng cấp bộ nhớ Ram sau n&agrave;y.</p>\r\n\r\n<p>Ổ cứng 512GB chuẩn SSD M.2 NVMe cũng được trang bị cho Nitro 5 Eagle AN515-57-54MV cho ph&eacute;p khởi động m&aacute;y chỉ trong v&agrave;i gi&acirc;y v&agrave; tốc độ phản hồi c&aacute;c t&aacute;c vụ nhanh ch&oacute;ng. Ngo&agrave;i ra, c&ograve;n cho kh&ocirc;ng gian lưu trữ lớn để thoải m&aacute;i tải những tựa game y&ecirc;u th&iacute;ch của m&igrave;nh hay phần mềm đồ họa v&agrave; h&igrave;nh ảnh c&oacute; li&ecirc;n quan đến c&ocirc;ng việc.</p>\r\n\r\n<p><img alt=\"Laptop Nitro 5 Eagle AN515-57-54MV | Ổ cứng 512Gb\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_f89ca1c0-a9a2-4163-9563-3fa8ccff5746.jpg\" /></p>\r\n\r\n<h4><strong>Sử dụng hệ điều h&agrave;nh Windows 11, trải nghiệm với dung lượng pin ấn tượng</strong>&nbsp;</h4>\r\n\r\n<p>Acer Nitro 5 Eagle AN515-57-54MV l&agrave; chiếc laptop đầu ti&ecirc;n trong d&ograve;ng laptop gaming nitro 5 series được trang bị hệ điều h&agrave;nh mới nhất Windows 11 với giao diện mới v&agrave; &acirc;m thanh hiện đại mang đến cho người d&ugrave;ng những trải nghiệm tiện lợi v&agrave; tốt nhất. Đặc biệt, với một chiếc laptop gaming th&igrave; đ&acirc;y sẽ l&agrave; phi&ecirc;n bản Windows tốt nhất d&agrave;nh cho game thủ. Đ&acirc;y sẽ l&agrave; một sự kh&aacute;c biệt ho&agrave;n to&agrave;n mới so với c&aacute;c chiếc laptop kh&aacute;c c&ugrave;ng ph&acirc;n kh&uacute;c đang c&oacute; mặt tr&ecirc;n thị trường.</p>\r\n\r\n<p><img alt=\"Laptop Nitro 5 Eagle AN515-57-54MV | Hệ điều hành Window 11\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_159c72fe-3f31-46e5-aeb2-dad886d6a1e4.jpg\" /></p>\r\n\r\n<p>Chiếc laptop&nbsp;<a href=\"https://phongvu.vn/c/acer-nitro\">Acer Nitro</a>&nbsp;n&agrave;y được Acer trang bị vi&ecirc;n pin 4 cell 57Wh, một dung lượng tương đối lớn để c&oacute; thể đ&aacute;p ứng được c&aacute;c t&aacute;c vụ gaming v&agrave; đồ họa l&yacute; tưởng.&nbsp;</p>\r\n\r\n<h4><strong>Trang bị b&agrave;n ph&iacute;m Full Size, hỗ trợ RGB, đa dạng kết nối hiện đại</strong></h4>\r\n\r\n<p>B&agrave;n ph&iacute;m của Acer Nitro 5 Eagle được trang bị Full Size với h&agrave;nh tr&igrave;nh ph&iacute;m s&acirc;u c&ugrave;ng độ nhạy cao v&agrave; độ đ&agrave;n hồi tốt n&ecirc;n đem đến trải nghiệm g&otilde; ph&iacute;m cực nhạy v&agrave; &ecirc;m. Đặc biệt, với cụm ph&iacute;m chuy&ecirc;n sử dụng khi chơi game, cụm WASD nổi bật gi&uacute;p game thủ dễ d&agrave;ng định vị v&agrave; nhận diện khi chơi game.</p>\r\n\r\n<p>Đ&egrave;n nền b&agrave;n ph&iacute;m được trang bị đ&egrave;n RGB với 4 v&ugrave;ng m&agrave;u sắc nổi bật v&agrave; bắt mắt tạo hứng th&uacute; khi chơi game xuy&ecirc;n m&agrave;n đ&ecirc;m th&ecirc;m th&uacute; vị hơn.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_3332e48a-864d-4c7b-a075-f4c20cb6ae18.jpg\" /></p>\r\n\r\n<p>Acer trang bị cho chiếc laptop Nitro 5 Eagle AN515-57-54MV đầy đủ c&aacute;c cổng kết nối th&ocirc;ng dụng như: 1 cổng HDMI , 1 cổng USB Type C / DisplayPort , 3 cổng USB 3.2&nbsp; v&agrave; cổng LAN 1 Gb/s. Cho ph&eacute;p truyền tải dữ liệu với tốc độ nhanh ch&oacute;ng v&agrave; khả năng kết nối với c&aacute;c thiết bị kh&aacute;c dễ hơn.</p>\r\n\r\n<p>Ngo&agrave;i ra, WiFi 802.11ax chuẩn Wifi 6 v&agrave; Bluetooth 5.1 l&agrave; 2 kết nối kh&ocirc;ng d&acirc;y ti&ecirc;n tiến được trang bị v&agrave;o chiếc laptop n&agrave;y. Cho trải nghiệm chơi game hay l&agrave;m việc kh&ocirc;ng bị gi&aacute;n đoạn với tốc độ đường truyền cao v&agrave; lu&ocirc;n ổn định.</p>\r\n\r\n<p><img src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_de8866af-7b09-4f77-a853-a5bfc0f9a485.jpg\" /></p>', 21900000, 16000000, 'unnamed76.png', 3, 1, NULL, NULL),
 (48, 'Laptop ACER Aspire 7 A715-42G-R05G (Ryzen 5 5500U/RAM 8GB/512GB SSD/ Windows 11)', '20', NULL, 'laptop-acer-aspire-7-a715-42g-r05g-ryzen-5-5500uram-8gb512gb-ssd-windows-11', 22, 12, '<p>- CPU: AMD Ryzen 5 5500U<br />\r\n- M&agrave;n h&igrave;nh: 15.6&quot; IPS (1920 x 1080)<br />\r\n- RAM: 1 x 8GB DDR4 3200MHz<br />\r\n- Đồ họa: NVIDIA GeForce GTX 1650 4GB GDDR6 / AMD Radeon Graphics<br />\r\n- Lưu trữ: 256GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 11 Home<br />\r\n- 48 Wh<br />\r\n- Khối lượng: 2.1 kg</p>', '<h2><a href=\"https://phongvu.vn/c/laptop\">Laptop&nbsp;</a>Acer Aspire 7 A715-42G-R4XX (AMD Ryzen 5 5500U) (Đen) vốn l&agrave; một d&ograve;ng sản phẩm m&aacute;y t&iacute;nh x&aacute;ch tay cao cấp được nhiều người ưa chuộng v&agrave; được thiết kế với hiệu năng mạnh mẽ c&ugrave;ng bộ nhớ ram, m&agrave;n h&igrave;nh chuẩn,.. chiếc laptop n&agrave;y đến từ thương hiệu Acer hứa hẹn sẽ mang đến cho người d&ugrave;ng những điều th&uacute; vị xứng đ&aacute;ng với sự đầu tư của bạn.</h2>\r\n\r\n<h4><strong>Thiết kế mỏng nhẹ hiện đại, vỏ bọc nguy&ecirc;n khối chắc chắn</strong></h4>\r\n\r\n<p>Laptop Acer Aspire 7 A715-42G-R4XX mang đến cho người d&ugrave;ng sự tiện lợi khi được h&atilde;ng thiết kế với k&iacute;ch thước m&agrave;n h&igrave;nh nhỏ gọn 36.34 x 25.45 x 2.29 cm. Nhờ đ&oacute; m&agrave; trọng lượng của chiếc Acer Aspire 7 A715-42G-R4XX n&agrave;y kh&aacute; nhỏ gọn với 2.1kg gi&uacute;p người d&ugrave;ng dễ d&agrave;ng di chuyển hơn. C&ocirc;ng nghệ LED Backlit g&oacute;p phần gi&uacute;p m&agrave;n h&igrave;nh laptop mỏng nhẹ hơn, &iacute;t ti&ecirc;u thụ điện năng v&agrave; bảo vệ m&ocirc;i trường.</p>\r\n\r\n<p><img alt=\"Máy tính xách tay/ Laptop Acer Aspire 7 A715-42G-R4XX | Thiết kế mỏng nhẹ hiện đại\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/1/20220701_08e196c9-ca9d-41fd-9dfd-771e9ba1882f.jpg\" /></p>\r\n\r\n<p>To&agrave;n bộ vỏ bọc b&ecirc;n ngo&agrave;i chiếc laptop Acer Aspire 7 A715-42G-R4XX được thiết kế nguy&ecirc;n khối với gam m&agrave;u đen mang lại sự sang trọng đẳng cấp ph&ugrave; hợp với mọi kh&ocirc;ng gian l&agrave;m việc của bạn. chiếc laptop Acer Aspire 7 được bảo vệ chắc chắn bởi lớp vỏ ngo&agrave;i tr&aacute;nh được c&aacute;c t&aacute;c động b&ecirc;n ngo&agrave;i như va chạm mạnh, trầy xước,...</p>\r\n\r\n<p><img alt=\"Máy tính xách tay/ Laptop Acer Aspire 7 A715-42G-R4XX | Vỏ bọc nguyên khối chắc chắn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/1/20220701_e60043ed-462e-44ef-a1ff-b72fd778306b.jpg\" /></p>\r\n\r\n<h4><strong>M&agrave;n h&igrave;nh 15.6 inch Full HD, chip đồ họa sắc n&eacute;t</strong></h4>\r\n\r\n<p>Laptop Acer Aspire 7 A715-42G-R4XX với m&agrave;n h&igrave;nh chuẩn 15.6 inch hỗ trợ khả năng hiển thị tốt c&ugrave;ng l&uacute;c nhiều phần mềm. Chiếc Laptop Acer n&agrave;y c&ograve;n c&oacute; độ ph&acirc;n giải tương đối vừa phải 1920 x 1080px đạt Full HD tấm nền IPS mang lại chất lượng h&igrave;nh ảnh sắc n&eacute;t v&agrave; sống động một c&aacute;ch tối đa cho người d&ugrave;ng kh&aacute;m ph&aacute;&hellip;.</p>\r\n\r\n<p><img alt=\"Máy tính xách tay/ Laptop Acer Aspire 7 A715-42G-R4XX| Màn hình Full HD\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/1/20220701_f0cab1a2-1a7a-4fdd-b884-2a14158f2a32.jpg\" /></p>\r\n\r\n<p>Acer Aspire 7 đ&atilde; kết hợp th&agrave;nh c&ocirc;ng giữa c&ocirc;ng nghệ m&agrave;n h&igrave;nh TFT v&agrave; Acer ComfyView mang đến chất lượng h&igrave;nh ảnh hiển thị ảnh chuy&ecirc;n nghiệp với đường truyền dẫn &aacute;nh s&aacute;ng đạt hiệu quả hơn, độ tương phản cao c&ugrave;ng những chuyển động mượt m&agrave; gi&uacute;p bạn đắm ch&igrave;m v&agrave;o những khung h&igrave;nh sống động d&ugrave; ở trong điều kiện &aacute;nh s&aacute;ng như thế n&agrave;o đi nữa.</p>\r\n\r\n<p>Chiếc card m&agrave;n h&igrave;nh NVIDIA GeForce GTX 1650 4GB GDDR6 / AMD Radeon Graphics với hiệu năng mạnh mẽ cũng được h&atilde;ng trang bị cho laptop Acer Aspire 7 A715-42G-R4XX. Với card m&agrave;n h&igrave;nh n&agrave;y hỗ trợ rất tốt cho m&agrave;n h&igrave;nh chiếc laptop xử l&yacute; h&igrave;nh ảnh theo độ ph&acirc;n giải cao khi thực hiện c&aacute;c thao t&aacute;c với c&aacute;c phần mềm game mang lại h&igrave;nh ảnh mượt m&agrave; nhất cho bạn.</p>\r\n\r\n<h4><strong>Hiệu năng mạnh mẽ vượt trội, tốc độ xử l&yacute; nhanh ch&oacute;ng hiệu quả</strong></h4>\r\n\r\n<p>Chiếc Laptop Acer Aspire 7 A715-42G-R4XX được ch&iacute;nh h&atilde;ng n&agrave;y trang bị cho con chip AMD Ryzen 5 5500U mang đến hiệu năng cực tốt. Với tốc độ xung nhịp lớn từ 2.1GHz đến 4.0GHz k&egrave;m theo 6 nh&acirc;n, 12 luồng hỗ trợ tối đa người d&ugrave;ng khi thao t&aacute;c với c&aacute;c t&aacute;c vụ n&acirc;ng cao.</p>\r\n\r\n<p><img alt=\"Máy tính xách tay/ Laptop Acer Aspire 7 A715-42G-R4XX | Hiệu năng mạnh mẽ vượt trội\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/1/20220701_e59cc5f6-8431-43ce-8e02-3479d591dc1e.jpg\" /></p>\r\n\r\n<p>Laptop Acer Aspire 7 A715-42G-R4XX l&agrave; một trong những sản phẩm laptop hoạt động mạnh mẽ được h&atilde;ng thiết kế hỗ trợ bộ ram DDR4 c&oacute; dung lượng 8GB với bus Ram 3200MHz hiệu năng cao v&agrave; 256GB ổ cứng SSD. Cấu h&igrave;nh n&agrave;y gi&uacute;p Acer Aspire 7 A715-42G-R4XX chạy c&aacute;c ứng dụng văn ph&ograve;ng, duyệt web, c&aacute;c phần mềm cơ bản một c&aacute;ch mượt m&agrave;, nhanh ch&oacute;ng v&agrave; ổn định th&igrave; bạn ho&agrave;n to&agrave;n c&oacute; thể kh&aacute;m ph&aacute; được đa t&iacute;nh năng.</p>\r\n\r\n<p>Laptop Acer Aspire 7 A715-42G-R4XX c&oacute; sẵn ổ cứng SSD 256GB gi&uacute;p m&aacute;y t&iacute;nh khởi động v&agrave; chạy c&aacute;c ứng dụng cực nhanh. B&ecirc;n cạnh đ&oacute;, chiếc laptop n&agrave;y c&ograve;n c&oacute; thiết kế lưu trữ k&eacute;p cho ph&eacute;p bạn lắp th&ecirc;m một ổ cứng SSD hoặc HDD nữa nếu cần v&agrave; với việc sử dụng th&ecirc;m một ổ cứng HDD sẽ l&agrave; giải ph&aacute;p n&acirc;ng cao dung lượng bộ nhớ vừa dễ d&agrave;ng sử dụng, vừa tiết kiệm năng lượng.</p>\r\n\r\n<h4><strong>Bộ pin 48Wh, b&agrave;n ph&iacute;m chuẩn English , chuột cảm ứng đa điểm</strong></h4>\r\n\r\n<p>Với d&ograve;ng Laptop Acer Aspire 7 A715-42G-R4XX hoạt động c&ugrave;ng hiệu năng rất mạnh mẽ d&agrave;nh cho c&aacute;c bạn đam m&ecirc; những phần mềm game cao cấp. Chiếc laptop n&agrave;y&nbsp; c&oacute; thời gian sử dụng được l&acirc;u hơn với bộ pin 48Wh v&agrave; bạn sạc đầy pin nhanh hơn trong khoảng 5 giờ.</p>\r\n\r\n<p><img alt=\"Máy tính xách tay/ Laptop Acer Aspire 7 A715-42G-R4XX | Bộ pin 48Wh\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/1/20220701_aa5a45ea-685c-43e7-947b-e2b3631d3565.jpg\" /></p>\r\n\r\n<p>H&atilde;ng Acer đ&atilde; trang bị cho Laptop Acer Aspire 7 A715-42G-R4XX với bộ b&agrave;n ph&iacute;m chuẩn English hỗ trợ người d&ugrave;ng thực hiện c&aacute;c thao t&aacute;c nhanh hơn v&agrave; trải nghiệm nhiều điều th&uacute; vị hơn. Phụ kiện k&egrave;m theo chiếc Laptop Acer Aspire 7 A715-42G-R4XX l&agrave; chuột cảm ứng đa điểm gi&uacute;p người d&ugrave;ng thao t&aacute;c dễ d&agrave;ng v&agrave; mượt m&agrave; hơn.</p>\r\n\r\n<h4><strong>Hệ điều h&agrave;nh Windows 11 Home, cổng kết nối tiện &iacute;ch tối ưu</strong></h4>\r\n\r\n<p>Để kh&aacute;ch h&agrave;ng đỡ tốn chi ph&iacute; c&agrave;i đặt th&igrave; h&atilde;ng đ&atilde; trang bị sẵn cho chiếc Laptop Acer Aspire 7 A715-42G-R4XX (AMD Ryzen 5 5500U) hệ điều h&agrave;nh Windows 11 Home bạn c&oacute; thể sử dụng những phần mềm game cao cấp, tr&aacute;nh được t&igrave;nh trạng mạng internet bị tắc nghẽn hay bị virus x&acirc;m nhập.</p>\r\n\r\n<p><img alt=\"Máy tính xách tay/ Laptop Acer Aspire 7 A715-42G-R4XX | Hệ điều hành Win 11 Home\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/1/20220701_4a21c38f-8e0a-49ad-a9ac-9945d8e39c48.jpg\" /></p>\r\n\r\n<p>Với nhiều cổng kết nối chuẩn hiện đại được gắn tr&ecirc;n chiếc Laptop Acer Aspire 7 A715-42G-R4XX. Theo đ&oacute;, 4 cổng kết nối USB được gắn v&agrave;o bao gồm: 1 cổng USB 3.2 Type C , 2 cổng USB 3.2 , 1 cổng USB 2.0 , LAN 1Gbps. Người d&ugrave;ng cũng được c&oacute; những trải nghiệm tốt hơn với 1 cổng HDMI được trang bị 2 khe cắm tai nghe v&agrave; mic c&ugrave;ng với 2 loa hỗ trợ người d&ugrave;ng thuận tiện hơn trong qu&aacute; tr&igrave;nh sử dụng.</p>', 15900000, 11590000, 'unnamed57.jpg', NULL, 1, NULL, NULL),
 (49, 'Laptop ACER Nitro 5 AN515-57-71VV (i7-11800H/RAM 8GB/512GB SSD/ Windows 11)', '25', NULL, 'laptop-acer-nitro-5-an515-57-71vv-i7-11800hram-8gb512gb-ssd-windows-11', 22, 12, '<p>- CPU: Intel Core i7-11800H<br />\r\n- M&agrave;n h&igrave;nh: 15.6&quot; IPS (1920 x 1080),144Hz<br />\r\n- RAM: 1 x 8GB DDR4 3200MHz<br />\r\n- Đồ họa: RTX 3050 4GB GDDR6 / Intel UHD Graphics<br />\r\n- Lưu trữ: 512GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 11 Home<br />\r\n- Pin: 4 cell 57 Wh<br />\r\n- Khối lượng: 2.2kg</p>', '<h2><a href=\"https://phongvu.vn/c/laptop\">Laptop</a>&nbsp;Acer Nitro 5 AN515-57-71VV (NH.QENSV.005) l&agrave; d&ograve;ng laptop thuộc ph&acirc;n kh&uacute;c cao cấp được nhiều người lựa chọn. Với thiết kế v&ocirc; c&ugrave;ng mạnh mẽ đậm chất gaming c&ugrave;ng với con chip Intel Core i7 mang lại hiệu năng vượt trội, tự tin chiến mọi loại game, hứa hẹn mang đến cho người d&ugrave;ng trải nghiệm tuyệt vời hơn c&aacute;c d&ograve;ng laptop trong c&ugrave;ng ph&acirc;n kh&uacute;c.</h2>\r\n\r\n<h4><strong>Thiết kế đậm chất gaming, b&agrave;n ph&iacute;m led RGB độc đ&aacute;o</strong></h4>\r\n\r\n<p>Với phong c&aacute;ch thiết kế đậm chất gaming chiếc laptop&nbsp;<a href=\"https://phongvu.vn/c/acer-nitro-5\">Acer Nitro 5</a>&nbsp;AN515-57-71VV được h&atilde;ng sử dụng chất liệu cực kỳ cao cấp. M&aacute;y c&oacute; đường n&eacute;t g&oacute;c cạnh với m&agrave;u chủ đạo l&agrave; đen v&agrave; đỏ thể hiện được sự mạnh mẽ ph&ugrave; hợp với nhiều lứa tuổi nhiều nhu cầu sử dụng. Với trọng lượng chỉ 2,2kg v&agrave; c&oacute; k&iacute;ch thước 36.34 x 25.5 x 2.39 cm dễ d&agrave;ng bỏ v&agrave;o balo mang đến sự thuận tiện khi mang theo b&ecirc;n m&igrave;nh.</p>\r\n\r\n<p><img alt=\"Laptop Acer Nitro 5 AN515-57-71VV (NH.QENSV.005)| Phong cách gaming\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_5353b79c-3877-4071-93d0-a406f2bd4f6c.jpg\" /></p>\r\n\r\n<p>Sở hữu cho m&igrave;nh b&agrave;n ph&iacute;m fullsize, h&agrave;nh tr&igrave;nh ph&iacute;m s&acirc;u, độ nảy tốt mang đến cảm gi&aacute;c g&otilde; ph&iacute;m thoải m&aacute;i cho người sử dụng. Ngo&agrave;i ra, d&ograve;ng Acer Nitro 5 n&agrave;y c&ograve;n hỗ trợ đ&egrave;n led RGB c&oacute; khả năng chuyển đổi m&agrave;u đa dạng tạo n&ecirc;n sự đặc trưng vốn c&oacute; của c&aacute;c d&ograve;ng m&aacute;y gaming.</p>\r\n\r\n<p><img alt=\"Laptop Acer Nitro 5 AN515-57-71VV (NH.QENSV.005) | Thiết kế đậm chất gaming\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_9e1120f6-eb7f-4b98-96d4-c9cf3f213eb5.jpg\" /></p>\r\n\r\n<h4><strong>M&agrave;n h&igrave;nh full HD 15.6 inch, tần số qu&eacute;t 144Hz, c&ocirc;ng nghệ m&agrave;n h&igrave;nh Acer ComfyView</strong></h4>\r\n\r\n<p>Acer Nitro 5 AN515-57-71VV sở hữu m&agrave;n h&igrave;nh 15.6 inch bạn c&oacute; thể thoải m&aacute;i sử dụng c&ugrave;ng l&uacute;c nhiều t&aacute;c vụ , đa nhiệm nhiều ứng dụng c&ugrave;ng l&uacute;c một c&aacute;ch dễ d&agrave;ng. Đặt biệt độ ph&acirc;n giải m&agrave;n l&ecirc;n đến Full HD v&agrave; tần số qu&eacute;t đạt 144Hz mang đến khả năng trải nghiệm mọi khung h&igrave;nh tốc độ cao rất sắc n&eacute;t.</p>\r\n\r\n<p><img alt=\"Laptop Acer Nitro 5 AN515-57-71VV (NH.QENSV.005) | Màn hình Full HD\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_b06f11b6-37da-4dd9-ad68-cfb6e8b5b371.jpg\" /></p>\r\n\r\n<p>Với c&ocirc;ng nghệ m&agrave;n h&igrave;nh Acer ComfyView gi&uacute;p m&agrave;n h&igrave;nh cho khả năng hiển thị m&agrave;u sắc rất tốt v&agrave; dịu mắt khi sử dụng. Ngo&agrave;i ra, c&ocirc;ng nghệ m&agrave;n h&igrave;nh n&agrave;y cho ph&eacute;p hiển thị rất tốt khi l&agrave;m việc ngo&agrave;i trời hoặc những nơi c&oacute; c&oacute; nguồn &aacute;nh s&aacute;ng lớn cũng như hạn chế &aacute;nh s&aacute;ng xanh g&acirc;y hại cho mắt khi sử dụng.</p>\r\n\r\n<h4><strong>Cấu h&igrave;nh mạnh mẽ với chip core i7 thế hệ thứ 11, ram 8GB DDR4 3200MHz</strong></h4>\r\n\r\n<p>Nitro 5 AN515-57-71VV được trang bị bộ vi xử l&yacute; Intel Core i7-11800H thế hệ 11 cực mạnh mẽ với 8 nh&acirc;n 16 luồng sở hữu tốc độ tối đa l&ecirc;n tới 4.6 GHz. V&igrave; vậy tốc độ của chiếc laptop Acer mang đến hiệu năng v&ocirc; c&ugrave;ng mạnh mẽ đ&aacute;p ứng mọi nhu cầu về xử l&yacute; đồ họa hoặc chơi c&aacute;c tựa game nặng ở mức cấu h&igrave;nh cao một c&aacute;ch mượt m&agrave;.</p>\r\n\r\n<p><img alt=\"Laptop Acer Nitro 5 AN515-57-71VV (NH.QENSV.005) | Sử dụng đồ họa, chiến game mượt\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_f3a3d5a9-3c2b-4fbe-aec3-485e968ae747.jpg\" /></p>\r\n\r\n<p>Đi c&ugrave;ng với đ&oacute; l&agrave; bộ nhớ ram 8Gb DDR4 với bus cho xung nhịp l&ecirc;n đến 3200Mhz cho khả năng xử l&yacute; dữ liệu bộ nhớ tạm cực nhanh. K&egrave;m theo đ&oacute; m&aacute;y trang bị 2 khe cắm ram hỗ trợ n&acirc;ng cấp tối đa l&ecirc;n tới 32Gb gi&uacute;p khởi động m&aacute;y nhanh, xử l&yacute; đa nhiệm mượt m&agrave;, kh&ocirc;ng lo về hiện tượng giật lag.</p>\r\n\r\n<h4><strong>Bộ nhớ SSD 512Gb chuẩn M2 NVMe thế hệ mới, Card m&agrave;n h&igrave;nh rời RTX 3050 4GB GDDR6&nbsp;</strong></h4>\r\n\r\n<p>Bộ nhớ trong 512GB SSD M.2 NVMe mang đến khả năng lưu trữ cực lớn đ&aacute;p ứng được dải nhu cầu sử dụng cao của nhiều nhu cầu lưu trữ. Đặc biệt d&ograve;ng Acer Nitro 5 mới n&agrave;y c&ograve;n được trang bị chuẩn ổ cứng M.2 NVMe cho tốc độ đọc ghi cực kỳ mạnh mẽ truy xuất dữ liệu cực nhanh.</p>\r\n\r\n<p><img alt=\"Laptop Acer Nitro 5 AN515-57-71VV (NH.QENSV.005)| Bộ nhớ SSD 512Gb\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_b366be31-ea5e-43bb-8983-8c0f748b1e0d.jpg\" /></p>\r\n\r\n<p>Ngo&agrave;i ra chiếc laptop n&agrave;y cũng được hỗ trợ trang bị l&ecirc;n đến 2 khe cắm ổ cứng M.2 NVMe v&agrave; h&ocirc;̃ trợ Intel Optane cho ph&eacute;p bạn c&oacute; thể n&acirc;ng cấp v&agrave; cải thiện gấp đ&ocirc;i hiệu suất của m&aacute;y một c&aacute;ch dễ d&agrave;ng.</p>\r\n\r\n<p><a href=\"https://phongvu.vn/c/acer-nitro\">Acer Nitro</a>&nbsp;5 AN515-57-71VV c&oacute; thể mang đến trải nghiệm cực tốt khi tốc độ xử l&yacute; h&igrave;nh ảnh kh&aacute; nhanh với&nbsp; chiếc card m&agrave;n h&igrave;nh.NVIDIA GeForce RTX 3050 4GB GDDR6. Xử l&yacute; h&igrave;nh ảnh l&ecirc;n đến 144Hz ở độ ph&acirc;n giải cao một c&aacute;ch tuyệt vời, đ&aacute;p ứng dải nhu cầu rộng về chơi game hay đồ họa.</p>\r\n\r\n<h4><strong>Trang bị cổng USB type C thế hệ mới, chuẩn Wifi 6, bluetooth 5.1</strong></h4>\r\n\r\n<p>Laptop được trang bị đa dạng c&aacute;c cổng kết nối dọc 2 b&ecirc;n th&acirc;n m&aacute;y như 3 cổng USB 3.2,&nbsp; LAN (RJ45), HDMI, USB Type-C thế hệ mới v&agrave; Jack tai nghe 3.5 mm.&nbsp; Mang đến cho người khả năng kết nối được nhiều thiết bị ngoại vi c&ugrave;ng l&uacute;c m&agrave; kh&ocirc;ng bị giới hạn về chuẩn v&agrave; số lượng cổng kết nối.</p>\r\n\r\n<p><img alt=\"Laptop Acer Nitro 5 AN515-57-71VV (NH.QENSV.005) | Đầy đủ cổng kết nối\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_263efe46-0f3d-4305-8fed-4556a88c3921.jpg\" /></p>\r\n\r\n<p>Ngo&agrave;i ra, m&aacute;y c&ograve;n được t&iacute;ch hợp c&aacute;c chuẩn kết nối kh&ocirc;ng d&acirc;y kh&aacute;c như Bluetooth 5.1 v&agrave; Wi-Fi 6 (802.11ax)thế hệ mới nhất tại thời điểm ra mắt. Đảm bảo đường truyền ổn định, tốc độ truyền tải đạt mức cao cho đường truyền ổn định suốt qu&aacute; tr&igrave;nh l&agrave;m việc v&agrave; gi&agrave;nh được lợi thế khi chơi game.</p>\r\n\r\n<h4><strong>Pin 4 cell 57Wh sử dụng thoải m&aacute;i, Windows 11 thế hệ mới c&agrave;i sẵn</strong></h4>\r\n\r\n<p><strong>&nbsp;</strong>Laptop Acer Nitro 5 AN515-57-71VV<strong>&nbsp;</strong>trang bị vi&ecirc;n pin 4 cell 57 Wh mang đến thời gian sử dụng cực d&agrave;i l&ecirc;n đến khoảng hơn 6 tiếng đ&aacute;p ứng được nhiều nhu cầu sử dụng. Thời gian sạc đầy cũng kh&aacute; nhanh với c&ocirc;ng nghệ sạc mới cho ph&eacute;p người d&ugrave;ng sạc đầy chiếc laptop chỉ khoảng trong chưa đến 2 giờ.</p>\r\n\r\n<p><img alt=\"Laptop Acer Nitro 5 AN515-57-71VV (NH.QENSV.005) | Dung lượng pin 4 cell 57 wh\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/7/4/20220704_3140388c-3856-4c55-accc-4c2919f52386.jpg\" /></p>\r\n\r\n<p>Windows 11 đang l&agrave; xu hướng mới tr&ecirc;n thị trường được nhiều người d&ugrave;ng mong đợi v&agrave; muốn sử dụng. Biết được điều n&agrave;y Acer đ&atilde; t&iacute;ch hợp c&agrave;i sẵn window 11 cho chiếc laptop Acer Nitro 5 AN515-57-71VV&nbsp; gi&uacute;p bạn thoải m&aacute;i dử dụng ngay sau khi mua về m&agrave; kh&ocirc;ng cần tốn tiền mua bản quyền.</p>', 23890000, 18890000, 'unnamed57.png', NULL, 1, NULL, NULL);
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `product_sold`, `product_slug`, `category_id`, `brand_id`, `product_desc`, `product_content`, `product_price`, `price_cost`, `product_image`, `product_views`, `product_status`, `created_at`, `updated_at`) VALUES
-(50, 'Laptop HP VICTUS 16-e0168AX (Ryzen 7 5800H/RAM 8GB/512GB SSD/ Windows 11)', '15', NULL, 'laptop-hp-victus-16-e0168ax-ryzen-7-5800hram-8gb512gb-ssd-windows-11', 22, 16, '<p>- CPU: Ryzen 7 5800H<br />\r\n- M&agrave;n h&igrave;nh: 16.1&quot; IPS (1920 x 1080),144Hz<br />\r\n- RAM: 2 x 4GB DDR4 3200MHz<br />\r\n- Đồ họa: RTX 3050Ti 4GB GDDR6 / AMD Radeon Graphics<br />\r\n- Lưu trữ: 512GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 11 Home SL<br />\r\n- Pin: 4 cell 70 Wh<br />\r\n- Khối lượng: 2.4kg</p>', '<h3><a href=\"https://phongvu.vn/c/laptop\"><strong>Laptop</strong></a>&nbsp;HP VICTUS 16-e0168AX (4R0U6PA) sở hữu cấu h&igrave;nh mạnh mẽ, đ&aacute;p ứng nhu cầu hiệu năng cao trong c&ocirc;ng việc v&agrave; giải tr&iacute; của nhiều người d&ugrave;ng. Nằm ở ph&acirc;n kh&uacute;c cao cấp, chiếc laptop HP hứa hẹn sẽ mang đến cho bạn những trải nghiệm mượt m&agrave; ấn tượng, xứng đ&aacute;ng với sự đầu tư.</h3>\r\n\r\n<h4><strong>Thiết kế nguy&ecirc;n khối sang trọng, trải nghiệm h&igrave;nh ảnh sống động</strong></h4>\r\n\r\n<p>HP VICTUS 16-e0168AX đảm bảo gọn g&agrave;ng với k&iacute;ch thước 37 x 26 x 2.35 cm v&agrave; trọng lượng 2.4 kg, cho ph&eacute;p người d&ugrave;ng thoải m&aacute;i cho laptop v&agrave;o balo, t&uacute;i x&aacute;ch v&agrave; mang đến bất kỳ đ&acirc;u. Laptop HP cao cấp kho&aacute;c l&ecirc;n một vẻ đẹp nguy&ecirc;n khối sang trọng với gam m&agrave;u đen hiện đại v&agrave; thu h&uacute;t.</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Thiết kế sang trọng \" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_dc086c3b-47f6-45fc-a6de-07079ae39e77.jpg\" /></p>\r\n\r\n<p>Laptop HP sở hữu m&agrave;n h&igrave;nh 16.1 inch với viền mỏng tuyệt đẹp. M&agrave;n h&igrave;nh chống l&oacute;a tiện &iacute;ch đảm bảo trải nghiệm giải tr&iacute;, l&agrave;m việc ngay trong điều kiện &aacute;nh s&aacute;ng mạnh. Độ ph&acirc;n giải Full HD c&ugrave;ng tấm nền IPS hiện đại t&aacute;i hiện khung h&igrave;nh sinh động dưới g&oacute;c nh&igrave;n l&ecirc;n đến 178 độ. Tần số qu&eacute;t vượt trội 144Hz sẽ gi&uacute;p t&aacute;i hiện từng chuyển động mượt m&agrave; trong c&aacute;c tr&ograve; chơi.</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Màn hình sắc nét\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_32946589-8835-4b8b-96c8-cf41892b5a90.jpg\" /></p>\r\n\r\n<p>Chiếc laptop hỗ trợ HD Webcam cung cấp chất lượng h&igrave;nh ảnh tự nhi&ecirc;n, r&otilde; n&eacute;t với độ ph&acirc;n giải cao. Nhờ đ&oacute;, người d&ugrave;ng c&oacute; thể thoải m&aacute;i video call hay học tập v&agrave; l&agrave;m việc online ngay tại nh&agrave;, trao đổi với bạn b&egrave;, đồng nghiệp qua c&aacute;c phần mềm phổ biến hiện nay như Zoom, Google Meet,...</p>\r\n\r\n<h4><strong>Cấu h&igrave;nh vượt trội với chip Ryzen 7 5800H, RAM 8GB, ổ cứng 512GB</strong></h4>\r\n\r\n<p>HP VICTUS 16-e0168AX khai th&aacute;c sức mạnh của Ryzen 7 5800H với xung nhịp cơ bản 3.2 GHz v&agrave; đạt tối đa 4.4 GHz. Hiệu năng si&ecirc;u ph&acirc;n luồng mạnh mẽ đến từ cấu tr&uacute;c 8 nh&acirc;n, 16 luồng, đảm bảo chạy mượt mọi t&aacute;c vụ của bạn, từ cơ bản đến phức tạp như thiết kế đồ họa, chơi game&hellip;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Sử dụng mượt mà\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_28f8a8f9-f567-4883-aee6-77ee256e58a1.jpg\" /></p>\r\n\r\n<p>RAM 8GB DDR4 cung cấp tốc độ bus cao 3200MHz, cho ph&eacute;p laptop HP đa nhiệm c&ugrave;ng l&uacute;c nhiều t&aacute;c vụ m&agrave; kh&ocirc;ng lo xảy ra giật lag. Chip NVIDIA GeForce RTX 3050Ti 4GB GDDR6 đẩy mạnh khả năng xử l&yacute; đồ họa, mang đến hiệu suất đ&aacute;ng kinh ngạc cho game thủ v&agrave; c&aacute;c nh&agrave; s&aacute;ng tạo.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Dung lượng lưu trữ lớn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_55aef4e8-a7c2-470e-beb5-0d80fd2e4aec.jpg\" /></p>\r\n\r\n<p>HP VICTUS 16-e0168AX sử dụng ổ cứng 512GB SSD NVMe PCIe, với dung lượng kh&aacute; lớn để đ&aacute;p ứng nhu cầu lưu trữ của bạn. Bộ nhớ chuẩn SSD cung cấp băng th&ocirc;ng tốc độ cao, hỗ trợ qu&aacute; tr&igrave;nh khởi động m&aacute;y, truy cập dữ liệu nhanh hơn chỉ trong v&agrave;i gi&acirc;y, n&acirc;ng cao hiệu suất tổng thể&hellip;</p>\r\n\r\n<h4><strong>C&agrave;i đặt sẵn Windows 11 mới, cổng kết nối tiện &iacute;ch</strong></h4>\r\n\r\n<p>Windows 11 Home SL đ&atilde; được c&agrave;i sẵn tr&ecirc;n HP VICTUS 16-e0168AX, gi&uacute;p bạn tiết kiệm chi ph&iacute; c&agrave;i hệ điều h&agrave;nh mới. Windows 11 tối ưu h&oacute;a mọi trải nghiệm người d&ugrave;ng khi cung cấp giao diện cải tiến, tương th&iacute;ch tốt, đồng thời hỗ trợ kho ứng dụng rộng lớn với nhiều tiện &iacute;ch n&acirc;ng cao.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Nhiều cổng kết nối hiện địa\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_38b76ff1-2699-4c92-be11-d112f6abbfa8.jpg\" /></p>\r\n\r\n<p>Chiếc laptop cao cấp được trang bị c&aacute;c cổng hiện đại như: 1 cổng HDMI, 1 cổng USB Type C, 3 cổng USB 3.1, 1 SD card slot, LAN 1 Gb/s đảm bảo kết nối với nhiều thiết bị ngoại vi dễ d&agrave;ng. Chuẩn Bluetooth 5.2 v&agrave;&nbsp; WiFi 802.11ax (Wifi 6) mang đến trải nghiệm kết nối kh&ocirc;ng d&acirc;y tốc độ cao nhanh ch&oacute;ng, ổn định, đảm bảo li&ecirc;n tục để bạn l&agrave;m việc v&agrave; giải tr&iacute;.&nbsp;</p>\r\n\r\n<h4><strong>B&agrave;n ph&iacute;m bền bỉ &ecirc;m &aacute;i, thời lượng pin d&ugrave;ng l&acirc;u</strong></h4>\r\n\r\n<p>HP VICTUS 16-e0168AX sở hữu layout b&agrave;n ph&iacute;m đủ rộng cho thao t&aacute;c thoải m&aacute;i. Khoảng c&aacute;ch c&aacute;c ph&iacute;m hợp l&yacute;, cấu tr&uacute;c ph&iacute;m chắc chắn v&agrave; cho độ nảy tốt, mang đến cảm gi&aacute;c &ecirc;m &aacute;i khi g&otilde;. Đ&egrave;n LED được bổ sung, cho ph&eacute;p bạn dễ d&agrave;ng quan s&aacute;t hơn trong điều kiện trời tối. Thiết kế Touchpad với bề mặt trơn mịn gi&uacute;p thao t&aacute;c cuộn, di chuyển hay tương t&aacute;c mượt m&agrave;.</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Bàn phím êm ái\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_81653966-7f9d-4ea4-9c16-4f6244052676.jpg\" /></p>\r\n\r\n<p>Chiếc laptop cao cấp HP sử dụng vi&ecirc;n pin c&oacute; dung lượng lớn 4 cell 70Wh, cung cấp thời gian l&agrave;m việc v&agrave; giải tr&iacute; kh&aacute; l&acirc;u trong nhiều giờ. Chiếc laptop c&ograve;n được hỗ trợ sạc nhanh, sạc đầy chỉ trong v&ograve;ng 90 ph&uacute;t, cho ph&eacute;p người d&ugrave;ng c&oacute; thể tiếp tục trải nghiệm m&agrave; kh&ocirc;ng phải đợi qu&aacute; l&acirc;u.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Dung lượng 4 cell\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_b11154e3-37ac-4b62-964a-92b3afc63f12.jpg\" /></p>', 20890000, 15890000, 'unnamed6.webp', 16, 1, NULL, NULL),
+(50, 'Laptop HP VICTUS 16-e0168AX (Ryzen 7 5800H/RAM 8GB/512GB SSD/ Windows 11)', '15', NULL, 'laptop-hp-victus-16-e0168ax-ryzen-7-5800hram-8gb512gb-ssd-windows-11', 22, 16, '<p>- CPU: Ryzen 7 5800H<br />\r\n- M&agrave;n h&igrave;nh: 16.1&quot; IPS (1920 x 1080),144Hz<br />\r\n- RAM: 2 x 4GB DDR4 3200MHz<br />\r\n- Đồ họa: RTX 3050Ti 4GB GDDR6 / AMD Radeon Graphics<br />\r\n- Lưu trữ: 512GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 11 Home SL<br />\r\n- Pin: 4 cell 70 Wh<br />\r\n- Khối lượng: 2.4kg</p>', '<h3><a href=\"https://phongvu.vn/c/laptop\"><strong>Laptop</strong></a>&nbsp;HP VICTUS 16-e0168AX (4R0U6PA) sở hữu cấu h&igrave;nh mạnh mẽ, đ&aacute;p ứng nhu cầu hiệu năng cao trong c&ocirc;ng việc v&agrave; giải tr&iacute; của nhiều người d&ugrave;ng. Nằm ở ph&acirc;n kh&uacute;c cao cấp, chiếc laptop HP hứa hẹn sẽ mang đến cho bạn những trải nghiệm mượt m&agrave; ấn tượng, xứng đ&aacute;ng với sự đầu tư.</h3>\r\n\r\n<h4><strong>Thiết kế nguy&ecirc;n khối sang trọng, trải nghiệm h&igrave;nh ảnh sống động</strong></h4>\r\n\r\n<p>HP VICTUS 16-e0168AX đảm bảo gọn g&agrave;ng với k&iacute;ch thước 37 x 26 x 2.35 cm v&agrave; trọng lượng 2.4 kg, cho ph&eacute;p người d&ugrave;ng thoải m&aacute;i cho laptop v&agrave;o balo, t&uacute;i x&aacute;ch v&agrave; mang đến bất kỳ đ&acirc;u. Laptop HP cao cấp kho&aacute;c l&ecirc;n một vẻ đẹp nguy&ecirc;n khối sang trọng với gam m&agrave;u đen hiện đại v&agrave; thu h&uacute;t.</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Thiết kế sang trọng \" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_dc086c3b-47f6-45fc-a6de-07079ae39e77.jpg\" /></p>\r\n\r\n<p>Laptop HP sở hữu m&agrave;n h&igrave;nh 16.1 inch với viền mỏng tuyệt đẹp. M&agrave;n h&igrave;nh chống l&oacute;a tiện &iacute;ch đảm bảo trải nghiệm giải tr&iacute;, l&agrave;m việc ngay trong điều kiện &aacute;nh s&aacute;ng mạnh. Độ ph&acirc;n giải Full HD c&ugrave;ng tấm nền IPS hiện đại t&aacute;i hiện khung h&igrave;nh sinh động dưới g&oacute;c nh&igrave;n l&ecirc;n đến 178 độ. Tần số qu&eacute;t vượt trội 144Hz sẽ gi&uacute;p t&aacute;i hiện từng chuyển động mượt m&agrave; trong c&aacute;c tr&ograve; chơi.</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Màn hình sắc nét\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_32946589-8835-4b8b-96c8-cf41892b5a90.jpg\" /></p>\r\n\r\n<p>Chiếc laptop hỗ trợ HD Webcam cung cấp chất lượng h&igrave;nh ảnh tự nhi&ecirc;n, r&otilde; n&eacute;t với độ ph&acirc;n giải cao. Nhờ đ&oacute;, người d&ugrave;ng c&oacute; thể thoải m&aacute;i video call hay học tập v&agrave; l&agrave;m việc online ngay tại nh&agrave;, trao đổi với bạn b&egrave;, đồng nghiệp qua c&aacute;c phần mềm phổ biến hiện nay như Zoom, Google Meet,...</p>\r\n\r\n<h4><strong>Cấu h&igrave;nh vượt trội với chip Ryzen 7 5800H, RAM 8GB, ổ cứng 512GB</strong></h4>\r\n\r\n<p>HP VICTUS 16-e0168AX khai th&aacute;c sức mạnh của Ryzen 7 5800H với xung nhịp cơ bản 3.2 GHz v&agrave; đạt tối đa 4.4 GHz. Hiệu năng si&ecirc;u ph&acirc;n luồng mạnh mẽ đến từ cấu tr&uacute;c 8 nh&acirc;n, 16 luồng, đảm bảo chạy mượt mọi t&aacute;c vụ của bạn, từ cơ bản đến phức tạp như thiết kế đồ họa, chơi game&hellip;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Sử dụng mượt mà\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_28f8a8f9-f567-4883-aee6-77ee256e58a1.jpg\" /></p>\r\n\r\n<p>RAM 8GB DDR4 cung cấp tốc độ bus cao 3200MHz, cho ph&eacute;p laptop HP đa nhiệm c&ugrave;ng l&uacute;c nhiều t&aacute;c vụ m&agrave; kh&ocirc;ng lo xảy ra giật lag. Chip NVIDIA GeForce RTX 3050Ti 4GB GDDR6 đẩy mạnh khả năng xử l&yacute; đồ họa, mang đến hiệu suất đ&aacute;ng kinh ngạc cho game thủ v&agrave; c&aacute;c nh&agrave; s&aacute;ng tạo.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Dung lượng lưu trữ lớn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_55aef4e8-a7c2-470e-beb5-0d80fd2e4aec.jpg\" /></p>\r\n\r\n<p>HP VICTUS 16-e0168AX sử dụng ổ cứng 512GB SSD NVMe PCIe, với dung lượng kh&aacute; lớn để đ&aacute;p ứng nhu cầu lưu trữ của bạn. Bộ nhớ chuẩn SSD cung cấp băng th&ocirc;ng tốc độ cao, hỗ trợ qu&aacute; tr&igrave;nh khởi động m&aacute;y, truy cập dữ liệu nhanh hơn chỉ trong v&agrave;i gi&acirc;y, n&acirc;ng cao hiệu suất tổng thể&hellip;</p>\r\n\r\n<h4><strong>C&agrave;i đặt sẵn Windows 11 mới, cổng kết nối tiện &iacute;ch</strong></h4>\r\n\r\n<p>Windows 11 Home SL đ&atilde; được c&agrave;i sẵn tr&ecirc;n HP VICTUS 16-e0168AX, gi&uacute;p bạn tiết kiệm chi ph&iacute; c&agrave;i hệ điều h&agrave;nh mới. Windows 11 tối ưu h&oacute;a mọi trải nghiệm người d&ugrave;ng khi cung cấp giao diện cải tiến, tương th&iacute;ch tốt, đồng thời hỗ trợ kho ứng dụng rộng lớn với nhiều tiện &iacute;ch n&acirc;ng cao.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Nhiều cổng kết nối hiện địa\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_38b76ff1-2699-4c92-be11-d112f6abbfa8.jpg\" /></p>\r\n\r\n<p>Chiếc laptop cao cấp được trang bị c&aacute;c cổng hiện đại như: 1 cổng HDMI, 1 cổng USB Type C, 3 cổng USB 3.1, 1 SD card slot, LAN 1 Gb/s đảm bảo kết nối với nhiều thiết bị ngoại vi dễ d&agrave;ng. Chuẩn Bluetooth 5.2 v&agrave;&nbsp; WiFi 802.11ax (Wifi 6) mang đến trải nghiệm kết nối kh&ocirc;ng d&acirc;y tốc độ cao nhanh ch&oacute;ng, ổn định, đảm bảo li&ecirc;n tục để bạn l&agrave;m việc v&agrave; giải tr&iacute;.&nbsp;</p>\r\n\r\n<h4><strong>B&agrave;n ph&iacute;m bền bỉ &ecirc;m &aacute;i, thời lượng pin d&ugrave;ng l&acirc;u</strong></h4>\r\n\r\n<p>HP VICTUS 16-e0168AX sở hữu layout b&agrave;n ph&iacute;m đủ rộng cho thao t&aacute;c thoải m&aacute;i. Khoảng c&aacute;ch c&aacute;c ph&iacute;m hợp l&yacute;, cấu tr&uacute;c ph&iacute;m chắc chắn v&agrave; cho độ nảy tốt, mang đến cảm gi&aacute;c &ecirc;m &aacute;i khi g&otilde;. Đ&egrave;n LED được bổ sung, cho ph&eacute;p bạn dễ d&agrave;ng quan s&aacute;t hơn trong điều kiện trời tối. Thiết kế Touchpad với bề mặt trơn mịn gi&uacute;p thao t&aacute;c cuộn, di chuyển hay tương t&aacute;c mượt m&agrave;.</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Bàn phím êm ái\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_81653966-7f9d-4ea4-9c16-4f6244052676.jpg\" /></p>\r\n\r\n<p>Chiếc laptop cao cấp HP sử dụng vi&ecirc;n pin c&oacute; dung lượng lớn 4 cell 70Wh, cung cấp thời gian l&agrave;m việc v&agrave; giải tr&iacute; kh&aacute; l&acirc;u trong nhiều giờ. Chiếc laptop c&ograve;n được hỗ trợ sạc nhanh, sạc đầy chỉ trong v&ograve;ng 90 ph&uacute;t, cho ph&eacute;p người d&ugrave;ng c&oacute; thể tiếp tục trải nghiệm m&agrave; kh&ocirc;ng phải đợi qu&aacute; l&acirc;u.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop HP VICTUS 16-e0168AX (4R0U6PA)| Dung lượng 4 cell\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/20/20220120_b11154e3-37ac-4b62-964a-92b3afc63f12.jpg\" /></p>', 20890000, 15890000, 'unnamed6.webp', 17, 1, NULL, NULL),
 (51, 'Laptop ASUS Gaming ROG Strix G15 G513IH-HN015W (Ryzen 7 4800H/RAM 8GB/512GB SSD/ Windows 11)', '18', NULL, 'laptop-asus-gaming-rog-strix-g15-g513ih-hn015w-ryzen-7-4800hram-8gb512gb-ssd-windows-11', 22, 17, '<p>- CPU: AMD Ryzen 7 4800H<br />\r\n- M&agrave;n h&igrave;nh: 15.6&quot; IPS (1920 x 1080),144Hz<br />\r\n- RAM: 1 x 8GB DDR4 3200MHz<br />\r\n- Đồ họa: GTX 1650 4GB GDDR6 / AMD Radeon Graphics<br />\r\n- Lưu trữ: 512GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 11 Home<br />\r\n- Pin: 4 cell 56 Wh<br />\r\n- Khối lượng: 2.1kg</p>', '<h3><a href=\"https://phongvu.vn/c/laptop\">Laptop</a>&nbsp;Asus Gaming ROG Strix G15 G513IH-HN015W mạnh mẽ với CPU AMD Ryzen 7 l&ecirc;n đến 8 nh&acirc;n v&agrave; GPU GeForce GTX, cung cấp hiệu năng vượt trội để xử l&yacute; c&aacute;c ứng dụng v&agrave; tr&ograve; chơi y&ecirc;u th&iacute;ch. Chiếc laptop Asus cao cấp hứa hẹn l&agrave; trợ thủ đắc lực để bạn chinh phục mọi đỉnh cao.</h3>\r\n\r\n<h4><strong>Kiểu d&aacute;ng gaming mạnh mẽ, chất lượng hiển thị sống động&nbsp;</strong></h4>\r\n\r\n<p>Asus Gaming ROG Strix G15 sở hữu thiết kế độc đ&aacute;o, đậm chất gaming với khung m&aacute;y gọn nhẹ. Tạo h&igrave;nh tương đối nhỏ gọn với trọng lượng 2.1 kg v&agrave; k&iacute;ch thước 35.4 x 25.9 x 2.59 cm, đảm bảo linh hoạt để bạn c&oacute; thể mang theo đến bất kỳ đ&acirc;u. Kiểu d&aacute;ng mạnh mẽ kết hợp c&ugrave;ng tản nhiệt hiệu quả, cho ph&eacute;p bạn thoải m&aacute;i chơi game cường độ cao trong thời gian d&agrave;i.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop Asus Gaming ROG Strix G15 G513IH-HN015W| Thiết kế gọn nhẹ\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/26/20220126_2ee14a74-6593-493d-836d-45eb224b9c43.jpg\" /></p>\r\n\r\n<p>Laptop Asus được trang bị m&agrave;n h&igrave;nh rộng với k&iacute;ch thước 15.6 inch k&egrave;m viền mỏng, tối ưu kh&ocirc;ng gian hiển thị để bạn thoải m&aacute;i chơi game. Tấm nền IPS hiện đại hỗ trợ g&oacute;c nh&igrave;n rộng l&ecirc;n đến 178 độ, đồng thời tăng cường độ s&aacute;ng v&agrave; độ tương phản h&igrave;nh ảnh. Độ ph&acirc;n giải Full HD 1920 x 1080P gi&uacute;p t&aacute;i hiện c&aacute;c h&igrave;nh ảnh sống động v&agrave; sắc n&eacute;t trong từng chi tiết.</p>\r\n\r\n<p><img alt=\"Laptop Asus Gaming ROG Strix G15 G513IH-HN015W| Độ phân giải Full HD sắc nét\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/26/20220126_dc67f30b-2f89-494f-bf6b-2814f7165816.jpg\" /></p>\r\n\r\n<h4><strong>Cấu h&igrave;nh vượt trội với chip AMD Ryzen 7 4800H, RAM 8GB, ổ cứng 512GB</strong></h4>\r\n\r\n<p>Asus Gaming ROG Strix G15 mạnh mẽ với chip AMD Ryzen 7 4800H gồm 8 nh&acirc;n, 16 luồng cung cấp tốc độ xung nhịp 2.9 GHz - 4.2 GHz. Hiệu năng si&ecirc;u ph&acirc;n luồng vượt trội cho ph&eacute;p chiếc laptop thực hiện c&aacute;c t&aacute;c vụ nhanh ch&oacute;ng v&agrave; mượt m&agrave;, gi&uacute;p thỏa sức s&aacute;ng tạo nội dung hay chơi game.</p>\r\n\r\n<p><img alt=\"Laptop Asus Gaming ROG Strix G15 G513IH-HN015W | Dung lượng lưu trữ lớn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/26/20220126_7a7f4d69-be79-4b85-ac54-d64d01fafa5d.jpg\" /></p>\r\n\r\n<p>RAM 8GB chuẩn DDR4 hỗ trợ tốc độ bus 3200MHz, cho ph&eacute;p laptop Asus cao cấp đa nhiệm c&ugrave;ng l&uacute;c nhiều t&aacute;c vụ một c&aacute;ch mượt m&agrave;, kh&ocirc;ng lo xảy ra giật lag. Hai khe cắm t&iacute;ch hợp sẵn cho ph&eacute;p người d&ugrave;ng n&acirc;ng RAM l&ecirc;n tối đa 32GB để phục vụ nhu cầu n&acirc;ng cấp cấu h&igrave;nh cao hơn sau n&agrave;y.&nbsp;</p>\r\n\r\n<p>Chip NVIDIA GeForce GTX 1650 4GB GDDR6 gi&uacute;p n&acirc;ng cấp khả năng xử l&yacute; đồ họa, mang đến hiệu suất đ&aacute;ng kinh ngạc cho game thủ v&agrave; những ai đam m&ecirc; s&aacute;ng tạo, hỗ trợ l&agrave;m việc tr&ecirc;n c&aacute;c phần mềm thiết kế thoải m&aacute;i.&nbsp;</p>\r\n\r\n<p>Asus Gaming ROG Strix G15 được t&iacute;ch hợp ổ cứng 512GB SSD M.2 NVMe, cung cấp dung lượng kh&aacute; lớn để bạn thoải m&aacute;i hơn trong vấn đề lưu trữ dữ liệu. Bộ nhớ chuẩn SSD cung cấp băng th&ocirc;ng tốc độ cao, đẩy nhanh tốc độ khởi động m&aacute;y, hỗ trợ truy cập dữ liệu nhanh trong v&agrave;i gi&acirc;y.</p>\r\n\r\n<p><strong>C&agrave;i đặt sẵn Windows 11 mới, cổng kết nối tiện &iacute;ch</strong></p>\r\n\r\n<p>Windows 11 Home được c&agrave;i sẵn tr&ecirc;n Asus Gaming ROG Strix G15, gi&uacute;p bạn tiết kiệm một khoản chi ph&iacute; c&agrave;i hệ điều h&agrave;nh mới. Windows 11 mang đến những trải nghiệm mới với giao diện đ&atilde; được cải tiến, khả năng tương th&iacute;ch tốt, cũng như hỗ trợ kho ứng dụng lớn với nhiều tiện &iacute;ch tối ưu hơn.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop Asus Gaming ROG Strix G15 G513IH-HN015W| Nhiều cổng kết nối\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/26/20220126_99d45dc7-3dee-4bdf-9770-f1dedaa4a4d2.jpg\" /></p>\r\n\r\n<p>Chiếc laptop Asus Gaming ROG Strix G15 được trang bị c&aacute;c cổng hiện đại như: 1 cổng HDMI, 1 cổng USB 3.2 Type C, 3 cổng USB 3.2, cho ph&eacute;p kết nối với nhiều thiết bị ngoại vi một c&aacute;ch dễ d&agrave;ng. Chuẩn Bluetooth 5.1 v&agrave;&nbsp; WiFi 802.11ax (Wifi 6) hỗ trợ kết nối kh&ocirc;ng d&acirc;y tốc độ cao nhanh ch&oacute;ng, với t&iacute;n hiệu ổn định li&ecirc;n tục để bạn chơi game mọi l&uacute;c.&nbsp;</p>\r\n\r\n<h4><strong>B&agrave;n ph&iacute;m LED bền bỉ, thời lượng pin lớn&nbsp;</strong></h4>\r\n\r\n<p>Asus Gaming ROG Strix G15 sở hữu layout b&agrave;n ph&iacute;m rộng r&atilde;i, đậm chất gaming. C&aacute;c ph&iacute;m chơi game chuy&ecirc;n dụng WASD được l&agrave;m nổi bật để hướng sự ch&uacute; &yacute; của người chơi trong mỗi trận đấu, cho ph&eacute;p bạn thao t&aacute;c trực quan v&agrave; ch&iacute;nh x&aacute;c hơn. Ph&iacute;m nhấn nhanh nhạy với tốc độ phản hồi cao. Đ&egrave;n LED c&ograve;n hỗ trợ quan s&aacute;t tốt hơn trong c&aacute;c điều kiện thiếu s&aacute;ng.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop Asus Gaming ROG Strix G15 G513IH-HN015W| Bàn phím êm ái\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/26/20220126_2c3b4fe3-21ad-4401-9093-271acdcbadc4.jpg\" /></p>\r\n\r\n<p>Chiếc laptop cao cấp Asus sử dụng vi&ecirc;n pin c&oacute; dung lượng 4 cell 56Wh, cung cấp thời gian hoạt động kh&aacute; l&acirc;u khi mở c&aacute;c t&aacute;c vụ nhẹ. Chiếc laptop cũng được hỗ trợ sạc đầy nhanh ch&oacute;ng chỉ trong v&ograve;ng 90 ph&uacute;t, gi&uacute;p bạn c&oacute; thể tiếp tục trải nghiệm giải tr&iacute; ngay sau đ&oacute; m&agrave; kh&ocirc;ng phải đợi qu&aacute; l&acirc;u.&nbsp;</p>\r\n\r\n<p><img alt=\"Laptop Asus Gaming ROG Strix G15 G513IH-HN015W| Dung lượng pin 4 cell 56wh\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/26/20220126_dc89ca97-a334-4cbb-85de-6070e9cd3315.jpg\" /></p>\r\n\r\n<h4><strong>Mua laptop Asus Gaming ROG Strix G15 G513IH-HN015W ch&iacute;nh h&atilde;ng tại showroom Phong Vũ | Hỗ trợ bảo h&agrave;nh 24 th&aacute;ng</strong></h4>', 20090000, 15009000, 'unnamed25.webp', 4, 1, NULL, NULL),
 (52, 'Laptop Acer Nitro 5 AN515-55-70AX (NH.Q7NSV.001) (15.6\" FHD/i7-10750H/8GB/512GB SSD/GeForce GTX 1650Ti/Win10/2.3kg)', '15', NULL, 'laptop-acer-nitro-5-an515-55-70ax-nhq7nsv001-156-fhdi7-10750h8gb512gb-ssdgeforce-gtx-1650tiwin1023kg', 22, 12, '<p>- CPU: Intel Core i7-10750H<br />\r\n- M&agrave;n h&igrave;nh: 15.6&quot; IPS (1920 x 1080)<br />\r\n- RAM: 1 x 8GB DDR4 2933MHz<br />\r\n- Đồ họa: GTX 1650Ti 4GB GDDR6 / Intel UHD Graphics<br />\r\n- Lưu trữ: 512GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 10 Home 64-bit<br />\r\n- Pin: 4 cell 58 Wh Pin liền<br />\r\n- Khối lượng: 2.3kg</p>', '<p><img alt=\"acer-nitro-5-2020\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/04/acer-nitro-5-2020.jpg\" /></p>\r\n\r\n<h2><strong>Chơi game đỉnh cao</strong></h2>\r\n\r\n<p><a href=\"https://phongvu.vn/c/acer-nitro-5\"><strong>Acer Nitro 5</strong></a><strong>&nbsp;AN515-55-70AX (NH.Q7NSV.001)</strong>&nbsp;l&agrave; chiếc&nbsp;<a href=\"https://phongvu.vn/laptop-choi-game-716.cat\">laptop gaming</a>&nbsp;c&oacute; cấu h&igrave;nh mạnh mẽ với Chip Intel đa nh&acirc;n hiệu năng cao v&agrave; card đồ họa rời NVIDIA thế hệ mới nhất, h&ocirc;̃ trợ n&acirc;ng cấp bộ nhớ ram l&ecirc;n đến 32GB, khả năng lưu trữ si&ecirc;u khủng với hai khe SSD PCIe v&agrave; ổ cứng HDD truyền thống.</p>\r\n\r\n<p><img alt=\"acer-nitro-5-2020-hieu-nang\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/04/acer-nitro-5-2020-hieu-nang.jpg\" /></p>\r\n\r\n<h2><strong>M&agrave;n h&igrave;nh chuy&ecirc;n nghiệp</strong></h2>\r\n\r\n<p>M&agrave;n h&igrave;nh độ ph&acirc;n giải Full HD c&ocirc;ng nghệ IPS với viền m&agrave;n h&igrave;nh si&ecirc;u mỏng 7.02mm c&ugrave;ng tỉ lệ v&agrave;ng screen-to-body l&ecirc;n đến 80%,&nbsp;v&agrave; cung cấp m&agrave;u sắc giống như thật bằng c&aacute;ch sử dụng tấm nền c&oacute; dải m&agrave;u 72% NTSC v&agrave; độ s&aacute;ng 300 nits.&nbsp;Tận hưởng lối chơi mượt m&agrave;, kh&ocirc;ng gi&aacute;n đoạn với m&agrave;n h&igrave;nh c&oacute; tần số qu&eacute;t 144Hz v&agrave; thời gian phản hồi 3ms (t&ugrave;y chọn phi&ecirc;n bản cho hai cấu h&igrave;nh n&agrave;y).</p>\r\n\r\n<p><img alt=\"acer-nitro-5-2020-man-hinh\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/04/acer-nitro-5-2020-man-hinh.jpg\" /></p>\r\n\r\n<h2><strong>Thiết kế đậm chất Gaming</strong></h2>\r\n\r\n<p>Vẻ ngo&agrave;i laptop&nbsp;<a href=\"https://phongvu.vn/c/acer-nitro\"><strong>Acer Nitro</strong></a><strong>&nbsp;5 AN515-55-70AX (NH.Q7NSV.001)</strong>&nbsp;đậm chất gaming nhưng c&oacute; chiều s&acirc;u tinh tế về mặt thiết kế. Tổng thể thiết kế được phối bởi hai m&agrave;u đen-đỏ chủ đạo, thể hiện r&otilde; n&eacute;t sự trầm tĩnh v&agrave; thế chủ đạo. Bản lề m&agrave;u đỏ rực rỡ tr&ecirc;n nền đen (Osidian Black), cụm WASD v&agrave; ph&iacute;m điều hướng cũng được l&agrave;m cực k&igrave; nổi bật.</p>\r\n\r\n<p><img alt=\"acer-nitro-5-2020-thiet-ke\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/04/acer-nitro-5-2020-thiet-ke.jpg\" /></p>\r\n\r\n<h2><strong>B&agrave;n ph&iacute;m d&agrave;nh cho game thủ</strong></h2>\r\n\r\n<p>B&agrave;n ph&iacute;m được n&acirc;ng l&ecirc;n cấp độ mới với hệ thống đ&egrave;n LED RGB bốn v&ugrave;ng v&agrave; khả năng kiểm so&aacute;t tất cả hoạt động b&ecirc;n trong của m&aacute;y t&iacute;nh x&aacute;ch tay th&ocirc;ng qua ph&iacute;m n&oacute;ng NitroSense chuy&ecirc;n dụng. C&aacute;c cụm ph&iacute;m WASD v&agrave; mũi t&ecirc;n cũng được t&ocirc; s&aacute;ng nổi bật, trong khi ph&iacute;m phản hồi ngay lập tức với h&agrave;nh tr&igrave;nh ph&iacute;m di chuyển chỉ 1.6mm.</p>\r\n\r\n<p><img alt=\"acer-nitro-5-2020-ban-phim\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/04/acer-nitro-5-2020-ban-phim.jpg\" /></p>\r\n\r\n<h2><strong>Kết nối Gaming cao cấp</strong></h2>\r\n\r\n<p>Một ưu thế m&agrave; kh&ocirc;ng phải cấu h&igrave;nh laptop gaming ph&acirc;n ph&uacute;c entry n&agrave;o cũng c&oacute; nhưng&nbsp;<strong>Acer Nitro 5 AN515-55-70AX (NH.Q7NSV.001)</strong>&nbsp;lại được Acer trang bị, đ&oacute; l&agrave; Killer&trade; Ethernet E2600. Killer E2600 tự động ph&aacute;t hiện, ph&acirc;n loại v&agrave; ưu ti&ecirc;n lưu lượng mạng v&agrave; đảm bảo dữ liệu quan trọng nhất được truyền nhanh với th&ocirc;ng lượng 1Gbps. C&ocirc;ng nghệ Wi-Fi 6 mới nhất mang lại 2,4 Gbps th&ocirc;ng lượng l&yacute; thuyết v&agrave; hiệu suất vượt trội..</p>\r\n\r\n<p><img alt=\"acer-nitro-5-2020-ket-noi-wifi\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/04/acer-nitro-5-2020-ket-noi-wifi.jpg\" /></p>\r\n\r\n<h2><strong>&Acirc;m thanh chất lượng cao</strong></h2>\r\n\r\n<p>&Acirc;m thanh tốt hơn mang lại lợi thế cạnh tranh cũng như trải nghiệm tuyệt vời hơn th&ocirc;ng qua loa 2W k&eacute;p. Với DTS:X&reg; Ultra, &acirc;m thanh r&otilde; r&agrave;ng v&agrave; c&oacute; thể được ph&aacute;t trong m&ocirc;i trường &acirc;m thanh kh&ocirc;ng gian 3D, cho ph&eacute;p bạn nghe được đối thủ của m&igrave;nh đến từ đ&acirc;u với độ ch&iacute;nh x&aacute;c tối đa.</p>\r\n\r\n<p><img alt=\"acer-nitro-5-2020-am-thanh\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/04/acer-nitro-5-2020-am-thanh.jpg\" /></p>', 22990000, 18900000, 'unnamed42.webp', NULL, 1, NULL, NULL),
 (53, 'Laptop HP 340s G7 (i3-1005G1/RAM 4GB/512GB SSD/ Windows 10)', '14', NULL, 'laptop-hp-340s-g7-i3-1005g1ram-4gb512gb-ssd-windows-10', 23, 16, '<p>- CPU: Intel Core i3-1005G1<br />\r\n- M&agrave;n h&igrave;nh: 14&quot; TN (1366 x 768)<br />\r\n- RAM: 1 x 4GB DDR4 2666MHz<br />\r\n- Đồ họa: Onboard Intel UHD Graphics<br />\r\n- Lưu trữ: 512GB SSD M.2 NVMe /<br />\r\n- Hệ điều h&agrave;nh: Windows 10 Home SL 64-bit<br />\r\n- Pin: 3 cell 41 Wh Pin liền<br />\r\n- Khối lượng: 1.3kg</p>', '<h3><a href=\"https://phongvu.vn/laptop-va-linh-kien-macbook-715.cat\">Laptop</a>&nbsp;HP 340s G7 224L0PA ra mắt tr&ecirc;n thị trường đ&atilde; trở th&agrave;nh sản phẩm thu h&uacute;t giới văn ph&ograve;ng, học sinh, sinh vi&ecirc;n. Bởi m&aacute;y t&iacute;nh Hp 340s G7 được trang bị nhiều cổng kết nối hiện đại, bảo mật v&acirc;n tay, cấu h&igrave;nh mạnh mẽ với vẻ ngo&agrave;i nhỏ gọn, hiện đại c&ugrave;ng m&agrave;u x&aacute;m sang trọng nhưng lại c&oacute; gi&aacute; th&agrave;nh v&ocirc; c&ugrave;ng hợp l&yacute;.</h3>\r\n\r\n<h4><strong>Thiết kế nhỏ gọn, hiện đại sử dụng chất liệu tốt</strong></h4>\r\n\r\n<p>Laptop Hp 340s G7 224L0PA được phủ một lớp bạc b&oacute;ng bẩy, tạo vẻ sang trọng hiện đại, những đường n&eacute;t tinh tế c&oacute; t&iacute;nh thẩm mĩ cao.</p>\r\n\r\n<p>Chiếc laptop Hp n&agrave;y c&oacute; trọng lượng si&ecirc;u nhẹ chỉ 1.3kg, độ d&agrave;y th&acirc;n m&aacute;y chỉ 1.79cm dễ d&agrave;ng mang theo c&aacute;c hoạt động l&agrave;m việc, học tập.</p>\r\n\r\n<p><img alt=\"Laptop HP 340s G7 224L0PA | Thiết kế gọn gàng\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/5/5/20220505_7bcae391-ec1c-4392-9c67-c602c404b8b0.jpg\" /></p>\r\n\r\n<h4><strong>Cấu h&igrave;nh ổn định với intel Core i3-1005G1, RAM 4GB, Ổ cứng SSD 512GB</strong></h4>\r\n\r\n<p>Ưu điểm của chiếc Laptop Hp 340s G7 224L0PA ch&iacute;nh l&agrave; cấu h&igrave;nh mạnh mẽ core i3, intel core thế hệ 10, c&oacute; 2 nh&acirc;n 4 luồng cho ph&eacute;p xử l&yacute; c&aacute;c t&aacute;c vụ ổn định, tr&aacute;nh hao ph&iacute; điện năng. Tốc độ xử l&yacute; cơ bản ở mức 1.2Ghz v&agrave; c&oacute; thể &eacute;p xung l&ecirc;n đến 3.4Ghz.</p>\r\n\r\n<p>T&iacute;ch hợp RAM 4Gb thế hệ DDR4 2 khe cắm, bus RAM l&ecirc;n đến 2666MHz gi&uacute;p c&aacute;c thao t&aacute;c đọc ghi nhanh hơn, ổn định c&aacute;c chức năng khi l&agrave;m việc văn ph&ograve;ng.</p>\r\n\r\n<p>Ngo&agrave;i ra,&nbsp;<a href=\"https://phongvu.vn/laptop-hp-1057.cat\">laptop Hp</a>&nbsp;340s G7 224L0PA c&ograve;n hỗ trợ th&ecirc;m khe để n&acirc;ng cấp RAM l&ecirc;n 16GB&nbsp; gi&uacute;p thao t&aacute;c phần mềm, đa nhiệm nhiều c&ocirc;ng việc tốt hơn.</p>\r\n\r\n<p><img alt=\"Laptop HP 340s G7 224L0PA | Sử dụng văn phòng mượt mà\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/5/5/20220505_7d8ae6ab-8e84-4feb-8142-72d1d4cff49f.jpg\" /></p>\r\n\r\n<p>Hơn thế nữa, sử dụng ổ cứng SSD 512GB gi&uacute;p cho Hp 340s G7 224L0PA hoạt động v&ocirc; c&ugrave;ng nhạy, khởi động m&aacute;y hay mở c&aacute;c ứng dụng chỉ trong v&ograve;ng v&agrave;i gi&acirc;y. Với dung lượng ổ cứng lớn như vậy cho ph&eacute;p người d&ugrave;ng c&oacute; thể lưu trữ được nhiều t&agrave;i liệu.</p>\r\n\r\n<p><img alt=\"Laptop HP 340s G7 224L0PA | Dung lượng vừa đủ\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/5/5/20220505_beb8befa-a312-40c4-aa77-89375a3c9000.jpg\" /></p>\r\n\r\n<h4><strong>M&agrave;n h&igrave;nh 14 inch full HD, t&iacute;ch hợp chip đồ họa Intel UHD Graphics</strong></h4>\r\n\r\n<p>Laptop Hp 340s G7 224L0PA c&oacute; m&agrave;n h&igrave;nh 14 inch full HD chống l&oacute;a, hỗ trợ d&acirc;n văn ph&ograve;ng, học sinh, sinh vi&ecirc;n ngồi l&agrave;m việc l&acirc;u với m&aacute;y t&iacute;nh m&agrave; kh&ocirc;ng mỏi mắt.</p>\r\n\r\n<p><img alt=\"Laptop HP 340s G7 224L0PA | Độ phân giải full hd\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/5/5/20220505_c5c8d15d-a1eb-474f-b098-d45538fc3f3e.jpg\" /></p>\r\n\r\n<p>B&ecirc;n cạnh đ&oacute;, Card đồ họa Intel UHD Graphics gi&uacute;p cho m&agrave;y hoạt động hiệu quả hơn, kh&ocirc;ng bị n&oacute;ng m&aacute;y ti&ecirc;u hao &iacute;t điện năng. Gi&uacute;p chiếc laptop hoạt động mượt m&agrave; &ecirc;m &aacute;i.</p>\r\n\r\n<h4><strong>B&agrave;n ph&iacute;m nhạy, dễ nh&igrave;n, Pin liền 3 cell 41Wh</strong></h4>\r\n\r\n<p>Điểm cộng của chiếc laptop Hp 340s G7 224L0PA ch&iacute;nh l&agrave; b&agrave;n ph&iacute;m thiết kế chống tr&agrave;n, bố tr&iacute; hợp l&yacute;, đem lại cảm gi&aacute;c thoải m&aacute;i, dễ nh&igrave;n khi g&otilde; ph&iacute;m, phục vụ c&ocirc;ng việc một c&aacute;ch hiệu quả.</p>\r\n\r\n<p>Laptop Hp 340s G7 224L0PA sử dụng pin liền 3 cell l&ecirc;n đến 41Wh cho ph&eacute;p sử dụng m&aacute;y li&ecirc;n tục đến 6 giờ đồng hồ.</p>\r\n\r\n<p><img alt=\"Laptop HP 340s G7 224L0PA | Dung lượng pin 3 cell 41 wh\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/5/5/20220505_6857377c-9094-49d2-83a0-ce03007f1a7d.jpg\" /></p>\r\n\r\n<h4><strong>T&iacute;ch hợp nhiều cổng kết nối hiện đại, c&aacute;c kết nối kh&ocirc;ng d&acirc;y, t&iacute;nh năng bảo mật cao</strong></h4>\r\n\r\n<p>Laptop Hp 340s G7 224L0PA t&iacute;ch hợp nhiều cổng kết nối hiện đại hiện nay, cổng xuất h&igrave;nh HDMI, 2 cổng USB 3.1, 1 cổng SD card slot v&agrave; &nbsp;cổng USB Type C để truyền dữ liệu một c&aacute;ch nhanh ch&oacute;ng.</p>\r\n\r\n<p>Ngo&agrave;i ra, Hp 340s G7 224L0PA c&ograve;n được trang bị c&aacute;c kết nối kh&ocirc;ng d&acirc;y kh&aacute;c, wifi 802.11ac, bluetooth 5.0 gi&uacute;p cho c&aacute;c kết nối đường truyền được ổn định, kh&ocirc;ng l&agrave;m gi&aacute;n đoạn khi l&agrave;m việc hay học tập.</p>\r\n\r\n<p>Thay v&igrave; phải nhập mật khẩu bằng b&agrave;n ph&iacute;m th&igrave; Hp 340s G7 được trang bị t&iacute;nh năng nhận diện bằng v&acirc;n tay, tăng t&iacute;nh bảo mật cao cho thiết bị, để c&oacute; thể lưu trữ những dữ liệu, t&agrave;i liệu quan trọng.</p>\r\n\r\n<p><img alt=\"Laptop HP 340s G7 224L0PA | Đầy đủ cổng kết nối\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/5/5/20220505_5f2f5a00-dfea-48eb-a0ec-90428e15211e.jpg\" /></p>', 8990000, 7990000, 'unnamed97.webp', 1, 1, NULL, NULL),
@@ -605,28 +610,30 @@ INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `pr
 (63, 'MacBook Pro 2020 13.3 inch MYDC2SA/A (M1/8GB/SSD512GB)', '10', NULL, 'macbook-pro-2020-133-inch-mydc2saa-m18gbssd512gb', 26, 18, '<p>- CPU: Apple M1<br />\r\n- M&agrave;n h&igrave;nh: 13.3&quot; IPS (2560 x 1600)<br />\r\n- RAM: 8GB Onboard LPDDR4 3733MHz<br />\r\n- Đồ họa: Onboard<br />\r\n- Lưu trữ: 512GB SSD /<br />\r\n- Hệ điều h&agrave;nh: macOS<br />\r\n- Pin liền<br />\r\n- Khối lượng: 1.4kg</p>', '<h2>Laptop APPLE&nbsp;<a href=\"https://phongvu.vn/apple-scat.01-N004-03\">MacBook</a>&nbsp;Pro 2020 MYDC2SA/A l&agrave; d&ograve;ng&nbsp;<a href=\"https://phongvu.vn/laptop-va-linh-kien-macbook-715.cat\">m&aacute;y t&iacute;nh x&aacute;ch tay</a>&nbsp;đến từ thương hiệu c&ocirc;ng nghệ h&agrave;ng đầu thế giới, sở hữu chip Apple M1 ti&ecirc;n tiến với hiệu năng ấn tượng, ổ cứng lưu trữ 512GB SSD c&ugrave;ng m&agrave;n h&igrave;nh 13.3 inches IPS, sản phẩm l&agrave; sự lựa chọn tuyệt vời cho những kh&aacute;ch h&agrave;ng ưa chuộng sự đẳng cấp.</h2>\r\n\r\n<h3><strong>Apple M1 - d&ograve;ng chip mạnh nhất m&agrave; Apple thiết kế cho Macbook</strong></h3>\r\n\r\n<p>Laptop APPLE MacBook Pro 2020 MYDC2SA/A sở hữu d&ograve;ng chip Apple M1 - thế hệ chip ti&ecirc;n tiến v&agrave; mạnh nhất m&agrave; Apple từng thiết kế cho Macbook, mang đến hiệu suất v&agrave; hiệu năng cao gấp nhiều lần c&aacute;c d&ograve;ng sản phẩm trước đ&acirc;y.</p>\r\n\r\n<p>Với chip Apple M1, thiết bị sở hữu 8 l&otilde;i CPU, trong đ&oacute; c&oacute; 4 l&otilde;i hiệu suất cao v&agrave; 4 l&otilde;i tiết kiệm điện. Trong trường hợp kh&aacute;ch h&agrave;ng thực hiện những t&aacute;c vụ nặng th&igrave; thiết bị sẽ tận dụng tối đa c&aacute;c l&otilde;i hiệu suất cao v&agrave; ngược lại, đối với những thao t&aacute;c đơn giản, m&aacute;y sẽ tự động chuyển sang sử dụng l&otilde;i tiết kiệm điện.</p>\r\n\r\n<p><img alt=\"Laptop MacBook Pro 2020 13.3&quot; MYDC2SA/A (M1/8GB/SSD512GB) (Bạc) | Sở hữu dòng chip Apple M1\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2021/5/7/20210507_b990bba3-86c5-42ab-ac23-dbde6793d6f4.jpg\" /></p>\r\n\r\n<p>Từ đ&oacute;, c&oacute; thể thấy, thiết bị được Apple thiết kế với ti&ecirc;u ch&iacute; l&agrave;m việc hiệu quả tr&ecirc;n từng watt điện, vừa mang đến hiệu năng mạnh mẽ để phục vụ nhu cầu của kh&aacute;ch h&agrave;ng vừa k&eacute;o d&agrave;i thời gian sử dụng,&nbsp; gi&uacute;p tiết kiệm hiệu quả điện năng.</p>\r\n\r\n<p>Ngo&agrave;i ra, d&ograve;ng chip Apple M1 c&ograve;n t&iacute;ch hợp th&ecirc;m nh&acirc;n xử l&yacute; tr&iacute; tuệ nh&acirc;n tạo - Neural Engine, gi&uacute;p c&aacute;c phần mềm được ph&aacute;t triển v&agrave; hỗ trợ t&iacute;nh năng học m&aacute;y sẽ hoạt động hiệu quả hơn tr&ecirc;n thiết bị, v&iacute; dụ như Final Cut Pro hay Pixelmator Pro.</p>\r\n\r\n<h3><strong>Thiết kế đơn giản nhưng sang trọng, đảm bảo độ bền cao, k&iacute;ch thước nhỏ gọn</strong></h3>\r\n\r\n<p>Laptop APPLE&nbsp;<a href=\"https://phongvu.vn/macbook-1061.cat\">MacBook</a>&nbsp;Pro 2020 MYDC2SA/A cũng như c&aacute;c d&ograve;ng sản phẩm kh&aacute;c của Apple, nổi tiếng với thiết kế ch&uacute; trọng sự tinh tế. Khắp th&acirc;n m&aacute;y phủ 1 lớp m&agrave;u bạc sang trọng, logo được khắc laze tinh xảo v&agrave; từng đường n&eacute;t đều được xử l&yacute; kỹ lưỡng đến từng chi tiết, mang đến vẻ ngo&agrave;i đẳng cấp v&agrave; kh&aacute;c biệt.</p>\r\n\r\n<p><img alt=\"Laptop MacBook Pro 2020 13.3&quot; MYDC2SA/A (M1/8GB/SSD512GB) (Bạc) | Thiết kế đơn giản sang trọng\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2021/5/7/20210507_a730f8b1-cbd9-4d7d-b7fd-b7c814c0a529.jpg\" /></p>\r\n\r\n<p>Apple l&agrave; một trong những thương hiệu dẫn đầu về độ bền của sản phẩm tr&ecirc;n thị trường. V&igrave; thế, kh&aacute;ch h&agrave;ng kh&ocirc;ng cần phải lo lắng về thời gian sử dụng của sản phẩm. Đồng thời, với k&iacute;ch thước mỏng nhẹ, thiết bị cho ph&eacute;p bạn dễ d&agrave;ng mang theo khi di chuyển đến bất cứ nơi đ&acirc;u.</p>\r\n\r\n<p><img alt=\"Laptop MacBook Pro 2020 13.3&quot; MYDC2SA/A (M1/8GB/SSD512GB) (Bạc) | Thiết kế bền bỉ\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2021/5/7/20210507_f03fd31e-bea1-406f-aad9-df66ba9e7ce8.jpg\" /></p>\r\n\r\n<h3><strong>Đảm bảo t&iacute;nh bảo mật cao, t&iacute;ch hợp Touch ID tr&ecirc;n n&uacute;t nguồn</strong></h3>\r\n\r\n<p>Laptop APPLE MacBook Pro 2020 MYDC2SA/A được thiết kế ch&uacute; trọng v&agrave;o t&iacute;nh năng bảo mật, gi&uacute;p qu&aacute; tr&igrave;nh khởi động diễn ra an to&agrave;n, bảo vệ tối ưu th&ocirc;ng tin lưu trữ v&agrave; c&aacute;c dữ liệu c&aacute; nh&acirc;n của kh&aacute;ch h&agrave;ng, hạn chế truy cập tr&aacute;i ph&eacute;p, đ&aacute;nh cắp t&agrave;i nguy&ecirc;n.</p>\r\n\r\n<p>Ngo&agrave;i ra, sản phẩm c&ograve;n được t&iacute;ch hợp Touch ID tr&ecirc;n n&uacute;t nguồn nhằm tăng hiệu quả bảo mật, bảo vệ tối đa quyền ri&ecirc;ng tư của người sử dụng, đồng thời hệ thống c&ograve;n đảm bảo kh&ocirc;ng cấp quyền truy xuất v&acirc;n tay của bạn cho bất cứ truy cập n&agrave;o.</p>\r\n\r\n<p><img alt=\"Laptop MacBook Pro 2020 13.3&quot; MYDC2SA/A (M1/8GB/SSD512GB) (Bạc) | Khả năng bảo mật cao cấp\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2021/5/7/20210507_0b1f3a1e-761a-47ff-8e13-400c604f086b.jpg\" /></p>\r\n\r\n<h3><strong>Bộ nhớ RAM 8GB Onboard LPDDR4 3733MHz, ổ cứng lưu trữ 512GB SSD</strong></h3>\r\n\r\n<p>Laptop APPLE MacBook Pro 2020 MYDC2SA/A sở hữu bộ nhớ RAM 8GB Onboard LPDDR4 3733MHz cho tốc độ xử l&yacute; t&aacute;c vụ cao v&agrave; mượt m&agrave;, hỗ trợ tối ưu khả năng thực hiện đa nhiệm, tăng đ&aacute;ng kể hiệu suất hoạt động cho thiết bị, hạn chế giật, lag hiệu quả.</p>\r\n\r\n<p>Ngo&agrave;i ra, sản phẩm c&ograve;n cung cấp ổ cứng với dung lượng lưu trữ lớn 512GB SSD cho tốc độ đọc - ghi cao, hoạt động ổn định, duy tr&igrave; dữ liệu kể cả khi laptop đột ngột tắt nguồn, đảm bảo độ bền bỉ, gi&uacute;p laptop hoạt động &ecirc;m &aacute;i, &iacute;t tỏa nhiệt v&agrave; tiết kiệm đ&aacute;ng kể lượng điện năng ti&ecirc;u thụ.</p>\r\n\r\n<p><img alt=\"Laptop MacBook Pro 2020 13.3&quot; MYDC2SA/A (M1/8GB/SSD512GB) (Bạc) | Xử lý đa nhiệm nhanh chóng\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2021/5/7/20210507_d509db80-d0e9-4265-91c2-baaf0ced0988.jpg\" /></p>\r\n\r\n<h3><strong>Sở hữu hệ điều h&agrave;nh độc quyền MacOS</strong></h3>\r\n\r\n<p>Laptop APPLE MacBook Pro 2020 MYDC2SA/A sở hữu hệ điều h&agrave;nh độc quyền MacOS - nổi tiếng với khả năng vận h&agrave;nh ổn định, mượt m&agrave;, giao diện đẹp mắt v&agrave; t&iacute;ch hợp nhiều t&iacute;nh năng cũng như c&aacute;c ứng dụng chỉ d&agrave;nh ri&ecirc;ng cho sản phẩm của Apple.</p>\r\n\r\n<p>Kh&ocirc;ng những thế, MacOS c&ograve;n mang đến thế mạnh về đồ họa cho thiết bị, gi&uacute;p hỗ trợ tối đa c&aacute;c c&ocirc;ng việc li&ecirc;n quan đến thiết kế chuy&ecirc;n nghiệp, k&egrave;m theo đ&oacute; l&agrave; khả năng đồng bộ h&oacute;a, cho ph&eacute;p qu&aacute; tr&igrave;nh sao lưu, chia sẻ dữ liệu trở n&ecirc;n dễ d&agrave;ng hơn giữa c&aacute;c thiết bị của Apple.</p>\r\n\r\n<p><img alt=\"Laptop MacBook Pro 2020 13.3&quot; MYDC2SA/A (M1/8GB/SSD512GB) (Bạc) | Hệ diều hành MacOS\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2021/5/7/20210507_7bf8ee02-b7d0-4df1-9e47-f2510963b91d.jpg\" /></p>', 31590000, 29590000, 'unnamed (2)15.webp', 1, 1, NULL, NULL),
 (64, 'PC APPLE Mac Mini 2020 MGNR3SA/A(Apple M1/8GB/256GBSSD/Mac OS/WiFi 802.11ax)', '5', NULL, 'pc-apple-mac-mini-2020-mgnr3saaapple-m18gb256gbssdmac-oswifi-80211ax', 27, 18, '<p>- CPU: Apple M1<br />\r\n- RAM: 1 x 8GB<br />\r\n- Đồ họa:<br />\r\n- Lưu trữ: 256GB SSD/</p>', '<h3>PC Mac Mini 2020 MGNR3SA/A (M1/8GB/SSD256GB) l&agrave; chiếc m&aacute;y t&iacute;nh Mac nhỏ gọn nhất vừa được ra mắt của nh&agrave;&nbsp;<a href=\"https://www.apple.com/\"><strong>Apple</strong></a>. Mac Mini nh&agrave; T&aacute;o sở hữu k&iacute;ch thước v&ocirc; c&ugrave;ng ấn tượng với chiều cao 3.6 cm v&agrave; 19.7 cm cho cả chiều rộng v&agrave; chiều ngang c&ugrave;ng c&acirc;n nặng chỉ 1.2 kg. Ph&ugrave; hợp với những t&iacute;n đồ y&ecirc;u th&iacute;ch sự thời thượng, tiện nghi m&agrave; vẫn chất lượng.</h3>\r\n\r\n<h4><strong>Thiết kế ấn tượng si&ecirc;u nhỏ gọn, bao bọc bởi bộ khung kim loại nguy&ecirc;n khối</strong></h4>\r\n\r\n<p>Một trong những điểm nhấn si&ecirc;u hấp dẫn tr&ecirc;n Mac Mini 2020 MGNR3SA/A ch&iacute;nh l&agrave; thiết kế của n&oacute;. Mac mini l&agrave; một trong những d&ograve;ng m&aacute;y t&iacute;nh linh hoạt nhất hiện nay v&igrave; kh&ocirc;ng đi k&egrave;m m&agrave;n h&igrave;nh, b&agrave;n ph&iacute;m v&agrave; c&oacute; ngoại h&igrave;nh nhỏ gọn hết cỡ.</p>\r\n\r\n<p>Thiết kế cho bản Mac Mini 2020 MGNR3SA/A n&agrave;y vẫn được giữ nguy&ecirc;n so với phi&ecirc;n bản tiền nhiệm. To&agrave;n bộ thiết kế của em Mac mini mới tinh nh&agrave; T&aacute;o n&agrave;y chỉ l&agrave; một khối h&igrave;nh vu&ocirc;ng với cạnh chưa đến 20cm (19.7 cm) v&agrave; độ d&agrave;y chỉ vỏn vẹn 3,6 cm.</p>\r\n\r\n<p><img alt=\"PC Mac Mini 2020 MGNR3SA/A | Thiết kế ấn tượng \" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/1-5.jpg\" /></p>\r\n\r\n<p>Khối lượng của Mac mini chỉ 1.2kg. Với k&iacute;ch thước n&agrave;y. d&ugrave; bạn c&oacute; đặt ở bất cứ đ&acirc;u th&igrave; n&oacute; vẫn mang t&iacute;nh thẩm mỹ rất cao. Hơn thế nữa, chiếc m&aacute;y n&agrave;y c&ograve;n giảm lượng điện năng ti&ecirc;u thụ l&ecirc;n đến 60% so với c&aacute;c &ldquo;tiền bối&rdquo; của n&oacute; nhờ thiết kế nhỏ gọn. Bộ khung Mac Mini 2020 MGNR3SA/A vẫn được bao bọc bởi kim loại nguy&ecirc;n khối m&agrave;u bạc cực sang trọng m&agrave; bền bỉ.</p>\r\n\r\n<h4><strong>Hiệu năng khỏe l&agrave;m việc cực l&yacute; tưởng, RAM 8Gb đa nhiệm bộ nhớ đỉnh</strong></h4>\r\n\r\n<p>Mac Mini 2020 MGNR3SA/A trang bị chip Apple M1 đầu ti&ecirc;n cho m&aacute;y t&iacute;nh Mac d&ugrave;ng kiến tr&uacute;c ARM với 8 nh&acirc;n CPU (4 hiệu năng cao + 4 hiệu năng thấp). Với xung nhịp 3.2GHz cho hiệu suất xử l&yacute; nhanh gấp 2.5 lần so với c&aacute;c phi&ecirc;n bản trước. Kết hợp c&ugrave;ng đ&oacute;, Apple đ&atilde; đầu tư cho Macmini GPU 8 l&otilde;i c&oacute; hiệu suất đồ họa vượt trội cho khả năng l&agrave;m thiết kế đồ họa, chơi game với fps cao v&agrave; cực mượt.</p>\r\n\r\n<p><img alt=\"PC Mac Mini 2020 MGNR3SA/A | Hiệu năng làm việc lý tưởng\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/6-3.jpg\" /></p>\r\n\r\n<p>Bộ nhớ của Mac Mini 2020 MGNR3SA/A được c&agrave;i RAM 8GB đa nhiệm với SSD 256GB tốc độ truy xuất dữ liệu si&ecirc;u nhanh. Mac mini c&ograve;n tuyệt vời ở chỗ ho&agrave;n to&agrave;n c&oacute; khả năng để k&eacute;o m&agrave;n h&igrave;nh Pro Display XDR (6K). Hơn nữa, n&oacute; c&oacute; thể bi&ecirc;n dịch m&atilde; trong Xcode nhanh hơn tới 3 lần.</p>\r\n\r\n<p>Nhờ đ&oacute;, bạn c&oacute; thể chơi c&aacute;c tựa game y&ecirc;u cầu cao về đồ họa với tốc độ khung h&igrave;nh cao hơn 4 lần. Đặc biệt, render timeline trong Final Cut Pro nhanh hơn gấp 6 lần c&aacute;c phi&ecirc;n bản trước đ&oacute;.</p>\r\n\r\n<p>Qu&aacute; tr&igrave;nh hợp nhất to&agrave;n bộ hệ sinh th&aacute;i của d&ograve;ng Apple sẽ trở n&ecirc;n đơn giản hơn nhờ việc chuyển sang sử dụng chipset ARM cho những chiếc m&aacute;y t&iacute;nh Mac.</p>\r\n\r\n<p><img alt=\"PC Mac Mini 2020 MGNR3SA/A | Ram 8GB\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/2-4.jpg\" /></p>\r\n\r\n<h4><strong>Hoạt động cực m&aacute;t mẻ dễ chịu, kết nối đa dạng hiện đại</strong></h4>\r\n\r\n<p>Với quạt tản lớn hơn, lỗ th&ocirc;ng hơi mở rộn886g gi&uacute;p Mac Mini 2020 MGNR3SA/A tản nhiệt tối ưu hơn, khiến m&aacute;y lu&ocirc;n m&aacute;t mẻ v&agrave; vận h&agrave;nh &ecirc;m &aacute;i m&agrave; vẫn cho ph&eacute;p duy tr&igrave; hiệu suất tổng thể.</p>\r\n\r\n<p>Mac mini chạy vi xử l&yacute; Apple M1 được trang bị cổng kết nối hiện đại đa dạng: 2 x USB 3.0, 2 x Thunderbolt 4, 1 x 3.5 mm, LAN 1Gbps. Bộ k&ecirc;́t n&ocirc;́i kh&ocirc;ng d&acirc;y Bluetooth 5.0; WiFi 802.11ax. Đem đến sự tiện lợi nhất phục vụ người d&ugrave;ng.</p>\r\n\r\n<p>Ngo&agrave;i ra, phi&ecirc;n bản mini 2020 MGNR3SA/A của Mac c&ograve;n c&oacute; một cổng HDMI 2.0 với đầu ra 4K 60Hz v&agrave; DisplayPort (th&ocirc;ng qua USB-C) c&oacute; đầu ra 6K 60Hz. Bạn ho&agrave;n to&agrave;n c&oacute; thể xuất h&igrave;nh ảnh ra 2 m&agrave;n h&igrave;nh với độ ph&acirc;n giải tối đa 4K 60Hz nếu sử dụng cả HDMI v&agrave; DisplayPort.</p>\r\n\r\n<p><img alt=\"PC Mac Mini 2020 MGNR3SA/A | Cổng kết nối đa dạng \" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/3-4.jpg\" /></p>\r\n\r\n<h4><strong>Hệ điều h&agrave;nh Mac OS, tận dụng tối đa sức mạnh phần cứng</strong></h4>\r\n\r\n<p>Apple đ&atilde; trang bị cho phi&ecirc;n bản Mac Mini 2020 MGNR3SA/A của m&igrave;nh hệ điều h&agrave;nh Mac OS. Người d&ugrave;ng c&oacute; thể ho&agrave;n to&agrave;n y&ecirc;n t&acirc;m khi sử dụng sản phẩm v&agrave; phần mềm ch&iacute;nh h&atilde;ng.</p>\r\n\r\n<p>Một phần mềm chất lượng cũng cần đi k&egrave;m phần cứng tốt. Hệ điều h&agrave;nh macOS Big Sur cũng đ&atilde; tận dụng tối đa sức mạnh phần cứng của vi xử l&yacute; M1. D&ugrave; l&agrave; trong c&ocirc;ng việc hay giải tr&iacute;, Mac mini cũng mang đến trải nghiệm người d&ugrave;ng tuyệt vời cho người d&ugrave;ng.</p>\r\n\r\n<p><img alt=\"PC Mac Mini 2020 MGNR3SA/A | Hệ điều hành Mac OS\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2021/01/4-4.jpg\" /></p>', 17990000, 15990000, 'unnamed75.webp', NULL, 1, NULL, NULL),
 (65, 'Nguồn máy tính GIGABYTE P650B - 650W - 80 Plus Bronze', '5', NULL, 'nguòn-máy-tính-gigabyte-p650b-650w-80-plus-bronze', 29, 14, '<p>- C&ocirc;ng su&acirc;́t: 650W<br />\r\n- Chuẩn hi&ecirc;̣u su&acirc;́t: 80 Plus Bronze<br />\r\n- Quạt: 1 x 120 mm</p>', '<h2><strong>Giới thi&ecirc;̣u Ngu&ocirc;̀n máy tính Gigabyte P650B</strong></h2>\r\n\r\n<p><strong>Gigabyte P650B</strong>&nbsp;là m&ocirc;̣t trong những b&ocirc;̣&nbsp;<strong>Ngu&ocirc;̀n máy tính</strong>&nbsp;t&acirc;̀m trung đ&acirc;̀u ti&ecirc;n của&nbsp;<strong>Gigabyte&nbsp;</strong>được tung ra thị trường, được hướng tới những người sử dụng sở hữu 1 c&acirc;́u hình t&acirc;̀m trung nhưng c&acirc;̀n có m&ocirc;̣t b&ocirc;̣&nbsp;<strong>Ngu&ocirc;̀n máy tính</strong>&nbsp;mạnh mẽ đ&ecirc;̉ có th&ecirc;̉ n&acirc;ng c&acirc;́p ph&acirc;̀n cứng v&ecirc;̀ sau.</p>\r\n\r\n<p>Với c&ocirc;ng su&acirc;́t t&ocirc;̉ng 650W, chắc chắn&nbsp;<strong>Gigabyte P650B&nbsp;</strong>sẽ đảm bảo cho h&acirc;̀u h&ecirc;́t các c&acirc;́u hình&nbsp;<strong>Máy tính</strong>&nbsp;t&acirc;̀m trung ở thời đi&ecirc;̉m hi&ecirc;̣n tại hoạt đ&ocirc;̣ng 1 cách &ocirc;̉n định, th&acirc;m chí là đ&ocirc;́i với các c&acirc;́u hình cao c&acirc;́p. Toàn b&ocirc;̣ tụ đi&ecirc;̣n được sử dụng b&ecirc;n trong&nbsp;<strong>Gigabyte P650B</strong>&nbsp;đ&ecirc;̀u được sản xu&acirc;́t từ Nh&acirc;̣t Bản nhằm đảm bảo tu&ocirc;̉i thọ hoạt đ&ocirc;̣ng m&ocirc;̣t cách t&ocirc;́i ưu nh&acirc;́t.</p>\r\n\r\n<p><img alt=\"Nguồn Gigabyte P650B\" height=\"750\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/01/Gigabyte-P650B-1.jpg\" width=\"1180\" /></p>\r\n\r\n<p>S&ocirc;́ lượng c&ocirc;̉ng cắm ngu&ocirc;̀n cũng là 1 lợi th&ecirc;́ của&nbsp;<strong>P650B</strong>, với 1 c&ocirc;̉ng cắm ngu&ocirc;̀n 8-pin cho&nbsp;<strong>CPU</strong>, 4 c&ocirc;̉ng cắm ngu&ocirc;̀n 8-pin cho&nbsp;<strong>Card đ&ocirc;̀ họa</strong>, 6 c&ocirc;̉ng cắm ngu&ocirc;̀n&nbsp;<strong>SATA</strong>, đáp ứng t&ocirc;́t so với nhu c&acirc;̀u mặt bằng chung đ&ocirc;́i với những người sử dụng các c&acirc;́u hình t&acirc;̀m trung. T&acirc;́t cả đ&ecirc;̀u được bọc lưới nhằm tăng tính th&acirc;̉m mỹ cũng như gọn gàng.</p>\r\n\r\n<p><img alt=\"Nguồn Gigabyte P650B\" height=\"750\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/01/Gigabyte-P650B-2.jpg\" width=\"1180\" /></p>\r\n\r\n<p>V&ecirc;̀ hi&ecirc;̣u su&acirc;́t, mặc dù chỉ được chứng nh&acirc;̣n ở chu&acirc;̉n&nbsp;<strong>80 Plus Bronze</strong>, tuy nhi&ecirc;n&nbsp;<strong>Gigabyte P650B</strong>&nbsp;v&acirc;̃n đem lại con s&ocirc;́ &acirc;́n tượng, với hi&ecirc;̣u su&acirc;́t l&ecirc;n tới 89% ở mức tải 50%, giúp giảm thi&ecirc;̉u t&ocirc;́i đa c&ocirc;ng su&acirc;́t ti&ecirc;u thụ của toàn b&ocirc;̣ h&ecirc;̣ th&ocirc;́ng.</p>\r\n\r\n<p><img alt=\"Nguồn Gigabyte P650B\" height=\"750\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/01/Gigabyte-P650B-4.jpg\" width=\"1180\" /></p>\r\n\r\n<p>Được trang bị với quạt làm mát 120mm có trục &quot;bearing&quot; thủy lực, giúp cho&nbsp;<strong>Gigabyte P650B&nbsp;</strong>có khả năng hoạt đ&ocirc;̣ng m&ocirc;̣t cách &ecirc;m ái, ngay cả khi hoạt đ&ocirc;̣ng h&ecirc;́t c&ocirc;ng su&acirc;́t thì đ&ocirc;̣ &ocirc;̀n của quạt cũng chỉ dừng lại ở mức 40dB.</p>\r\n\r\n<p><img alt=\"Nguồn Gigabyte P650B\" height=\"750\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/01/Gigabyte-P650B-5.jpg\" width=\"1180\" /></p>\r\n\r\n<p>Có th&ecirc;̉ nói&nbsp;<strong>Gigabyte P650B</strong>&nbsp;hoàn toàn xứng đáng khi được x&ecirc;́p vào danh sách những b&ocirc;̣ ngu&ocirc;̀n t&ocirc;́t trong ph&acirc;n khúc của mình, tuy rằng kh&ocirc;ng có những tính năng như cáp rời,&nbsp;<strong>80 Plus Gold&nbsp;</strong>như những b&ocirc;̣ ngu&ocirc;̀n cao c&acirc;́p khác nhưng với những gì mà&nbsp;<strong>P650B</strong>&nbsp;đem lại, chắc chắn sẽ làm hài lòng r&acirc;́t nhi&ecirc;̀u người sử dụng.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><img alt=\"Nguồn Gigabyte P650B\" height=\"750\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2019/01/Gigabyte-P650B-3.jpg\" width=\"1180\" /></p>', 1339000, 1239000, 'unnamed64.webp', NULL, 1, NULL, NULL),
-(66, 'Nguồn máy tính CORSAIR CV550 - 550W - 80 Plus Bronze', '5', NULL, 'nguon-may-tinh-corsair-cv550-550w-80-plus-bronze', 29, 19, '<p>C&ocirc;ng suất: 550W<br />\r\nChuẩn hiệu suất: 80 Plus Bronze<br />\r\nQuạt: 1 x 120 mm</p>', '<h2><strong>Giới thiệu nguồn CORSAIR CV550 550W - 80 Plus Bronze (CP-9020210-NA)</strong></h2>\r\n\r\n<p><a href=\"https://phongvu.vn/psu-541.cat\">Nguồn m&aacute;y t&iacute;nh</a>&nbsp;<strong>CORSAIR CV550 550W - 80 Plus Bronze (CP-9020210-NA)</strong>&nbsp;được thiết kế rất l&yacute; tưởng để dễ d&agrave;ng lắp đặt v&agrave; cung cấp năng lượng cho bộ m&aacute;y t&iacute;nh PC tại nh&agrave; hoặc tại văn ph&ograve;ng của bạn, với hiệu suất 80 PLUS Bronze được chứng nhận gi&uacute;p đảm bảo li&ecirc;n tục cung cấp to&agrave;n bộ c&ocirc;ng suất cho hệ thống của bạn.</p>\r\n\r\n<p><img alt=\"CORSAIR-CV550-550W-80-Plus-Bronze-600\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/03/CORSAIR-CV550-550W-80-Plus-Bronze-600.jpg\" /></p>\r\n\r\n<p>Bộ nguồn của d&ograve;ng CV CORSAIR cung cấp hiệu suất cao, đầu ra ổn định v&agrave; đi k&egrave;m với quạt l&agrave;m m&aacute;t th&ocirc;ng minh điều khiển nhiệt gi&uacute;p đảm bảo hệ thống&nbsp;<a href=\"https://phongvu.vn/pc-613.cat\">m&aacute;y t&iacute;nh</a>&nbsp;của bạn sẽ hoạt động ổn định dưới tải nặng nhưng vẫn đảm bảo sự y&ecirc;n tĩnh.</p>\r\n\r\n<h3><strong>C&aacute;c t&iacute;nh năng nổi bật</strong></h3>\r\n\r\n<ul>\r\n	<li>Thiết kế nhỏ gọn với k&iacute;ch thước&nbsp;125mm,&nbsp;đảm bảo dễ d&agrave;ng lắp v&agrave;o hầu hết c&aacute;c vỏ m&aacute;y t&iacute;nh hiện đại.</li>\r\n	<li>Thiết kế c&aacute;p liền&nbsp;Sleeved m&agrave;u đen v&agrave; vỏ bọc sơn đen ph&ugrave; hợp với phong c&aacute;ch PC hiện nay.</li>\r\n	<li>Quạt l&agrave;m m&aacute;t 120mm chỉ quay ở tốc độ cao khi nguồn điện của bạn đang tải nặng v&agrave; quay chậm khi tải thấp hơn, vận h&agrave;nh &ecirc;m hơn gi&uacute;p giảm thiểu độ ồn.</li>\r\n	<li>Chứng nhận 80 PLUS Bronze.</li>\r\n	<li>Thiết kế ph&aacute;t hiện điện &aacute;p tự động to&agrave;n dải 100V ~ 240V.</li>\r\n	<li>MTBF l&ecirc;n đến&nbsp;100.000 tiếng.</li>\r\n	<li>Bao gồm nhiều chế độ bảo vệ d&ograve;ng điện đem lại sự bền bỉ cũng như an to&agrave;n tối đa.</li>\r\n	<li>Hỗ trợ tất cả c&aacute;c bo mạch chủ tương th&iacute;ch&nbsp;ATX v&agrave; CPU Intel / AMD.</li>\r\n	<li>Ho&agrave;n hảo cho hệ thống chơi game chuy&ecirc;n nghiệp v&agrave; hiệu suất cao.</li>\r\n</ul>\r\n\r\n<p><img alt=\"CORSAIR-CV550-550W-80-Plus-Bronze-600-1\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/03/CORSAIR-CV550-550W-80-Plus-Bronze-600-1.jpg\" /></p>\r\n\r\n<h3><strong>M&ocirc;̣t s&ocirc;́ kinh nghi&ecirc;̣m chọn mua PSU :&nbsp;</strong></h3>\r\n\r\n<ul>\r\n	<li>Nguồn m&aacute;y t&iacute;nh n&ecirc;n c&oacute; quạt lớn để tăng tốc độ tản nhiệt.</li>\r\n	<li>Nguồn phải đảm bảo đường 12V lớn &ndash; Dual Rail hay Single Rail.<br />\r\n	Đ&acirc;y l&agrave; những đường điện cực kỳ quan trọng cấp cho Card đồ họa v&agrave; Bộ vi xử l&yacute;.</li>\r\n	<li>C&aacute;p nguồn c&oacute; c&aacute;c lựa chọn d&acirc;y liền (Sleeved) hay d&acirc;y rời (Modular).</li>\r\n	<li>PSU phải có chứng nh&acirc;̣n 80Plus.</li>\r\n	<li>Thương hiệu nguồn: đ&acirc;y cũng l&agrave; một ti&ecirc;u ch&iacute; rất quan trọng khi chọn mua bộ nguồn ph&ugrave; hợp cho m&igrave;nh, thương hiệu lớn c&oacute; thể gi&aacute; sẽ cao nhưng b&ugrave; lại bạn được an t&acirc;m về chất lượng dịch vụ, bảo h&agrave;nh l&acirc;u d&agrave;i cho bạn.</li>\r\n</ul>', 1190000, 1090000, 'unnamed3.webp', 1, 1, NULL, NULL),
-(67, 'Nguồn máy tính CORSAIR CV650 - 650W - 80 Plus Bronze', '5', NULL, 'nguon-may-tinh-corsair-cv650-650w-80-plus-bronze', 29, 19, '<p>C&ocirc;ng suất: 650W<br />\r\nChuẩn hiệu suất: 80 Plus Bronze<br />\r\nQuạt: 1 x 120 mm</p>', '<h2><a href=\"https://phongvu.vn/psu-nguon-may-tinh-scat.02-N010\">Nguồn m&aacute;y t&iacute;nh</a>&nbsp;CORSAIR CV650 - 650W - 80 Plus Bronze của thương hiệu Corsair c&oacute; c&ocirc;ng suất mạnh mẽ c&ugrave;ng hiệu suất 80 PLUS Bronze. Đ&aacute;p ứng đủ năng lượng cho PC tại nh&agrave; hay văn ph&ograve;ng hoạt động được tốt nhất.</h2>\r\n\r\n<h3><strong>Thiết kế gọn g&agrave;ng chuẩn ATX, quạt tản nhiệt với độ ồn thấp</strong></h3>\r\n\r\n<p>Nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze c&oacute; thiết kế gọn g&agrave;ng với k&iacute;ch thước 150mm x 86mm x 125mm đạt chuẩn k&iacute;ch thước ATX, vừa vặn với đa số c&aacute;c mẫu vỏ case tr&ecirc;n thị trường hiện nay dễ d&agrave;ng.</p>\r\n\r\n<p>Ngo&agrave;i ra, c&aacute;c d&acirc;y dẫn bọc d&ugrave; m&agrave;u đen, đồng bộ m&agrave;u với c&aacute;c th&agrave;nh phần linh kiện kh&aacute;c gi&uacute;p cỗ m&aacute;y trở n&ecirc;n gọn g&agrave;ng hơn.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Thiết kế gọn gàng\" src=\"https://lh5.googleusercontent.com/1Oidcfl0QWeirhH-njuYEDlOvNO8eyuqidiVqcytmXREUh2uEqvrmfU-4H3DgUpUI1ZheWEk6jCnX5SOoJ-dcjAq1ePJnayPMVaUEwHluf_-VgIZSdLCucDaZTtTT4ThYAiY5iC2=s0\" /></p>\r\n\r\n<p>Với quạt l&agrave;m m&aacute;t c&oacute; k&iacute;ch thước 120mm hoạt động với cơ chế th&ocirc;ng minh. Khi nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze hoạt động ở mức c&ocirc;ng suất lớn, c&aacute;nh quạt sẽ quay để tăng hiệu quả tản nhiệt gi&uacute;p nguồn hoạt động tốt hơn, tăng tuổi thọ của quạt cũng như giảm độ ồn.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Quạt tản nhiệt với độ ồn thấp\" src=\"https://lh3.googleusercontent.com/dRGS_sMd8zAfkixNzkadS-ETrIpeUURqcZLgFCC6PYa9GZOsyH_cYGYH5f4klMGRrv4F0HNDtsjUD1uhg6E3vHc-9jZUYcceIKYX_kw5NZ9lPoPPqsyHngU9CL57aSNHSbvWdfQ1=s0\" /></p>\r\n\r\n<h3><strong>Đạt chuẩn c&aacute;c chứng nhận bảo vệ, hi&ecirc;̣u su&acirc;́t 80 Plus Bronze</strong></h3>\r\n\r\n<p>Nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze đạt chuẩn c&aacute;c chứng nhận bảo vệ, bao gồm: OPP, OVP, SCP, OTP, UVP. Gi&uacute;p bảo vệ nguồn điện cũng như c&aacute;c thiết bị m&agrave; n&oacute; cung cấp năng lượng tr&aacute;nh bị hư hỏng khi gặp phải những sự cố về điện.</p>\r\n\r\n<p>Hơn nữa, để tiện cho việc sử dụng, Corsair đ&atilde; trang bị cho nguồn m&aacute;y t&iacute;nh n&agrave;y c&aacute;c cổng cắm như: 1 x 8-pin (4+4) EPS, 6 x SATA, 1 x FDD (4-pin), 1 x 8-pin (6+2) PCIE, 1 x 24-pin Main.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Đạt chuẩn các chứng nhận bảo vệ\" src=\"https://lh4.googleusercontent.com/sLauwuYn_kf5lFwFeQOkxF5EhyNZjMEyDx5AFHDATTn0366xIvKPV210laXjlHQhXnrsVa5czHx3fZNwTSTq3HCrqWvr6OEBw4X3kKJfUqd20hI9H3CZDKAFLW3dS_Qd6JEBTr-H=s0\" /></p>\r\n\r\n<p>Với hiệu suất được chứng nhận đạt ti&ecirc;u chuẩn 80 Plus Bronze c&ugrave;ng c&ocirc;ng suất tối đa 650W, gi&uacute;p cung cấp hiệu suất l&ecirc;n tới 88%, lượng nhiệt tỏa ra thấp. Nhờ vậy, nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze gi&uacute;p tiết kiệm điện năng ti&ecirc;u thụ tối đa.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Hiệu suất 80 Plus Bronze\" src=\"https://lh5.googleusercontent.com/GZXA79rKlJUH53gux0RHJ0SdHmLLfDm3KIYnnHWWQ19BbvHLwc_8qVaWs8U_-kaTh61C_ezZ-Je85W6IYh8AFp-tJQOWVydgp1uwL6Pkh5xxQ6JFj01q-3Vkn52yMhvYZ8Sk3rvi=s0\" /></p>', 1390000, 1190000, 'unnamed13.webp', 2, 1, NULL, NULL),
-(68, 'Mainboard ASUS PRIME H510M-K', '5', NULL, 'mainboard-asus-prime-h510m-k', 28, 17, '<p>- Chuẩn mainboard: Micro-ATX<br />\r\n- Socket: 1200 , Chipset: H510<br />\r\n- Hỗ trợ RAM: 2 khe DDR4, tối đa 64GB<br />\r\n- Lưu trữ: 4 x SATA 3 6Gb/s, 1 x M.2 SATA/NVMe<br />\r\n- Cổng xuất h&igrave;nh: 1 x HDMI, 1 x VGA/D-sub</p>', '<h2><a href=\"https://phongvu.vn/mainboard-bo-mach-chu-scat.02-N002\">Mainboard</a>&nbsp;ASUS PRIME H510M-K c&oacute; thiết kế năng lượng mạnh mẽ, n&oacute; sẽ l&agrave; giải ph&aacute;p tản nhiệt ho&agrave;n thiện với c&aacute;c t&ugrave;y chọn điều chỉnh th&ocirc;ng minh. ASUS PRIME sẽ mang đến cho người d&ugrave;ng th&ocirc;ng thường v&agrave; người th&iacute;ch tự r&aacute;p m&aacute;y PC một loạt t&ugrave;y chọn điều chỉnh hiệu năng.</h2>\r\n\r\n<h4><strong>Tự hiệu chỉnh theo c&aacute;ch ri&ecirc;ng</strong></h4>\r\n\r\n<p>Nền tảng của d&ograve;ng ASUS Prime l&agrave; được tạo n&ecirc;n nhờ khả năng điều khiển to&agrave;n diện. Mainboard Prime H510-K đ&atilde; t&iacute;ch hợp c&aacute;c c&ocirc;ng cụ linh hoạt để c&oacute; thể hiệu chỉnh mọi th&ocirc;ng số trong hệ thống. N&oacute; cho ph&eacute;p bạn điều chỉnh hiệu năng để ph&ugrave; hợp với phong c&aacute;ch l&agrave;m việc của bạn, nhằm tối đa được ho&agrave;n hảo năng suất.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K| Hiệu chỉnh theo cách riêng bạn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_b917cbb8-8e1d-4693-b893-406c3afa4155.jpg\" /></p>\r\n\r\n<h4><strong>Cho khả năng l&agrave;m m&aacute;t đến tận nh&acirc;n CPU</strong></h4>\r\n\r\n<p>Asus Prime H510-K được sản xuất kết hợp từ một loạt c&aacute;c đầu cắm quạt nhằm đảm bảo rằng d&agrave;n m&aacute;y lu&ocirc;n được ổn định v&agrave; l&agrave;m m&aacute;t khi l&agrave;m việc ở một cường độ cao. Ngo&agrave;i ra, n&oacute; c&ograve;n c&oacute; c&aacute;c t&iacute;nh năng điều khiển l&agrave;m m&aacute;t to&agrave;n diện hơn th&ocirc;ng qua phần mềm UEFI BIOS hoặc Fan Xpert.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Cho khả năng làm mát đến tận nhân CPU\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_8354dc78-b975-4d49-a7de-9c5cc7d741e0.jpg\" /></p>\r\n\r\n<p>Mỗi đầu cắm bạn đều c&oacute; thể kiểm tra v&agrave; theo d&otilde;i th&ocirc;ng qua ba cảm biến nhiệt. Fan Xpert gi&uacute;p theo d&otilde;i biểu đồ nhiệt độ của c&aacute;c card đồ họa ASUS. Đối với c&aacute;c t&aacute;c vụ đ&ograve;i hỏi bạn sử dụng nhiều GPU v&agrave; CPU, n&oacute; đ&atilde; được hỗ trợ tối ưu h&oacute;a khả năng l&agrave;m m&aacute;t cho thiết bị.</p>\r\n\r\n<h4><strong>Khe cắm hỗ trợ v&agrave; cổng kết nối nhiều thiết bị ngoại vi</strong></h4>\r\n\r\n<p>Khe cắm M.2 hỗ trợ khả năng truyền dữ liệu c&oacute; tốc độ l&ecirc;n đến 32 Gbps. Đồng thời mainboard n&agrave;y cung cấp kết nối PCIe 4.0 cho c&aacute;c GPU mới nhất. Tốc độ truyền si&ecirc;u tốc với băng th&ocirc;ng rộng cho ph&eacute;p người d&ugrave;ng tạo nhiều t&iacute;nh năng cao cấp cho d&agrave;n m&aacute;y xử l&yacute; t&aacute;c vụ tải nặng dễ d&agrave;ng hơn.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Khe cắm hỗ trợ kết nối ngoại vi\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_0b4e8fdf-8db1-4a34-8c93-44f2105a0616.jpg\" /></p>\r\n\r\n<p>C&aacute;c d&agrave;n m&aacute;y cao cấp v&agrave; nhiều thiết bị ngoại vi sẽ được hỗ trợ nhiều cổng USB. Bao gồm cổng USB Gen A ở ph&iacute;a sau v&agrave; cổng USB 3.2 Gen 1 tốc độ cao tương th&iacute;ch thiết bị kết nối kh&aacute;c nhau. Ngo&agrave;i ra, bo mạch ch&iacute;nh hỗ trợ RAM 2 khe DDR4, tối đa l&agrave; 64GB.</p>\r\n\r\n<h4><strong>Chi tiết nhỏ tạo n&ecirc;n sự kh&aacute;c biệt lớn với&nbsp; &acirc;m thanh ho&agrave;n hảo&nbsp;</strong></h4>\r\n\r\n<p>D&ograve;ng ASUS PRIME H510M-K n&agrave;y đ&atilde; bổ sung c&aacute;c chi tiết về h&igrave;nh ảnh, &acirc;m thanh gi&uacute;p m&aacute;y cải thiện mọi trải nghiệm. Song, c&aacute;c codec độc quyền đ&atilde; đem đến chất lượng &acirc;m thanh nguy&ecirc;n bản, cho ph&eacute;p điều chỉnh hệ thống của m&igrave;nh. Từ đ&oacute;, bạn c&oacute; thể tạo ra một giao diện độc đ&aacute;o cho ri&ecirc;ng m&igrave;nh.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Âm thanh hoàn hảo\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_6f68d3cd-aac7-48ba-b9bf-129140366459.jpg\" /></p>\r\n\r\n<p>C&aacute;c thiết kế t&iacute;nh năng th&ocirc;ng minh cũng được t&iacute;ch hợp c&ugrave;ng phần cứng cao cấp cho &acirc;m thanh với chất lượng vượt trội v&agrave; thăng hoa.</p>\r\n\r\n<h4><strong>Chống tăng &aacute;p cao bảo vệ cho d&agrave;n m&aacute;y của bạn</strong></h4>\r\n\r\n<p>Thiết kế mạch độc quyền c&ugrave;ng với bộ điều tiết điện &aacute;p được t&iacute;ch hợp b&ecirc;n trong. Nhiệm vụ của n&oacute; l&agrave; bảo vệ bo mạch chủ khỏi những hư hỏng xảy ra khi gặp phải t&igrave;nh trạng mức điện &aacute;p cao bất thường do nguồn cung yếu hoặc kh&ocirc;ng ổn định g&acirc;y n&ecirc;n.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K| Bảo vệ chống tăng áp cao\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_43e76418-a5d8-4884-b2fd-dc18c6fc2a9f.jpg\" /></p>\r\n\r\n<h4><strong>Nổi bật với khả năng chống ăn m&ograve;n đem lại độ bền cao</strong></h4>\r\n\r\n<p>C&aacute;c cầu ch&igrave; t&iacute;ch hợp trong mainboard ngăn chặn nguy cơ hư hại do d&ograve;ng điện qu&aacute; tải hoặc bị ngắn mạch. C&oacute; thể thấy t&iacute;nh năng bảo vệ n&agrave;y n&oacute; kh&ocirc;ng chỉ &aacute;p dụng tr&ecirc;n c&aacute;c cổng I/O m&agrave; c&ograve;n cả DRAM, đảm bảo được tuổi thọ c&aacute;c thiết bị kết nối v&agrave; cả hệ thống.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Nổi bật với khả năng chống ăn mòn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_8663d568-20ee-4f00-920f-7f312088c754.jpg\" /></p>\r\n\r\n<p>Bảng I/O th&eacute;p kh&ocirc;ng gỉ c&oacute; đặc điểm l&agrave; chống ăn m&ograve;n ở mặt sau. Ngo&agrave;i ra n&oacute; c&ograve;n được d&iacute;nh kết &ocirc;-x&iacute;t cr&ocirc;m cho tuổi thọ cao hơn ba lần so với c&aacute;c bảng điều khiển th&ocirc;ng thường kh&aacute;c.</p>', 1690000, 1490000, 'unnamed20.webp', NULL, 1, NULL, NULL),
-(69, 'Mainboard MSI H510M-A PRO', '5', NULL, 'mainboard-msi-h510m-a-pro', 30, 20, '<p>- Chuẩn mainboard: Micro-ATX<br />\r\n- Socket: 1200 , Chipset: H510<br />\r\n- Hỗ trợ RAM: 2 khe DDR4, tối đa 64GB<br />\r\n- Lưu trữ: 1 x M.2 SATA/NVMe, 4 x SATA 3 6Gb/s<br />\r\n- Cổng xuất h&igrave;nh: 1 x HDMI, 1 x VGA/D-sub</p>', '<h2><a href=\"https://phongvu.vn/mainboard-bo-mach-chu-scat.02-N002\">Mainboard</a>&nbsp;MSI H510M-A PRO l&agrave; bo mạch chủ sở hữu chức năng ổn định v&agrave; lắp r&aacute;p chất lượng cao kh&ocirc;ng chỉ cung cấp cho người d&ugrave;ng quy tr&igrave;nh l&agrave;m việc chuy&ecirc;n nghiệp m&agrave; c&ograve;n khắc phục sự cố v&agrave; k&eacute;o d&agrave;i tuổi thọ.</h2>\r\n\r\n<h3><strong>Kích thước Micro-ATX với thiết kế th&acirc;n thiện v&agrave; tiện lợi&nbsp;</strong></h3>\r\n\r\n<p>MSI H510M-A PRO c&oacute; k&iacute;ch thước Micro-ATX, thiết kế th&ocirc;ng minh, tiện lợi v&agrave; được trang bị d&agrave;nh cho người d&ugrave;ng DIY. V&ocirc; số những c&ocirc;ng cụ điều chỉnh v&agrave; khắc phục sự cố hay lỗi hệ thống lu&ocirc;n sẵn s&agrave;ng để c&oacute; thể n&acirc;ng cao hệ thống của m&igrave;nh l&ecirc;n một tầm cao mới.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Thiết kế thân thiện \" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_24ed1dd3-d723-409b-b7e6-699bbef4c503.jpg\" /></p>\r\n\r\n<p>N&oacute; sẽ đ&aacute;p ứng ngay cả với những người d&ugrave;ng kh&oacute; t&iacute;nh nhất. Từ đ&oacute;, c&oacute; thể gi&uacute;p họ c&oacute; thể dễ d&agrave;ng c&agrave;i đặt được bo mạch chủ theo c&aacute;ch ri&ecirc;ng của m&igrave;nh m&agrave; kh&ocirc;ng gặp bất kỳ trục trặc n&agrave;o.</p>\r\n\r\n<h3><strong>Kết nối nhanh ch&oacute;ng với nhiều sự lựa chọn kh&aacute;c nhau</strong></h3>\r\n\r\n<p>Mainboard MSI cung cấp nhiều sự lựa chọn trong khả năng kết nối, bao gồm: Intel LAN gi&uacute;p tối ưu h&oacute;a đường truyền Internet, ổn định về tốc độ cho kết nối mạng. Cổng USB 3.2 Gen 1 trang bị ở mặt trước v&agrave; sau của bo mạch chủ cho người d&ugrave;ng thoải m&aacute;i kết nối với tốc độ nhanh ch&oacute;ng.</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Kết nối nhanh chóng\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_af54f096-df9f-4e51-a648-dab38cfbba6c.jpg\" /></p>\r\n\r\n<p>Ngo&agrave;i ra l&agrave; khe cắm E-Key M.2 n&acirc;ng cấp cho hệ thống với module Wi-Fi cho ph&eacute;p bạn trải nghiệm tốc độ kết nối kh&ocirc;ng d&acirc;y với bo mạch chủ MSI H510M-A PRO n&agrave;y.</p>\r\n\r\n<h3><strong>Sử dụng từ những linh kiện bền bỉ v&agrave; hiện đại</strong></h3>\r\n\r\n<p>MSI H510M-A PRO c&oacute; những khe cắm PCI Express Steel Armor được l&agrave;m từ th&eacute;p chắc chắn, bền bỉ v&agrave; n&oacute; được h&agrave;n v&agrave;o bo mạch chủ để tăng sự chắc chắn l&ecirc;n đến gấp 4 lần so với c&aacute;c điểm h&agrave;n th&ocirc;ng thường.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Tạo nên linh kiện tôt\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_47c0dda0-24a0-48da-bdaa-2c7c1a89d3af.jpg\" /></p>\r\n\r\n<p>B&ecirc;n cạnh đ&oacute;, sự an to&agrave;n của bo mạch chủ MSI được n&acirc;ng cấp th&ecirc;m với thiết kế bảo vệ ESD đ&ocirc;i để tăng gấp đ&ocirc;i lớp tiếp x&uacute;c lỗ gắn kết từ đ&oacute; n&oacute; c&oacute; thể tr&aacute;nh khả năng d&ograve;ng điện ph&oacute;ng tĩnh g&acirc;y hại tới bo mạch chủ.</p>\r\n\r\n<h3><strong>N&acirc;ng cao trải nghiệm tuyệt vời</strong></h3>\r\n\r\n<p>Kiểu RAM hỗ trợ DDR4. H&ocirc;̃ trợ b&ocirc;̣ nhớ t&ocirc;́i đa 64GB gi&uacute;p khả năng tương th&iacute;ch v&agrave; tận dụng tối đa sức mạnh, tốc độ của bo mạch chủ. &Acirc;m thanh Realtek ALC897 Codec 7.1-Channel High Definition Audio mang lại &acirc;m thanh chất lượng tốt nhất, cho &acirc;m thanh ph&aacute;t ra ch&iacute;nh x&aacute;c nhất.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Ram DDR4\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_37728fd0-f35d-4f39-adfc-7268da98a451.jpg\" /></p>', 1690000, 1490000, 'unnamed (4)19.webp', 1, 1, NULL, NULL);
+(66, 'Nguồn máy tính CORSAIR CV550 - 550W - 80 Plus Bronze', '5', NULL, 'nguon-may-tinh-corsair-cv550-550w-80-plus-bronze', 29, 19, '<p>C&ocirc;ng suất: 550W<br />\r\nChuẩn hiệu suất: 80 Plus Bronze<br />\r\nQuạt: 1 x 120 mm</p>', '<h2><strong>Giới thiệu nguồn CORSAIR CV550 550W - 80 Plus Bronze (CP-9020210-NA)</strong></h2>\r\n\r\n<p><a href=\"https://phongvu.vn/psu-541.cat\">Nguồn m&aacute;y t&iacute;nh</a>&nbsp;<strong>CORSAIR CV550 550W - 80 Plus Bronze (CP-9020210-NA)</strong>&nbsp;được thiết kế rất l&yacute; tưởng để dễ d&agrave;ng lắp đặt v&agrave; cung cấp năng lượng cho bộ m&aacute;y t&iacute;nh PC tại nh&agrave; hoặc tại văn ph&ograve;ng của bạn, với hiệu suất 80 PLUS Bronze được chứng nhận gi&uacute;p đảm bảo li&ecirc;n tục cung cấp to&agrave;n bộ c&ocirc;ng suất cho hệ thống của bạn.</p>\r\n\r\n<p><img alt=\"CORSAIR-CV550-550W-80-Plus-Bronze-600\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/03/CORSAIR-CV550-550W-80-Plus-Bronze-600.jpg\" /></p>\r\n\r\n<p>Bộ nguồn của d&ograve;ng CV CORSAIR cung cấp hiệu suất cao, đầu ra ổn định v&agrave; đi k&egrave;m với quạt l&agrave;m m&aacute;t th&ocirc;ng minh điều khiển nhiệt gi&uacute;p đảm bảo hệ thống&nbsp;<a href=\"https://phongvu.vn/pc-613.cat\">m&aacute;y t&iacute;nh</a>&nbsp;của bạn sẽ hoạt động ổn định dưới tải nặng nhưng vẫn đảm bảo sự y&ecirc;n tĩnh.</p>\r\n\r\n<h3><strong>C&aacute;c t&iacute;nh năng nổi bật</strong></h3>\r\n\r\n<ul>\r\n	<li>Thiết kế nhỏ gọn với k&iacute;ch thước&nbsp;125mm,&nbsp;đảm bảo dễ d&agrave;ng lắp v&agrave;o hầu hết c&aacute;c vỏ m&aacute;y t&iacute;nh hiện đại.</li>\r\n	<li>Thiết kế c&aacute;p liền&nbsp;Sleeved m&agrave;u đen v&agrave; vỏ bọc sơn đen ph&ugrave; hợp với phong c&aacute;ch PC hiện nay.</li>\r\n	<li>Quạt l&agrave;m m&aacute;t 120mm chỉ quay ở tốc độ cao khi nguồn điện của bạn đang tải nặng v&agrave; quay chậm khi tải thấp hơn, vận h&agrave;nh &ecirc;m hơn gi&uacute;p giảm thiểu độ ồn.</li>\r\n	<li>Chứng nhận 80 PLUS Bronze.</li>\r\n	<li>Thiết kế ph&aacute;t hiện điện &aacute;p tự động to&agrave;n dải 100V ~ 240V.</li>\r\n	<li>MTBF l&ecirc;n đến&nbsp;100.000 tiếng.</li>\r\n	<li>Bao gồm nhiều chế độ bảo vệ d&ograve;ng điện đem lại sự bền bỉ cũng như an to&agrave;n tối đa.</li>\r\n	<li>Hỗ trợ tất cả c&aacute;c bo mạch chủ tương th&iacute;ch&nbsp;ATX v&agrave; CPU Intel / AMD.</li>\r\n	<li>Ho&agrave;n hảo cho hệ thống chơi game chuy&ecirc;n nghiệp v&agrave; hiệu suất cao.</li>\r\n</ul>\r\n\r\n<p><img alt=\"CORSAIR-CV550-550W-80-Plus-Bronze-600-1\" src=\"https://tmp.phongvu.vn/wp-content/uploads/2020/03/CORSAIR-CV550-550W-80-Plus-Bronze-600-1.jpg\" /></p>\r\n\r\n<h3><strong>M&ocirc;̣t s&ocirc;́ kinh nghi&ecirc;̣m chọn mua PSU :&nbsp;</strong></h3>\r\n\r\n<ul>\r\n	<li>Nguồn m&aacute;y t&iacute;nh n&ecirc;n c&oacute; quạt lớn để tăng tốc độ tản nhiệt.</li>\r\n	<li>Nguồn phải đảm bảo đường 12V lớn &ndash; Dual Rail hay Single Rail.<br />\r\n	Đ&acirc;y l&agrave; những đường điện cực kỳ quan trọng cấp cho Card đồ họa v&agrave; Bộ vi xử l&yacute;.</li>\r\n	<li>C&aacute;p nguồn c&oacute; c&aacute;c lựa chọn d&acirc;y liền (Sleeved) hay d&acirc;y rời (Modular).</li>\r\n	<li>PSU phải có chứng nh&acirc;̣n 80Plus.</li>\r\n	<li>Thương hiệu nguồn: đ&acirc;y cũng l&agrave; một ti&ecirc;u ch&iacute; rất quan trọng khi chọn mua bộ nguồn ph&ugrave; hợp cho m&igrave;nh, thương hiệu lớn c&oacute; thể gi&aacute; sẽ cao nhưng b&ugrave; lại bạn được an t&acirc;m về chất lượng dịch vụ, bảo h&agrave;nh l&acirc;u d&agrave;i cho bạn.</li>\r\n</ul>', 1190000, 1090000, 'unnamed3.webp', 2, 1, NULL, NULL),
+(67, 'Nguồn máy tính CORSAIR CV650 - 650W - 80 Plus Bronze', '5', NULL, 'nguon-may-tinh-corsair-cv650-650w-80-plus-bronze', 29, 19, '<p>C&ocirc;ng suất: 650W<br />\r\nChuẩn hiệu suất: 80 Plus Bronze<br />\r\nQuạt: 1 x 120 mm</p>', '<h2><a href=\"https://phongvu.vn/psu-nguon-may-tinh-scat.02-N010\">Nguồn m&aacute;y t&iacute;nh</a>&nbsp;CORSAIR CV650 - 650W - 80 Plus Bronze của thương hiệu Corsair c&oacute; c&ocirc;ng suất mạnh mẽ c&ugrave;ng hiệu suất 80 PLUS Bronze. Đ&aacute;p ứng đủ năng lượng cho PC tại nh&agrave; hay văn ph&ograve;ng hoạt động được tốt nhất.</h2>\r\n\r\n<h3><strong>Thiết kế gọn g&agrave;ng chuẩn ATX, quạt tản nhiệt với độ ồn thấp</strong></h3>\r\n\r\n<p>Nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze c&oacute; thiết kế gọn g&agrave;ng với k&iacute;ch thước 150mm x 86mm x 125mm đạt chuẩn k&iacute;ch thước ATX, vừa vặn với đa số c&aacute;c mẫu vỏ case tr&ecirc;n thị trường hiện nay dễ d&agrave;ng.</p>\r\n\r\n<p>Ngo&agrave;i ra, c&aacute;c d&acirc;y dẫn bọc d&ugrave; m&agrave;u đen, đồng bộ m&agrave;u với c&aacute;c th&agrave;nh phần linh kiện kh&aacute;c gi&uacute;p cỗ m&aacute;y trở n&ecirc;n gọn g&agrave;ng hơn.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Thiết kế gọn gàng\" src=\"https://lh5.googleusercontent.com/1Oidcfl0QWeirhH-njuYEDlOvNO8eyuqidiVqcytmXREUh2uEqvrmfU-4H3DgUpUI1ZheWEk6jCnX5SOoJ-dcjAq1ePJnayPMVaUEwHluf_-VgIZSdLCucDaZTtTT4ThYAiY5iC2=s0\" /></p>\r\n\r\n<p>Với quạt l&agrave;m m&aacute;t c&oacute; k&iacute;ch thước 120mm hoạt động với cơ chế th&ocirc;ng minh. Khi nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze hoạt động ở mức c&ocirc;ng suất lớn, c&aacute;nh quạt sẽ quay để tăng hiệu quả tản nhiệt gi&uacute;p nguồn hoạt động tốt hơn, tăng tuổi thọ của quạt cũng như giảm độ ồn.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Quạt tản nhiệt với độ ồn thấp\" src=\"https://lh3.googleusercontent.com/dRGS_sMd8zAfkixNzkadS-ETrIpeUURqcZLgFCC6PYa9GZOsyH_cYGYH5f4klMGRrv4F0HNDtsjUD1uhg6E3vHc-9jZUYcceIKYX_kw5NZ9lPoPPqsyHngU9CL57aSNHSbvWdfQ1=s0\" /></p>\r\n\r\n<h3><strong>Đạt chuẩn c&aacute;c chứng nhận bảo vệ, hi&ecirc;̣u su&acirc;́t 80 Plus Bronze</strong></h3>\r\n\r\n<p>Nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze đạt chuẩn c&aacute;c chứng nhận bảo vệ, bao gồm: OPP, OVP, SCP, OTP, UVP. Gi&uacute;p bảo vệ nguồn điện cũng như c&aacute;c thiết bị m&agrave; n&oacute; cung cấp năng lượng tr&aacute;nh bị hư hỏng khi gặp phải những sự cố về điện.</p>\r\n\r\n<p>Hơn nữa, để tiện cho việc sử dụng, Corsair đ&atilde; trang bị cho nguồn m&aacute;y t&iacute;nh n&agrave;y c&aacute;c cổng cắm như: 1 x 8-pin (4+4) EPS, 6 x SATA, 1 x FDD (4-pin), 1 x 8-pin (6+2) PCIE, 1 x 24-pin Main.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Đạt chuẩn các chứng nhận bảo vệ\" src=\"https://lh4.googleusercontent.com/sLauwuYn_kf5lFwFeQOkxF5EhyNZjMEyDx5AFHDATTn0366xIvKPV210laXjlHQhXnrsVa5czHx3fZNwTSTq3HCrqWvr6OEBw4X3kKJfUqd20hI9H3CZDKAFLW3dS_Qd6JEBTr-H=s0\" /></p>\r\n\r\n<p>Với hiệu suất được chứng nhận đạt ti&ecirc;u chuẩn 80 Plus Bronze c&ugrave;ng c&ocirc;ng suất tối đa 650W, gi&uacute;p cung cấp hiệu suất l&ecirc;n tới 88%, lượng nhiệt tỏa ra thấp. Nhờ vậy, nguồn m&aacute;y t&iacute;nh CORSAIR CV650 - 650W - 80 Plus Bronze gi&uacute;p tiết kiệm điện năng ti&ecirc;u thụ tối đa.</p>\r\n\r\n<p><img alt=\"Nguồn/ Power 650W Corsair CV650 - 80Plus Bronze (CP-9020236-NA)| Hiệu suất 80 Plus Bronze\" src=\"https://lh5.googleusercontent.com/GZXA79rKlJUH53gux0RHJ0SdHmLLfDm3KIYnnHWWQ19BbvHLwc_8qVaWs8U_-kaTh61C_ezZ-Je85W6IYh8AFp-tJQOWVydgp1uwL6Pkh5xxQ6JFj01q-3Vkn52yMhvYZ8Sk3rvi=s0\" /></p>', 1390000, 1190000, 'unnamed13.webp', 4, 1, NULL, NULL),
+(68, 'Mainboard ASUS PRIME H510M-K', '5', NULL, 'mainboard-asus-prime-h510m-k', 28, 17, '<p>- Chuẩn mainboard: Micro-ATX<br />\r\n- Socket: 1200 , Chipset: H510<br />\r\n- Hỗ trợ RAM: 2 khe DDR4, tối đa 64GB<br />\r\n- Lưu trữ: 4 x SATA 3 6Gb/s, 1 x M.2 SATA/NVMe<br />\r\n- Cổng xuất h&igrave;nh: 1 x HDMI, 1 x VGA/D-sub</p>', '<h2><a href=\"https://phongvu.vn/mainboard-bo-mach-chu-scat.02-N002\">Mainboard</a>&nbsp;ASUS PRIME H510M-K c&oacute; thiết kế năng lượng mạnh mẽ, n&oacute; sẽ l&agrave; giải ph&aacute;p tản nhiệt ho&agrave;n thiện với c&aacute;c t&ugrave;y chọn điều chỉnh th&ocirc;ng minh. ASUS PRIME sẽ mang đến cho người d&ugrave;ng th&ocirc;ng thường v&agrave; người th&iacute;ch tự r&aacute;p m&aacute;y PC một loạt t&ugrave;y chọn điều chỉnh hiệu năng.</h2>\r\n\r\n<h4><strong>Tự hiệu chỉnh theo c&aacute;ch ri&ecirc;ng</strong></h4>\r\n\r\n<p>Nền tảng của d&ograve;ng ASUS Prime l&agrave; được tạo n&ecirc;n nhờ khả năng điều khiển to&agrave;n diện. Mainboard Prime H510-K đ&atilde; t&iacute;ch hợp c&aacute;c c&ocirc;ng cụ linh hoạt để c&oacute; thể hiệu chỉnh mọi th&ocirc;ng số trong hệ thống. N&oacute; cho ph&eacute;p bạn điều chỉnh hiệu năng để ph&ugrave; hợp với phong c&aacute;ch l&agrave;m việc của bạn, nhằm tối đa được ho&agrave;n hảo năng suất.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K| Hiệu chỉnh theo cách riêng bạn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_b917cbb8-8e1d-4693-b893-406c3afa4155.jpg\" /></p>\r\n\r\n<h4><strong>Cho khả năng l&agrave;m m&aacute;t đến tận nh&acirc;n CPU</strong></h4>\r\n\r\n<p>Asus Prime H510-K được sản xuất kết hợp từ một loạt c&aacute;c đầu cắm quạt nhằm đảm bảo rằng d&agrave;n m&aacute;y lu&ocirc;n được ổn định v&agrave; l&agrave;m m&aacute;t khi l&agrave;m việc ở một cường độ cao. Ngo&agrave;i ra, n&oacute; c&ograve;n c&oacute; c&aacute;c t&iacute;nh năng điều khiển l&agrave;m m&aacute;t to&agrave;n diện hơn th&ocirc;ng qua phần mềm UEFI BIOS hoặc Fan Xpert.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Cho khả năng làm mát đến tận nhân CPU\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_8354dc78-b975-4d49-a7de-9c5cc7d741e0.jpg\" /></p>\r\n\r\n<p>Mỗi đầu cắm bạn đều c&oacute; thể kiểm tra v&agrave; theo d&otilde;i th&ocirc;ng qua ba cảm biến nhiệt. Fan Xpert gi&uacute;p theo d&otilde;i biểu đồ nhiệt độ của c&aacute;c card đồ họa ASUS. Đối với c&aacute;c t&aacute;c vụ đ&ograve;i hỏi bạn sử dụng nhiều GPU v&agrave; CPU, n&oacute; đ&atilde; được hỗ trợ tối ưu h&oacute;a khả năng l&agrave;m m&aacute;t cho thiết bị.</p>\r\n\r\n<h4><strong>Khe cắm hỗ trợ v&agrave; cổng kết nối nhiều thiết bị ngoại vi</strong></h4>\r\n\r\n<p>Khe cắm M.2 hỗ trợ khả năng truyền dữ liệu c&oacute; tốc độ l&ecirc;n đến 32 Gbps. Đồng thời mainboard n&agrave;y cung cấp kết nối PCIe 4.0 cho c&aacute;c GPU mới nhất. Tốc độ truyền si&ecirc;u tốc với băng th&ocirc;ng rộng cho ph&eacute;p người d&ugrave;ng tạo nhiều t&iacute;nh năng cao cấp cho d&agrave;n m&aacute;y xử l&yacute; t&aacute;c vụ tải nặng dễ d&agrave;ng hơn.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Khe cắm hỗ trợ kết nối ngoại vi\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_0b4e8fdf-8db1-4a34-8c93-44f2105a0616.jpg\" /></p>\r\n\r\n<p>C&aacute;c d&agrave;n m&aacute;y cao cấp v&agrave; nhiều thiết bị ngoại vi sẽ được hỗ trợ nhiều cổng USB. Bao gồm cổng USB Gen A ở ph&iacute;a sau v&agrave; cổng USB 3.2 Gen 1 tốc độ cao tương th&iacute;ch thiết bị kết nối kh&aacute;c nhau. Ngo&agrave;i ra, bo mạch ch&iacute;nh hỗ trợ RAM 2 khe DDR4, tối đa l&agrave; 64GB.</p>\r\n\r\n<h4><strong>Chi tiết nhỏ tạo n&ecirc;n sự kh&aacute;c biệt lớn với&nbsp; &acirc;m thanh ho&agrave;n hảo&nbsp;</strong></h4>\r\n\r\n<p>D&ograve;ng ASUS PRIME H510M-K n&agrave;y đ&atilde; bổ sung c&aacute;c chi tiết về h&igrave;nh ảnh, &acirc;m thanh gi&uacute;p m&aacute;y cải thiện mọi trải nghiệm. Song, c&aacute;c codec độc quyền đ&atilde; đem đến chất lượng &acirc;m thanh nguy&ecirc;n bản, cho ph&eacute;p điều chỉnh hệ thống của m&igrave;nh. Từ đ&oacute;, bạn c&oacute; thể tạo ra một giao diện độc đ&aacute;o cho ri&ecirc;ng m&igrave;nh.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Âm thanh hoàn hảo\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_6f68d3cd-aac7-48ba-b9bf-129140366459.jpg\" /></p>\r\n\r\n<p>C&aacute;c thiết kế t&iacute;nh năng th&ocirc;ng minh cũng được t&iacute;ch hợp c&ugrave;ng phần cứng cao cấp cho &acirc;m thanh với chất lượng vượt trội v&agrave; thăng hoa.</p>\r\n\r\n<h4><strong>Chống tăng &aacute;p cao bảo vệ cho d&agrave;n m&aacute;y của bạn</strong></h4>\r\n\r\n<p>Thiết kế mạch độc quyền c&ugrave;ng với bộ điều tiết điện &aacute;p được t&iacute;ch hợp b&ecirc;n trong. Nhiệm vụ của n&oacute; l&agrave; bảo vệ bo mạch chủ khỏi những hư hỏng xảy ra khi gặp phải t&igrave;nh trạng mức điện &aacute;p cao bất thường do nguồn cung yếu hoặc kh&ocirc;ng ổn định g&acirc;y n&ecirc;n.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K| Bảo vệ chống tăng áp cao\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_43e76418-a5d8-4884-b2fd-dc18c6fc2a9f.jpg\" /></p>\r\n\r\n<h4><strong>Nổi bật với khả năng chống ăn m&ograve;n đem lại độ bền cao</strong></h4>\r\n\r\n<p>C&aacute;c cầu ch&igrave; t&iacute;ch hợp trong mainboard ngăn chặn nguy cơ hư hại do d&ograve;ng điện qu&aacute; tải hoặc bị ngắn mạch. C&oacute; thể thấy t&iacute;nh năng bảo vệ n&agrave;y n&oacute; kh&ocirc;ng chỉ &aacute;p dụng tr&ecirc;n c&aacute;c cổng I/O m&agrave; c&ograve;n cả DRAM, đảm bảo được tuổi thọ c&aacute;c thiết bị kết nối v&agrave; cả hệ thống.</p>\r\n\r\n<p><img alt=\"Mainboard ASUS PRIME H510M-K | Nổi bật với khả năng chống ăn mòn\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/6/28/20220628_8663d568-20ee-4f00-920f-7f312088c754.jpg\" /></p>\r\n\r\n<p>Bảng I/O th&eacute;p kh&ocirc;ng gỉ c&oacute; đặc điểm l&agrave; chống ăn m&ograve;n ở mặt sau. Ngo&agrave;i ra n&oacute; c&ograve;n được d&iacute;nh kết &ocirc;-x&iacute;t cr&ocirc;m cho tuổi thọ cao hơn ba lần so với c&aacute;c bảng điều khiển th&ocirc;ng thường kh&aacute;c.</p>', 1690000, 1490000, 'unnamed20.webp', 5, 1, NULL, NULL),
+(69, 'Mainboard MSI H510M-A PRO', '5', NULL, 'mainboard-msi-h510m-a-pro', 30, 20, '<p>- Chuẩn mainboard: Micro-ATX<br />\r\n- Socket: 1200 , Chipset: H510<br />\r\n- Hỗ trợ RAM: 2 khe DDR4, tối đa 64GB<br />\r\n- Lưu trữ: 1 x M.2 SATA/NVMe, 4 x SATA 3 6Gb/s<br />\r\n- Cổng xuất h&igrave;nh: 1 x HDMI, 1 x VGA/D-sub</p>', '<h2><a href=\"https://phongvu.vn/mainboard-bo-mach-chu-scat.02-N002\">Mainboard</a>&nbsp;MSI H510M-A PRO l&agrave; bo mạch chủ sở hữu chức năng ổn định v&agrave; lắp r&aacute;p chất lượng cao kh&ocirc;ng chỉ cung cấp cho người d&ugrave;ng quy tr&igrave;nh l&agrave;m việc chuy&ecirc;n nghiệp m&agrave; c&ograve;n khắc phục sự cố v&agrave; k&eacute;o d&agrave;i tuổi thọ.</h2>\r\n\r\n<h3><strong>Kích thước Micro-ATX với thiết kế th&acirc;n thiện v&agrave; tiện lợi&nbsp;</strong></h3>\r\n\r\n<p>MSI H510M-A PRO c&oacute; k&iacute;ch thước Micro-ATX, thiết kế th&ocirc;ng minh, tiện lợi v&agrave; được trang bị d&agrave;nh cho người d&ugrave;ng DIY. V&ocirc; số những c&ocirc;ng cụ điều chỉnh v&agrave; khắc phục sự cố hay lỗi hệ thống lu&ocirc;n sẵn s&agrave;ng để c&oacute; thể n&acirc;ng cao hệ thống của m&igrave;nh l&ecirc;n một tầm cao mới.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Thiết kế thân thiện \" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_24ed1dd3-d723-409b-b7e6-699bbef4c503.jpg\" /></p>\r\n\r\n<p>N&oacute; sẽ đ&aacute;p ứng ngay cả với những người d&ugrave;ng kh&oacute; t&iacute;nh nhất. Từ đ&oacute;, c&oacute; thể gi&uacute;p họ c&oacute; thể dễ d&agrave;ng c&agrave;i đặt được bo mạch chủ theo c&aacute;ch ri&ecirc;ng của m&igrave;nh m&agrave; kh&ocirc;ng gặp bất kỳ trục trặc n&agrave;o.</p>\r\n\r\n<h3><strong>Kết nối nhanh ch&oacute;ng với nhiều sự lựa chọn kh&aacute;c nhau</strong></h3>\r\n\r\n<p>Mainboard MSI cung cấp nhiều sự lựa chọn trong khả năng kết nối, bao gồm: Intel LAN gi&uacute;p tối ưu h&oacute;a đường truyền Internet, ổn định về tốc độ cho kết nối mạng. Cổng USB 3.2 Gen 1 trang bị ở mặt trước v&agrave; sau của bo mạch chủ cho người d&ugrave;ng thoải m&aacute;i kết nối với tốc độ nhanh ch&oacute;ng.</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Kết nối nhanh chóng\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_af54f096-df9f-4e51-a648-dab38cfbba6c.jpg\" /></p>\r\n\r\n<p>Ngo&agrave;i ra l&agrave; khe cắm E-Key M.2 n&acirc;ng cấp cho hệ thống với module Wi-Fi cho ph&eacute;p bạn trải nghiệm tốc độ kết nối kh&ocirc;ng d&acirc;y với bo mạch chủ MSI H510M-A PRO n&agrave;y.</p>\r\n\r\n<h3><strong>Sử dụng từ những linh kiện bền bỉ v&agrave; hiện đại</strong></h3>\r\n\r\n<p>MSI H510M-A PRO c&oacute; những khe cắm PCI Express Steel Armor được l&agrave;m từ th&eacute;p chắc chắn, bền bỉ v&agrave; n&oacute; được h&agrave;n v&agrave;o bo mạch chủ để tăng sự chắc chắn l&ecirc;n đến gấp 4 lần so với c&aacute;c điểm h&agrave;n th&ocirc;ng thường.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Tạo nên linh kiện tôt\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_47c0dda0-24a0-48da-bdaa-2c7c1a89d3af.jpg\" /></p>\r\n\r\n<p>B&ecirc;n cạnh đ&oacute;, sự an to&agrave;n của bo mạch chủ MSI được n&acirc;ng cấp th&ecirc;m với thiết kế bảo vệ ESD đ&ocirc;i để tăng gấp đ&ocirc;i lớp tiếp x&uacute;c lỗ gắn kết từ đ&oacute; n&oacute; c&oacute; thể tr&aacute;nh khả năng d&ograve;ng điện ph&oacute;ng tĩnh g&acirc;y hại tới bo mạch chủ.</p>\r\n\r\n<h3><strong>N&acirc;ng cao trải nghiệm tuyệt vời</strong></h3>\r\n\r\n<p>Kiểu RAM hỗ trợ DDR4. H&ocirc;̃ trợ b&ocirc;̣ nhớ t&ocirc;́i đa 64GB gi&uacute;p khả năng tương th&iacute;ch v&agrave; tận dụng tối đa sức mạnh, tốc độ của bo mạch chủ. &Acirc;m thanh Realtek ALC897 Codec 7.1-Channel High Definition Audio mang lại &acirc;m thanh chất lượng tốt nhất, cho &acirc;m thanh ph&aacute;t ra ch&iacute;nh x&aacute;c nhất.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard MSI H510M-A PRO| Ram DDR4\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/1/5/20220105_37728fd0-f35d-4f39-adfc-7268da98a451.jpg\" /></p>', 1690000, 1490000, 'unnamed (4)19.webp', 2, 1, NULL, NULL);
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `product_sold`, `product_slug`, `category_id`, `brand_id`, `product_desc`, `product_content`, `product_price`, `price_cost`, `product_image`, `product_views`, `product_status`, `created_at`, `updated_at`) VALUES
-(70, 'Mainboard GIGABYTE B660M DS3H DDR4', '5', NULL, 'mainboard-gigabyte-b660m-ds3h-ddr4', 30, 20, '<p>- Chuẩn mainboard: Micro-ATX<br />\r\n- Socket: 1700 , Chipset: B660<br />\r\n- Hỗ trợ RAM: 4 khe DDR4, tối đa 128GB<br />\r\n- Lưu trữ: 4 x SATA 3 6Gb/s, 2 x M.2 NVMe<br />\r\n- Cổng xuất h&igrave;nh: 1 x HDMI, 1 x VGA/D-sub, 2 x DisplayPort</p>', '<h2><a href=\"https://phongvu.vn/mainboard-bo-mach-chu-scat.02-N002\">Mainboard</a><strong>&nbsp;GIGABYTE B660M DS3H DDR4 l&agrave; sản phẩm bo mạch chủ được thiết kế để ph&ugrave; hợp với bất kỳ t&aacute;c vụ l&agrave;m việc chuy&ecirc;n nghiệp n&agrave;o, n&acirc;ng cao trải nghiệm gi&uacute;p cho bạn thuận tiện hơn phục vụ tối ưu nhất cho c&ocirc;ng việc. Với nhiều năm kinh nghiệm sản xuất c&aacute;c c&ocirc;ng cụ n&acirc;ng cao hiệu suất GIGABYTE hứa hẹn sẽ mang lại cho bạn những trải nghiệm vượt trội.</strong></h2>\r\n\r\n<h3><strong>LAN 2,5 GbE nhanh hơn gấp 2 lần , kiểm so&aacute;t khả năng l&agrave;m m&aacute;t tối ưu</strong></h3>\r\n\r\n<p>Mainboard GIGABYTE B660M DS3H DDR4 của GIGABYTE đặt biệt hơn với việc &aacute;p dụng mạng LAN 2,5G cho khả năng cung cấp kết nối mạng l&ecirc;n đến 2,5 GbE, với tốc độ truyền nhanh hơn l&ecirc;n đến 2 lần so với mạng 1 GbE th&ocirc;ng thường, được thiết kế ho&agrave;n hảo cho game thủ với trải nghiệm chơi game trực tuyến đỉnh cao hiện nay.</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Nhanh hơn gấp 2 lần\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_46f79f1c-69f5-419a-be0b-b3ce77a7ba11.jpg\" /></p>\r\n\r\n<p>GIGABYTE c&ograve;n trang bị t&iacute;nh năng đặc biệt cho bo mạch chủ Mainboard GIGABYTE B660M DS3H DDR4 với khả năng cung cấp năng lượng sạch hơn v&agrave; hiệu quả hơn cho CPU của bạn với hiệu suất nhiệt tốt hơn đảm bảo sự ổn định dưới tần số CPU cao v&agrave; tải lượng nặng.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Lam mát tối ưu\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_44f025eb-5ef6-4e56-a8ef-63a1412f596f.jpg\" /></p>\r\n\r\n<p><strong>Khả năng tương th&iacute;ch tốt,&nbsp; RGB FUSION 2.0 đẹp mắt</strong></p>\r\n\r\n<p>Bo mạch chủ Mainboard GIGABYTE B660M DS3H DDR4 GIGABYTE cung cấp giải ph&aacute;p tản nhiệt cho c&aacute;c thiết bị SSD M.2. C&ugrave;ng bộ bảo vệ nhiệt M.2 ngăn chặn hiệu quả việc điều tiết v&agrave; tắc nghẽn từ SSD M.2 tốc độ cao v&agrave; gi&uacute;p tản nhiệt trước khi n&oacute; trở th&agrave;nh vấn đề.</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Khả năng tương thích tốt \" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_0c7b8766-f85d-4667-8bfe-a6ef6ec1f8d7.jpg\" /></p>\r\n\r\n<p>Bo mạch chủ Mainboard GIGABYTE B660M DS3H DDR4 c&ograve;n c&oacute; RGB Fusion 2.0 cung cấp cho bạn khả năng tốt hơn để t&ugrave;y chỉnh hiệu ứng &aacute;nh s&aacute;ng tr&ecirc;n tất cả c&aacute;c thiết bị được hỗ trợ. Từ bo mạch chủ hay card đồ họa đến c&aacute;c sản phẩm ngoại vi, bạn đều c&oacute; thể tự động c&aacute; nh&acirc;n h&oacute;a hệ thống m&aacute;y chơi game theo phong c&aacute;ch của ri&ecirc;ng bạn v&agrave; thể hiện thiết kế của m&igrave;nh bằng c&aacute;ch chia sẻ c&aacute;c cấu h&igrave;nh.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Đẹp mắt\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_ecb30152-03b6-4117-828d-3fe7b77e0bb8.jpg\" /></p>', 3250000, 3050000, 'unnamed1237.webp', 1, 1, NULL, NULL);
+(70, 'Mainboard GIGABYTE B660M DS3H DDR4', '5', NULL, 'mainboard-gigabyte-b660m-ds3h-ddr4', 30, 20, '<p>- Chuẩn mainboard: Micro-ATX<br />\r\n- Socket: 1700 , Chipset: B660<br />\r\n- Hỗ trợ RAM: 4 khe DDR4, tối đa 128GB<br />\r\n- Lưu trữ: 4 x SATA 3 6Gb/s, 2 x M.2 NVMe<br />\r\n- Cổng xuất h&igrave;nh: 1 x HDMI, 1 x VGA/D-sub, 2 x DisplayPort</p>', '<h2><a href=\"https://phongvu.vn/mainboard-bo-mach-chu-scat.02-N002\">Mainboard</a><strong>&nbsp;GIGABYTE B660M DS3H DDR4 l&agrave; sản phẩm bo mạch chủ được thiết kế để ph&ugrave; hợp với bất kỳ t&aacute;c vụ l&agrave;m việc chuy&ecirc;n nghiệp n&agrave;o, n&acirc;ng cao trải nghiệm gi&uacute;p cho bạn thuận tiện hơn phục vụ tối ưu nhất cho c&ocirc;ng việc. Với nhiều năm kinh nghiệm sản xuất c&aacute;c c&ocirc;ng cụ n&acirc;ng cao hiệu suất GIGABYTE hứa hẹn sẽ mang lại cho bạn những trải nghiệm vượt trội.</strong></h2>\r\n\r\n<h3><strong>LAN 2,5 GbE nhanh hơn gấp 2 lần , kiểm so&aacute;t khả năng l&agrave;m m&aacute;t tối ưu</strong></h3>\r\n\r\n<p>Mainboard GIGABYTE B660M DS3H DDR4 của GIGABYTE đặt biệt hơn với việc &aacute;p dụng mạng LAN 2,5G cho khả năng cung cấp kết nối mạng l&ecirc;n đến 2,5 GbE, với tốc độ truyền nhanh hơn l&ecirc;n đến 2 lần so với mạng 1 GbE th&ocirc;ng thường, được thiết kế ho&agrave;n hảo cho game thủ với trải nghiệm chơi game trực tuyến đỉnh cao hiện nay.</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Nhanh hơn gấp 2 lần\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_46f79f1c-69f5-419a-be0b-b3ce77a7ba11.jpg\" /></p>\r\n\r\n<p>GIGABYTE c&ograve;n trang bị t&iacute;nh năng đặc biệt cho bo mạch chủ Mainboard GIGABYTE B660M DS3H DDR4 với khả năng cung cấp năng lượng sạch hơn v&agrave; hiệu quả hơn cho CPU của bạn với hiệu suất nhiệt tốt hơn đảm bảo sự ổn định dưới tần số CPU cao v&agrave; tải lượng nặng.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Lam mát tối ưu\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_44f025eb-5ef6-4e56-a8ef-63a1412f596f.jpg\" /></p>\r\n\r\n<p><strong>Khả năng tương th&iacute;ch tốt,&nbsp; RGB FUSION 2.0 đẹp mắt</strong></p>\r\n\r\n<p>Bo mạch chủ Mainboard GIGABYTE B660M DS3H DDR4 GIGABYTE cung cấp giải ph&aacute;p tản nhiệt cho c&aacute;c thiết bị SSD M.2. C&ugrave;ng bộ bảo vệ nhiệt M.2 ngăn chặn hiệu quả việc điều tiết v&agrave; tắc nghẽn từ SSD M.2 tốc độ cao v&agrave; gi&uacute;p tản nhiệt trước khi n&oacute; trở th&agrave;nh vấn đề.</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Khả năng tương thích tốt \" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_0c7b8766-f85d-4667-8bfe-a6ef6ec1f8d7.jpg\" /></p>\r\n\r\n<p>Bo mạch chủ Mainboard GIGABYTE B660M DS3H DDR4 c&ograve;n c&oacute; RGB Fusion 2.0 cung cấp cho bạn khả năng tốt hơn để t&ugrave;y chỉnh hiệu ứng &aacute;nh s&aacute;ng tr&ecirc;n tất cả c&aacute;c thiết bị được hỗ trợ. Từ bo mạch chủ hay card đồ họa đến c&aacute;c sản phẩm ngoại vi, bạn đều c&oacute; thể tự động c&aacute; nh&acirc;n h&oacute;a hệ thống m&aacute;y chơi game theo phong c&aacute;ch của ri&ecirc;ng bạn v&agrave; thể hiện thiết kế của m&igrave;nh bằng c&aacute;ch chia sẻ c&aacute;c cấu h&igrave;nh.&nbsp;</p>\r\n\r\n<p><img alt=\"Mainboard GIGABYTE B660M DS3H DDR4| Đẹp mắt\" src=\"https://storage.googleapis.com/teko-gae.appspot.com/media/image/2022/2/16/20220216_ecb30152-03b6-4117-828d-3fe7b77e0bb8.jpg\" /></p>', 3250000, 3050000, 'unnamed1237.webp', 7, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_quanhuyen`
+-- Table structure for table `tbl_quanhuyen`
 --
 
-CREATE TABLE `tbl_quanhuyen` (
+DROP TABLE IF EXISTS `tbl_quanhuyen`;
+CREATE TABLE IF NOT EXISTS `tbl_quanhuyen` (
   `maqh` int(5) NOT NULL,
   `name_quanhuyen` varchar(100) CHARACTER SET utf8 NOT NULL,
   `type` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `matp` int(5) NOT NULL
+  `matp` int(5) NOT NULL,
+  PRIMARY KEY (`maqh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_quanhuyen`
+-- Dumping data for table `tbl_quanhuyen`
 --
 
 INSERT INTO `tbl_quanhuyen` (`maqh`, `name_quanhuyen`, `type`, `matp`) VALUES
@@ -1347,16 +1354,18 @@ INSERT INTO `tbl_quanhuyen` (`maqh`, `name_quanhuyen`, `type`, `matp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_roles`
+-- Table structure for table `tbl_roles`
 --
 
-CREATE TABLE `tbl_roles` (
-  `id_roles` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `tbl_roles`;
+CREATE TABLE IF NOT EXISTS `tbl_roles` (
+  `id_roles` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_roles`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_roles`
+-- Dumping data for table `tbl_roles`
 --
 
 INSERT INTO `tbl_roles` (`id_roles`, `name`) VALUES
@@ -1367,23 +1376,25 @@ INSERT INTO `tbl_roles` (`id_roles`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_shipping`
+-- Table structure for table `tbl_shipping`
 --
 
-CREATE TABLE `tbl_shipping` (
-  `shipping_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `tbl_shipping`;
+CREATE TABLE IF NOT EXISTS `tbl_shipping` (
+  `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `shipping_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shipping_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shipping_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shipping_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shipping_notes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_notes` text COLLATE utf8mb4_unicode_ci,
   `shipping_method` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`shipping_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_shipping`
+-- Dumping data for table `tbl_shipping`
 --
 
 INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `shipping_notes`, `shipping_method`, `created_at`, `updated_at`) VALUES
@@ -1410,24 +1421,29 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, 
 (159, 'd', 'ada', 'da', 'dsada', 'dsadsa', 'chuyenkhoan', NULL, NULL),
 (160, 'ad', 'đa', 'sada', 'adada', 'dsad', 'chuyenkhoan', NULL, NULL),
 (161, 'dsadsa', 'đasa', 'dá', 'Dung@gmail.com', 'dsadsadsad', 'paypal', NULL, NULL),
-(162, 'sadsa', 'dsa', 'đa', 'dsad', 'dâdsa', 'paypal', NULL, NULL);
+(162, 'sadsa', 'dsa', 'đa', 'dsad', 'dâdsa', 'paypal', NULL, NULL),
+(163, 'nguyen a', '180 stu', '1234567890', 'nguyena@gmail.com', 'nothing', 'chuyenkhoan', NULL, NULL),
+(164, 'abc', 'dfhftdsjtydgjkdtygkj', '0123456789', 'customerabc@gmail.com', 'abc', 'chuyenkhoan', NULL, NULL),
+(165, 'dsadsa', 'dsadas', '0123456789', 'customerabc@gmail.com', NULL, 'chuyenkhoan', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_slider`
+-- Table structure for table `tbl_slider`
 --
 
-CREATE TABLE `tbl_slider` (
-  `slider_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_slider`;
+CREATE TABLE IF NOT EXISTS `tbl_slider` (
+  `slider_id` int(11) NOT NULL AUTO_INCREMENT,
   `slider_name` varchar(255) NOT NULL,
   `slider_status` int(11) NOT NULL,
   `slider_image` varchar(100) NOT NULL,
-  `slider_desc` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `slider_desc` varchar(100) NOT NULL,
+  PRIMARY KEY (`slider_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_slider`
+-- Dumping data for table `tbl_slider`
 --
 
 INSERT INTO `tbl_slider` (`slider_id`, `slider_name`, `slider_status`, `slider_image`, `slider_desc`) VALUES
@@ -1440,56 +1456,73 @@ INSERT INTO `tbl_slider` (`slider_id`, `slider_name`, `slider_status`, `slider_i
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_social`
+-- Table structure for table `tbl_social`
 --
 
-CREATE TABLE `tbl_social` (
-  `user_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_social`;
+CREATE TABLE IF NOT EXISTS `tbl_social` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `provider_user_id` varchar(100) NOT NULL,
-  `provider_user_email` int(255) NOT NULL,
+  `provider_user_email` varchar(255) NOT NULL,
   `provider` varchar(100) NOT NULL,
-  `user` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user` int(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `user` (`user`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_social`
+--
+
+INSERT INTO `tbl_social` (`user_id`, `provider_user_id`, `provider_user_email`, `provider`, `user`) VALUES
+(1, '2249089961941981', 'nickyssc@yahoo.com.vn', 'facebook', 31);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_social_customers`
+-- Table structure for table `tbl_social_customers`
 --
 
-CREATE TABLE `tbl_social_customers` (
-  `user_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_social_customers`;
+CREATE TABLE IF NOT EXISTS `tbl_social_customers` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `provider_user_id` varchar(100) NOT NULL,
   `provider_user_email` varchar(255) NOT NULL,
   `provider` varchar(100) NOT NULL,
-  `user` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user` int(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `user` (`user`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_social_customers`
+-- Dumping data for table `tbl_social_customers`
 --
 
 INSERT INTO `tbl_social_customers` (`user_id`, `provider_user_id`, `provider_user_email`, `provider`, `user`) VALUES
 (27, '117992932501664365831', 'ducdunggl2014@gmail.com', 'GOOGLE', 17),
-(29, '108717610098070370939', 'hokieunga20041@gmail.com', 'GOOGLE', 19);
+(29, '108717610098070370939', 'hokieunga20041@gmail.com', 'GOOGLE', 19),
+(30, '116662488438740133409', 'hung060101@gmail.com', 'GOOGLE', 25),
+(31, '103787326916672784319', 'lephuongnam0903@gmail.com', 'GOOGLE', 26);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_statistical`
+-- Table structure for table `tbl_statistical`
 --
 
-CREATE TABLE `tbl_statistical` (
-  `id_statistical` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_statistical`;
+CREATE TABLE IF NOT EXISTS `tbl_statistical` (
+  `id_statistical` int(11) NOT NULL AUTO_INCREMENT,
   `order_date` varchar(100) NOT NULL,
   `sales` varchar(200) NOT NULL,
   `profit` varchar(200) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `total_order` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `total_order` int(11) NOT NULL,
+  PRIMARY KEY (`id_statistical`)
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_statistical`
+-- Dumping data for table `tbl_statistical`
 --
 
 INSERT INTO `tbl_statistical` (`id_statistical`, `order_date`, `sales`, `profit`, `quantity`, `total_order`) VALUES
@@ -1569,22 +1602,25 @@ INSERT INTO `tbl_statistical` (`id_statistical`, `order_date`, `sales`, `profit`
 (74, '2022-10-25', '2500000', '500000', 1, 1),
 (75, '2022-10-26', '130000', '30000', 1, 1),
 (76, '2022-11-10', '20290000', '5000000', 1, 1),
-(77, '2022-12-06', '3657000', '1359000', 3, 3);
+(77, '2022-12-06', '3657000', '1359000', 3, 3),
+(78, '2023-02-15', '17618000', '2000000', 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_tinhthanhpho`
+-- Table structure for table `tbl_tinhthanhpho`
 --
 
-CREATE TABLE `tbl_tinhthanhpho` (
+DROP TABLE IF EXISTS `tbl_tinhthanhpho`;
+CREATE TABLE IF NOT EXISTS `tbl_tinhthanhpho` (
   `matp` int(11) NOT NULL,
   `name_city` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `type` varchar(30) CHARACTER SET utf8 NOT NULL
+  `type` varchar(30) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`matp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_tinhthanhpho`
+-- Dumping data for table `tbl_tinhthanhpho`
 --
 
 INSERT INTO `tbl_tinhthanhpho` (`matp`, `name_city`, `type`) VALUES
@@ -1655,17 +1691,19 @@ INSERT INTO `tbl_tinhthanhpho` (`matp`, `name_city`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_visitors`
+-- Table structure for table `tbl_visitors`
 --
 
-CREATE TABLE `tbl_visitors` (
-  `id_visitors` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_visitors`;
+CREATE TABLE IF NOT EXISTS `tbl_visitors` (
+  `id_visitors` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(50) NOT NULL,
-  `date_visitor` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date_visitor` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_visitors`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_visitors`
+-- Dumping data for table `tbl_visitors`
 --
 
 INSERT INTO `tbl_visitors` (`id_visitors`, `ip_address`, `date_visitor`) VALUES
@@ -1677,11 +1715,12 @@ INSERT INTO `tbl_visitors` (`id_visitors`, `ip_address`, `date_visitor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_vnpay`
+-- Table structure for table `tbl_vnpay`
 --
 
-CREATE TABLE `tbl_vnpay` (
-  `id_vnpay` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tbl_vnpay`;
+CREATE TABLE IF NOT EXISTS `tbl_vnpay` (
+  `id_vnpay` int(11) NOT NULL AUTO_INCREMENT,
   `vnp_amount` varchar(50) NOT NULL,
   `vnp_bankcode` varchar(50) NOT NULL,
   `vnp_banktranno` varchar(50) NOT NULL,
@@ -1689,24 +1728,27 @@ CREATE TABLE `tbl_vnpay` (
   `vnp_orderInfo` varchar(100) NOT NULL,
   `vnp_paydate` varchar(50) NOT NULL,
   `vnp_tmnCode` varchar(50) NOT NULL,
-  `vnp_transactionno` varchar(50) NOT NULL
+  `vnp_transactionno` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_vnpay`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tbl_xaphuongthitran`
+-- Table structure for table `tbl_xaphuongthitran`
 --
 
-CREATE TABLE `tbl_xaphuongthitran` (
+DROP TABLE IF EXISTS `tbl_xaphuongthitran`;
+CREATE TABLE IF NOT EXISTS `tbl_xaphuongthitran` (
   `xaid` int(5) NOT NULL,
   `name_xaphuong` varchar(100) CHARACTER SET utf8 NOT NULL,
   `type` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `maqh` int(5) NOT NULL
+  `maqh` int(5) NOT NULL,
+  PRIMARY KEY (`xaid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_xaphuongthitran`
+-- Dumping data for table `tbl_xaphuongthitran`
 --
 
 INSERT INTO `tbl_xaphuongthitran` (`xaid`, `name_xaphuong`, `type`, `maqh`) VALUES
@@ -12883,338 +12925,42 @@ INSERT INTO `tbl_xaphuongthitran` (`xaid`, `name_xaphuong`, `type`, `maqh`) VALU
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin_roles`
---
-ALTER TABLE `admin_roles`
-  ADD PRIMARY KEY (`id_admin_roles`);
-
---
--- Chỉ mục cho bảng `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`admin_id`);
-
---
--- Chỉ mục cho bảng `tbl_brand`
---
-ALTER TABLE `tbl_brand`
-  ADD PRIMARY KEY (`brand_id`);
-
---
--- Chỉ mục cho bảng `tbl_category_product`
---
-ALTER TABLE `tbl_category_product`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Chỉ mục cho bảng `tbl_coupon`
---
-ALTER TABLE `tbl_coupon`
-  ADD PRIMARY KEY (`coupon_id`);
-
---
--- Chỉ mục cho bảng `tbl_customers`
---
-ALTER TABLE `tbl_customers`
-  ADD PRIMARY KEY (`customer_id`);
-
---
--- Chỉ mục cho bảng `tbl_feeship`
---
-ALTER TABLE `tbl_feeship`
-  ADD PRIMARY KEY (`fee_id`);
-
---
--- Chỉ mục cho bảng `tbl_gallery`
---
-ALTER TABLE `tbl_gallery`
-  ADD PRIMARY KEY (`gallery_id`);
-
---
--- Chỉ mục cho bảng `tbl_information`
---
-ALTER TABLE `tbl_information`
-  ADD PRIMARY KEY (`info_id`);
-
---
--- Chỉ mục cho bảng `tbl_order`
---
-ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `customer_id` (`customer_id`,`shipping_id`),
-  ADD KEY `order_code` (`order_code`);
-
---
--- Chỉ mục cho bảng `tbl_order_details`
---
-ALTER TABLE `tbl_order_details`
-  ADD PRIMARY KEY (`order_details_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `order_code` (`order_code`);
-
---
--- Chỉ mục cho bảng `tbl_product`
---
-ALTER TABLE `tbl_product`
-  ADD PRIMARY KEY (`product_id`),
-  ADD KEY `category_id` (`category_id`,`brand_id`),
-  ADD KEY `tbl_product_ibfk_1` (`brand_id`);
-
---
--- Chỉ mục cho bảng `tbl_quanhuyen`
---
-ALTER TABLE `tbl_quanhuyen`
-  ADD PRIMARY KEY (`maqh`);
-
---
--- Chỉ mục cho bảng `tbl_roles`
---
-ALTER TABLE `tbl_roles`
-  ADD PRIMARY KEY (`id_roles`);
-
---
--- Chỉ mục cho bảng `tbl_shipping`
---
-ALTER TABLE `tbl_shipping`
-  ADD PRIMARY KEY (`shipping_id`);
-
---
--- Chỉ mục cho bảng `tbl_slider`
---
-ALTER TABLE `tbl_slider`
-  ADD PRIMARY KEY (`slider_id`);
-
---
--- Chỉ mục cho bảng `tbl_social`
---
-ALTER TABLE `tbl_social`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `user` (`user`);
-
---
--- Chỉ mục cho bảng `tbl_social_customers`
---
-ALTER TABLE `tbl_social_customers`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `user` (`user`);
-
---
--- Chỉ mục cho bảng `tbl_statistical`
---
-ALTER TABLE `tbl_statistical`
-  ADD PRIMARY KEY (`id_statistical`);
-
---
--- Chỉ mục cho bảng `tbl_tinhthanhpho`
---
-ALTER TABLE `tbl_tinhthanhpho`
-  ADD PRIMARY KEY (`matp`);
-
---
--- Chỉ mục cho bảng `tbl_visitors`
---
-ALTER TABLE `tbl_visitors`
-  ADD PRIMARY KEY (`id_visitors`);
-
---
--- Chỉ mục cho bảng `tbl_vnpay`
---
-ALTER TABLE `tbl_vnpay`
-  ADD PRIMARY KEY (`id_vnpay`);
-
---
--- Chỉ mục cho bảng `tbl_xaphuongthitran`
---
-ALTER TABLE `tbl_xaphuongthitran`
-  ADD PRIMARY KEY (`xaid`);
-
---
--- Chỉ mục cho bảng `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `admin_roles`
---
-ALTER TABLE `admin_roles`
-  MODIFY `id_admin_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT cho bảng `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT cho bảng `tbl_brand`
---
-ALTER TABLE `tbl_brand`
-  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT cho bảng `tbl_category_product`
---
-ALTER TABLE `tbl_category_product`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT cho bảng `tbl_coupon`
---
-ALTER TABLE `tbl_coupon`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT cho bảng `tbl_customers`
---
-ALTER TABLE `tbl_customers`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT cho bảng `tbl_feeship`
---
-ALTER TABLE `tbl_feeship`
-  MODIFY `fee_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT cho bảng `tbl_gallery`
---
-ALTER TABLE `tbl_gallery`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
-
---
--- AUTO_INCREMENT cho bảng `tbl_information`
---
-ALTER TABLE `tbl_information`
-  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT cho bảng `tbl_order`
---
-ALTER TABLE `tbl_order`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
-
---
--- AUTO_INCREMENT cho bảng `tbl_order_details`
---
-ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
-
---
--- AUTO_INCREMENT cho bảng `tbl_product`
---
-ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
-
---
--- AUTO_INCREMENT cho bảng `tbl_roles`
---
-ALTER TABLE `tbl_roles`
-  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT cho bảng `tbl_shipping`
---
-ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
-
---
--- AUTO_INCREMENT cho bảng `tbl_slider`
---
-ALTER TABLE `tbl_slider`
-  MODIFY `slider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT cho bảng `tbl_social`
---
-ALTER TABLE `tbl_social`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT cho bảng `tbl_social_customers`
---
-ALTER TABLE `tbl_social_customers`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT cho bảng `tbl_statistical`
---
-ALTER TABLE `tbl_statistical`
-  MODIFY `id_statistical` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
---
--- AUTO_INCREMENT cho bảng `tbl_visitors`
---
-ALTER TABLE `tbl_visitors`
-  MODIFY `id_visitors` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT cho bảng `tbl_vnpay`
---
-ALTER TABLE `tbl_vnpay`
-  MODIFY `id_vnpay` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `tbl_order`
+-- Constraints for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
   ADD CONSTRAINT `tbl_order_ibfk_1` FOREIGN KEY (`shipping_id`) REFERENCES `tbl_shipping` (`shipping_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_order_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customers` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `tbl_product`
+-- Constraints for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
   ADD CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_product_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `tbl_category_product` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `tbl_social`
+-- Constraints for table `tbl_social`
 --
 ALTER TABLE `tbl_social`
   ADD CONSTRAINT `tbl_social_ibfk_1` FOREIGN KEY (`user`) REFERENCES `tbl_admin` (`admin_id`);
